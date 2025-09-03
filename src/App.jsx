@@ -1,9 +1,9 @@
-import {LoadingScreen} from './components/LoadingScreen'
-import {Navbar} from './components/Navbar'
-import {MobileNav} from './components/MobileNav'
+import { LoadingScreen } from './components/LoadingScreen'
+import { Navbar } from './components/Navbar'
+import { MobileNav } from './components/MobileNav'
+import { Home } from './components/Home'
 import { useState } from 'react';
 import './index.css'
-import { Home } from 'lucide-react';
 
 function App() {
   const [isLoaded, setIsLoading] = useState(false);
