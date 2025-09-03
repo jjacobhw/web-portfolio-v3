@@ -13,7 +13,7 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
       <div className="max-w-5xl mx-auto px-4">
         <div className="flex justify-between items-center h-16">
           <a href="#Home" className="font-bold text-xl text-white font-Rubik">
-            Jacob<span className="text-blue-400"> Wei</span>
+            Jacob<span className="text-[#50C878]"> Wei</span>
           </a>
           <div
             className="w-7 h-5 relative cursor-pointer md:hidden"
