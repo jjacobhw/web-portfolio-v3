@@ -1,5 +1,6 @@
 import {LoadingScreen} from './components/LoadingScreen'
 import {Navbar} from './components/Navbar'
+import {MobileNav} from './components/MobileNav'
 import { useState } from 'react';
 import './index.css'
 
@@ -13,6 +14,7 @@ function App() {
         isLoaded ? "opacity-100" : "opacity-0"
       } bg-black text-gray-100`}>
         <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen}/>
+        <MobileNav menuOpen={menuOpen} setMenuOpen={setMenuOpen}/>
       </div>
     </>
   ); 
