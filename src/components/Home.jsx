@@ -10,7 +10,7 @@ export const Home = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-7 max-w-6xl h-full">
         <div className="flex items-center h-full">
           <div className="text-left">
-            <h1 className="text-2xl md:text-4xl font-bold mb-6">
+            <h1 className="text-2xl md:text-4xl font-semibold mb-6">
               Hi, I'm <span className="text-[#50C878]">Jacob Wei</span> 👋
             </h1>
             <h2 className="text-gray-300 mb-8">
