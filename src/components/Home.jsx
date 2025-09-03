@@ -11,7 +11,7 @@ export const Home = () => {
         <div className="flex items-center h-full">
           <div className="text-left">
             <h1 className="text-2xl md:text-4xl font-semibold mb-6">
-              Hi, I'm <span className="text-[#50C878]">Jacob Wei</span> 👋
+              Hi, I'm <span className="text-[#1DB954]">Jacob Wei</span> 👋
             </h1>
             <h2 className="text-gray-300 mb-8">
               AI/ML Engineer, Software/Full Stack Developer
@@ -22,7 +22,7 @@ export const Home = () => {
                 href="src\media\Jacob's Resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="border border-gray-600 hover:border-gray-400 text-[#50C878] 
+                className="border border-gray-600 hover:border-gray-400 text-[#1DB954] 
                           hover:bg-gray-800 px-4 py-2 rounded-md transition-all duration-300
                           flex items-center gap-2 group"
               >
@@ -33,7 +33,7 @@ export const Home = () => {
                 href="https://github.com/jjacobhw"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="border border-gray-600 hover:border-gray-400 text-[#50C878] 
+                className="border border-gray-600 hover:border-gray-400 text-[#1DB954] 
                           hover:bg-gray-800 px-4 py-2 rounded-md transition-all duration-300
                           flex items-center gap-2 group"
               >
@@ -44,7 +44,7 @@ export const Home = () => {
                 href="https://linkedin.com/in/jacob-wei"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="border border-gray-600 hover:border-gray-400 text-[#50C878]
+                className="border border-gray-600 hover:border-gray-400 text-[#1DB954]
                           hover:bg-gray-800 px-4 py-2 rounded-md transition-all duration-300
                           flex items-center gap-2 group text-sm"
               >
