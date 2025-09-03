@@ -3,6 +3,7 @@ import {Navbar} from './components/Navbar'
 import {MobileNav} from './components/MobileNav'
 import { useState } from 'react';
 import './index.css'
+import { Home } from 'lucide-react';
 
 function App() {
   const [isLoaded, setIsLoading] = useState(false);
@@ -15,6 +16,7 @@ function App() {
       } bg-black text-gray-100`}>
         <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen}/>
         <MobileNav menuOpen={menuOpen} setMenuOpen={setMenuOpen}/>
+        <Home id="Home" className="h-screen flex items-center justify-center text-4xl font-Rubik" />
       </div>
     </>
   ); 
