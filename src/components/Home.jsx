@@ -1,6 +1,31 @@
 import { FileText, Github, Linkedin, MapPin } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
 export const Home = () => {
+  const [displayedText, setDisplayedText] = useState('');
+  const [isTypingComplete, setIsTypingComplete] = useState(false);
+  const fullText = "Hi, I'm ";
+  const name = "Jacob Wei";
+  const emoji = " 👋";
+  
+  useEffect(() => {
+    setDisplayedText('');
+    setIsTypingComplete(false);
+    
+    let currentIndex = 0;
+    const typingInterval = setInterval(() => {
+      if (currentIndex <= fullText.length) {
+        setDisplayedText(fullText.slice(0, currentIndex));
+        currentIndex++;
+      } else {
+        setIsTypingComplete(true);
+        clearInterval(typingInterval);
+      }
+    }, 100);
+
+    return () => clearInterval(typingInterval);
+  }, []);
+
   return (
     <section
       id="home"
@@ -13,14 +38,23 @@ export const Home = () => {
           <div className="text-left space-y-6">
             <div className="space-y-3">
               <h1 className="text-2xl md:text-4xl font-semibold">
-                Hi, I'm <span className="text-[#1DB954]">Jacob Wei</span> 👋
+                <span className="text-white dark:text-white">{displayedText}</span>
+                {displayedText.length >= fullText.length && (
+                  <>
+                    <span className="text-[#1DB954]">{name}</span>
+                    <span className="text-white dark:text-white">{emoji}</span>
+                  </>
+                )}
+                {!isTypingComplete && (
+                  <span className="animate-pulse text-white dark:text-white">|</span>
+                )}
               </h1>
-              <h2 className="dark:text-gray-300 text-gray-600 text-lg md:text-xl">
+              <h2 className="dark:text-gray-300 text-gray-600 text-lg md:text-lg">
                 AI/ML Engineer, Software/Full Stack Developer
               </h2>
               <h3 className="dark:text-gray-300 text-gray-600 text-base flex items-center gap-1">
                 <MapPin className="w-4 h-4" />
-                Irvine, CA
+                Irvine, California
               </h3>
             </div>
             
@@ -32,8 +66,21 @@ export const Home = () => {
                 className="border dark:border-gray-600 border-gray-300 
                           dark:hover:border-gray-400 hover:border-gray-500
                           text-[#1DB954] dark:hover:bg-gray-800 hover:bg-gray-100
-                          px-4 py-2 rounded-md transition-all duration-300
-                          flex items-center gap-2 group"
+                          px-4 py-2 rounded-md transition-all duration-500
+                          flex items-center gap-2 group
+                          hover:animate-pulse
+                          transform hover:rotateY-180 hover:scale-105
+                          perspective-1000 preserve-3d"
+                style={{
+                  transformStyle: 'preserve-3d',
+                  transition: 'transform 0.6s cubic-bezier(0.4, 0.0, 0.2, 1)'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'rotateY(180deg) scale(1.1)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'rotateY(0deg) scale(1)';
+                }}
               >
                 <FileText className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
                 Resume
@@ -45,8 +92,21 @@ export const Home = () => {
                 className="border dark:border-gray-600 border-gray-300 
                           dark:hover:border-gray-400 hover:border-gray-500
                           text-[#1DB954] dark:hover:bg-gray-800 hover:bg-gray-100
-                          px-4 py-2 rounded-md transition-all duration-300
-                          flex items-center gap-2 group"
+                          px-4 py-2 rounded-md transition-all duration-500
+                          flex items-center gap-2 group
+                          hover:animate-pulse
+                          transform hover:rotateY-180 hover:scale-105
+                          perspective-1000 preserve-3d"
+                style={{
+                  transformStyle: 'preserve-3d',
+                  transition: 'transform 0.6s cubic-bezier(0.4, 0.0, 0.2, 1)'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'rotateY(180deg) scale(1.1)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'rotateY(0deg) scale(1)';
+                }}
               >
                 <Github className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
                 GitHub
@@ -58,8 +118,21 @@ export const Home = () => {
                 className="border border-gray-300 dark:border-gray-600 
                           hover:border-gray-500 dark:hover:border-gray-400
                           text-[#1DB954] hover:bg-gray-100 dark:hover:bg-gray-800
-                          px-4 py-2 rounded-md transition-all duration-300
-                          flex items-center gap-2 group"
+                          px-4 py-2 rounded-md transition-all duration-500
+                          flex items-center gap-2 group
+                          hover:animate-pulse
+                          transform hover:rotateY-180 hover:scale-105
+                          perspective-1000 preserve-3d"
+                style={{
+                  transformStyle: 'preserve-3d',
+                  transition: 'transform 0.6s cubic-bezier(0.4, 0.0, 0.2, 1)'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'rotateY(180deg) scale(1.05)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'rotateY(0deg) scale(1)';
+                }}
               >
                 <Linkedin className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
                 LinkedIn

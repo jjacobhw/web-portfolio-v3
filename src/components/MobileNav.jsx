@@ -4,7 +4,7 @@ export const MobileNav = ({ menuOpen, setMenuOpen }) => {
   const links = [
     { href: "#Home", label: "Home" },
     { href: "#About", label: "About" },
-    { href: "#Education", label: "Education" },
+    { href: "#Experience", label: "Experience" },
     { href: "#Projects", label: "Projects" },
   ];
 
