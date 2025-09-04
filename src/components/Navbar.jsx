@@ -13,7 +13,7 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
       className="fixed top-0 w-full z-40 bg-[rgba(10,10,10,0.65)]
       backdrop-blur-lg shadow-lg"
     >
-      <div className="max-w-5xl mx-auto px-4">
+      <div className="max-w-4xl mx-auto px-4">
         <div className="flex justify-between items-center h-16">
           {/* Desktop navigation - full width on desktop, hidden on mobile */}
           <div className="hidden md:flex items-center justify-between w-full">
