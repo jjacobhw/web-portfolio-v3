@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { CodeXml, Globe, Brain, Terminal, ChevronDown, ChevronUp, Menu } from 'lucide-react';
+import { CodeXml, Globe, BrainCircuit, Terminal, ChevronDown, ChevronUp, Menu, PencilRuler } from 'lucide-react';
 
 export const Skills = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -7,7 +7,7 @@ export const Skills = () => {
   const [expandedCategories, setExpandedCategories] = useState({});
   const [showAllSkills, setShowAllSkills] = useState(false);
   
-  // Devicon mapping for each skill
+  // FIXED: Corrected Devicon mappings
   const deviconMapping = {
     // Programming Languages
     "Python": "python",
@@ -22,22 +22,22 @@ export const Skills = () => {
     "Next.js": "nextjs",
     "Node.js": "nodejs",
     "Tailwind CSS": "tailwindcss",
-    "Vercel": "vercel",
-    "Vite": "vite",
     
     // AI & Machine Learning
     "PyTorch": "pytorch",
-    "ChromaDB": "chromadb", // Note: ChromaDB may not have a Devicon
-    "Hugging Face": "huggingface", // Note: Hugging Face may not have a Devicon
-    "LangChain": "langchain", // Note: LangChain may not have a Devicon
+    "NumPy": "numpy",
+    "Pandas": "pandas", // Using python icon instead
+    "ChromaDB": null, // No Devicon available - will use PencilRuler
+    "Hugging Face": null, // No Devicon available - will use PencilRuler
+    "LangChain": null, // No Devicon available - will use PencilRuler
     
     // Platforms & Tools
-    "Windows": "windows",
+    "Windows": "windows8",
     "Linux": "linux",
     "GitHub": "github",
     "Ubuntu": "ubuntu",
     "Visual Studio": "visualstudio",
-    "PowerShell": "powershell",
+    "PowerShell": null, // No Devicon available - will use PencilRuler
     "Bash": "bash",
     "Git": "git",
     "VIM": "vim"
@@ -52,23 +52,40 @@ export const Skills = () => {
     },
     {
       title: "Web Development", 
-      skills: ["React", "Next.js", "Node.js", "Tailwind CSS", "Vercel", "Vite"],
+      skills: ["React", "Next.js", "Node.js", "Tailwind CSS",],
       icon: Globe,
       id: "web"
     },
     {
       title: "AI & Machine Learning",
-      skills: ["PyTorch", "ChromaDB", "Hugging Face", "LangChain"],
-      icon: Brain,
+      skills: ["PyTorch", "NumPy", "Pandas", "ChromaDB", "Hugging Face", "LangChain"],
+      icon: BrainCircuit,
       id: "ai"
     },
     {
       title: "Platforms & Tools",
-      skills: ["Windows", "Linux", "GitHub" , "Ubuntu", "Visual Studio", "PowerShell", "Bash", "Git",  "VIM"],
+      skills: ["Windows", "Linux", "GitHub", "Ubuntu", "Visual Studio", "PowerShell", "Bash", "Git", "VIM"],
       icon: Terminal,
       id: "platforms"
     }
   ];
+
+  // UPDATED: Check for valid Devicon
+  const hasValidDevicon = (tech) => {
+    const deviconClass = deviconMapping[tech];
+    return deviconClass !== null && deviconClass !== undefined;
+  };
+
+  // NEW: Function to get skill icon component
+  const getSkillIcon = (tech) => {
+    const deviconClass = deviconMapping[tech];
+    
+    if (deviconClass) {
+      return { type: 'devicon', class: deviconClass };
+    } else {
+      return { type: 'lucide', component: PencilRuler };
+    }
+  };
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -98,14 +115,12 @@ export const Skills = () => {
   const toggleAllSkills = () => {
     setShowAllSkills(!showAllSkills);
     if (!showAllSkills) {
-      // Expand all categories when showing all skills
       const allExpanded = {};
       skillCategories.forEach(cat => {
         allExpanded[cat.id] = true;
       });
       setExpandedCategories(allExpanded);
     } else {
-      // Collapse all when hiding
       setExpandedCategories({});
     }
   };
@@ -124,7 +139,6 @@ export const Skills = () => {
                       transform-gpu`}
       >
         
-        {/* Category Header - Always visible */}
         <div 
           onClick={() => toggleCategory(category.id)}
           className="flex items-center justify-between p-6 cursor-pointer
@@ -148,18 +162,15 @@ export const Skills = () => {
           )}
         </div>
 
-        {/* Skills List - Collapsible with fixed height approach */}
         <div className={`transition-all duration-500 ease-in-out ${
           isExpanded 
-            ? 'max-h-[1000px] opacity-100' // Increased max height for larger icons
+            ? 'max-h-[1000px] opacity-100'
             : 'max-h-0 opacity-0'
         } overflow-hidden`}>
           <div className="px-6 pb-6">
-            {/* Grid with more columns for horizontal shrinking */}
             <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-4 pt-4 border-t border-gray-200/10 dark:border-gray-700/20">
               {category.skills.map((tech, skillIndex) => {
-                const deviconClass = deviconMapping[tech];
-                const hasDevicon = deviconClass && !["ChromaDB", "Hugging Face", "LangChain"].includes(tech);
+                const skillIcon = getSkillIcon(tech);
                 
                 return (
                   <div 
@@ -174,21 +185,22 @@ export const Skills = () => {
                              hover:border-[#1DB954]/30
                              flex flex-col items-center justify-center gap-3
                              ${isExpanded ? 'animate-fade-in-up' : ''}
-                             h-32`} // Increased height for larger icons
+                             h-32`}
                   >
-                    {hasDevicon ? (
-                      <>
-                        <i className={`devicon-${deviconClass}-plain colored text-4xl md:text-5xl`}></i>
-                        <span className="text-center text-xs font-semibold mt-1">{tech}</span>
-                      </>
+                    {skillIcon.type === 'devicon' ? (
+                      // Devicon implementation
+                      <div className="flex flex-col items-center gap-2">
+                        <i 
+                          className={`devicon-${skillIcon.class}-plain text-4xl md:text-5xl skill-icon`}
+                        ></i>
+                      </div>
                     ) : (
-                      <>
-                        <div className="w-12 h-12 bg-[#1DB954]/20 rounded-full flex items-center justify-center">
-                          <Terminal className="w-7 h-7 text-[#1DB954]" />
-                        </div>
-                        <span className="text-center text-xs font-semibold mt-1">{tech}</span>
-                      </>
+                      // Lucide PencilRuler implementation
+                      <div className="flex flex-col items-center gap-2">
+                        <PencilRuler className="w-10 h-10 md:w-12 md:h-12 text-[#1DB954]" />
+                      </div>
                     )}
+                    <span className="text-center text-xs font-semibold mt-1">{tech}</span>
                   </div>
                 );
               })}
@@ -208,11 +220,30 @@ export const Skills = () => {
                  transition-all duration-700 ease-out
                  ${isVisible ? 'opacity-100' : 'opacity-0'}`}
     >
-      {/* Add Devicon CSS */}
+      {/* Load Devicon CSS in head for better loading */}
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css" />
       
+      <style jsx>{`
+        .skill-icon {
+          color: #1DB954 !important;
+        }
+        /* Add animation for fade-in-up */
+        @keyframes fade-in-up {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        .animate-fade-in-up {
+          animation: fade-in-up 0.5s ease-out forwards;
+        }
+      `}</style>
+      
       <div className={`max-w-6xl mx-auto w-full ${isMobile ? 'px-4' : 'px-8'}`}>
-        {/* Header - Fixed position in layout */}
         <div className={`text-center mb-16 transition-all duration-700 delay-300
                         ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
           <h2 className={`font-bold dark:text-white text-gray-900 mb-8
@@ -220,17 +251,16 @@ export const Skills = () => {
             Skills & Technologies
           </h2>
           
-          {/* Fixed Toggle Button */}
           <div className="sticky top-4 z-10 mb-10">
             <button
               onClick={toggleAllSkills}
-              className="group bg-[#1DB954]/10 hover:bg-[#1DB954]/20 
+              className="group bg-[#1DB954] hover:bg-[#1DB954]/20 
                        border border-[#1DB954]/20 hover:border-[#1DB954]/40
                        text-[#1DB954] px-6 py-3 rounded-lg
                        flex items-center gap-3 mx-auto
                        hover:scale-105 transition-all duration-300
                        hover:shadow-[0_4px_12px_rgba(29,185,84,0.2)]
-                       cursor-pointer backdrop-blur-sm bg-white/90 dark:bg-black/90
+                       cursor-pointer backdrop-blur-sm bg-white dark:bg-black/90
                        text-lg font-semibold"
             >
               <Menu className="w-6 h-6 group-hover:animate-pulse" />
@@ -246,7 +276,6 @@ export const Skills = () => {
           </div>
         </div>
 
-        {/* Skills Categories - Using CSS Grid for stable layout */}
         <div className="grid gap-8 grid-cols-1">
           {skillCategories.map((category, index) => (
             <SkillCategory 
@@ -257,7 +286,6 @@ export const Skills = () => {
           ))}
         </div>
 
-        {/* Bottom CTA - Fixed position */}
         <div className={`text-center mt-16 transition-all duration-700 delay-1200
                         ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
           <p className={`dark:text-gray-400 text-gray-600
@@ -266,63 +294,6 @@ export const Skills = () => {
           </p>
         </div>
       </div>
-
-      {/* Custom CSS for animations */}
-      <style jsx>{`
-        @keyframes fade-in-up {
-          from {
-            opacity: 0;
-            transform: translateY(10px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        
-        .animate-fade-in-up {
-          animation: fade-in-up 0.3s ease-out forwards;
-        }
-        
-        /* Ensure smooth transitions without layout shifts */
-        .grid {
-          contain: layout;
-        }
-        
-        /* Adjust Devicon alignment */
-        .devicon {
-          display: inline-block;
-          vertical-align: middle;
-        }
-        
-        /* Custom styling for better icon visibility */
-        .devicon-python-plain,
-        .devicon-cplusplus-plain,
-        .devicon-c-plain,
-        .devicon-javascript-plain,
-        .devicon-typescript-plain,
-        .devicon-html5-plain,
-        .devicon-react-plain,
-        .devicon-nextjs-plain,
-        .devicon-nodejs-plain,
-        .devicon-tailwindcss-plain,
-        .devicon-vercel-plain,
-        .devicon-vite-plain,
-        .devicon-pytorch-plain,
-        .devicon-windows-plain,
-        .devicon-linux-plain,
-        .devicon-github-plain,
-        .devicon-ubuntu-plain,
-        .devicon-visualstudio-plain,
-        .devicon-powershell-plain,
-        .devicon-bash-plain,
-        .devicon-git-plain,
-        .devicon-vim-plain {
-          font-size: 2.5rem !important;
-          height: 2.5rem !important;
-          width: 2.5rem !important;
-        }
-      `}</style>
     </section>
   );
 };
