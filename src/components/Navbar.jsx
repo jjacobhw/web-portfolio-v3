@@ -64,7 +64,7 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
                   }`}
                 />
               </div>
-              <span>Contact Me</span>
+              <span>Contact</span>
             </a>
             
             <div className="flex items-center space-x-7 font-Rubik">
