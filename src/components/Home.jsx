@@ -119,7 +119,8 @@ export const Home = () => {
                     hover:animate-pulse
                     transform hover:scale-105`}
         >
-          <FileText className={`${isMobileLayout ? 'w-4 h-4 sm:w-5 sm:h-5' : 'w-5 h-5'} group-hover:scale-110 transition-transform duration-300`} />
+          <FileText className={`${isMobileLayout ? 'w-4 h-4 sm:w-5 sm:h-5' : 'w-5 h-5'} 
+                              group-hover:animate-bounce transition-transform duration-300`} />
           Resume
         </a>
         <a
@@ -135,7 +136,8 @@ export const Home = () => {
                     hover:animate-pulse
                     transform hover:scale-105`}
         >
-          <Github className={`${isMobileLayout ? 'w-4 h-4 sm:w-5 sm:h-5' : 'w-5 h-5'} group-hover:scale-110 transition-transform duration-300`} />
+          <Github className={`${isMobileLayout ? 'w-4 h-4 sm:w-5 sm:h-5' : 'w-5 h-5'} 
+                            group-hover:animate-bounce transition-transform duration-300`} />
           GitHub
         </a>
         <a
@@ -151,7 +153,8 @@ export const Home = () => {
                     hover:animate-pulse
                     transform hover:scale-105`}
         >
-          <Linkedin className={`${isMobileLayout ? 'w-4 h-4 sm:w-5 sm:h-5' : 'w-5 h-5'} group-hover:scale-110 transition-transform duration-300`} />
+          <Linkedin className={`${isMobileLayout ? 'w-4 h-4 sm:w-5 sm:h-5' : 'w-5 h-5'} 
+                              group-hover:animate-bounce transition-transform duration-300`} />
           LinkedIn
         </a>
       </div>
