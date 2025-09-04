@@ -49,8 +49,8 @@ export const Home = () => {
       {/* Main heading */}
       <h1 className={`font-semibold ${
         isMobileLayout 
-          ? 'text-2xl sm:text-3xl md:text-4xl mb-2' 
-          : 'text-3xl xl:text-5xl mb-6'
+          ? 'text-3xl sm:text-4xl md:text-5xl mb-6' 
+          : 'text-4xl xl:text-5xl mb-6'
       }`}>
         <span className="text-white dark:text-white">
           {displayedText.slice(0, 8)} {/* "Hi, I'm " */}
@@ -81,18 +81,27 @@ export const Home = () => {
       {/* Description */}
       <h3 className={`dark:text-white text-gray-600 ${
         isMobileLayout 
+          ? 'text-xs sm:text-base mb-3' 
+          : 'text-base md:text-lg mb-4'
+      } transition-all duration-700 delay-500
+      ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+        I’m a Computer Science undergraduate exploring RAG, NLP, LLM fine-tuning, and deep learning.
+        With a foundation in software engineering and web development, I enjoy building intelligent,
+        practical systems that address real-world challenges.
+      </h3>
+      
+      {/* Outro */}
+      <h4 className={`dark:text-white text-gray-600 ${
+        isMobileLayout 
           ? 'text-sm sm:text-base mb-3' 
           : 'text-base md:text-lg mb-4'
       } transition-all duration-700 delay-500
       ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-        A Computer Science undergraduate developing expertise in RAG, NLP, LLM fine-tuning, deep learning,
-        software engineering and web development. I'm passionate about building intelligent and practical systems 
-        to solve real-world problems. Outside of development, I enjoy golf, snowboarding, tennis, cooking and pc assembly.
         Feel free to contact me for any inquiries!
-      </h3>
-      
+      </h4>
+
       {/* Location */}
-      <h4 className={`dark:text-white text-gray-600 ${
+      <h5 className={`dark:text-white text-gray-600 ${
         isMobileLayout 
           ? 'text-sm sm:text-base flex items-center justify-center gap-1 mb-6' 
           : 'text-base flex items-center gap-1 mb-6'
@@ -100,7 +109,7 @@ export const Home = () => {
       ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
         <MapPin className="w-4 h-4" />
         Irvine, California
-      </h4>
+      </h5>
       
       {/* Buttons */}
       <div className={`flex ${isMobileLayout ? 'flex-wrap justify-center gap-3 sm:gap-4' : 'flex-wrap gap-4'}
@@ -189,7 +198,7 @@ export const Home = () => {
   return (
     <section
       id="Home"
-      className={`min-h-screen flex items-start justify-center relative pt-16
+      className={`min-h-screen flex items-start justify-center relative pt-24
                 dark:bg-black dark:text-gray-100 bg-white text-gray-900 
                 transition-all duration-700 ease-out
                 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
