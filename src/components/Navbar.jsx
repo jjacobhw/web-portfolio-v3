@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Mail, Mails, Home, Computer, CodeXml, Folders } from 'lucide-react';
-import { Link } from 'react-router-dom'; // Add this import
 
 export const Navbar = ({ menuOpen, setMenuOpen }) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -11,11 +10,30 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
   }, [menuOpen]);
 
   const navItems = [
-    { id: 'home', label: 'Home', icon: Home, path: '/' },
-    { id: 'skills', label: 'Skills', icon: CodeXml, path: '/skills' },
-    { id: 'experience', label: 'Experience', icon: Computer, path: '/experience' },
-    { id: 'projects', label: 'Projects', icon: Folders, path: '/projects' },
+    { id: 'home', label: 'Home', icon: Home, target: 'home' },
+    { id: 'skills', label: 'Skills', icon: CodeXml, target: 'skills' },
+    { id: 'experience', label: 'Experience', icon: Computer, target: 'experience' },
+    { id: 'projects', label: 'Projects', icon: Folders, target: 'projects' },
   ];
+
+  const scrollToSection = (sectionId) => {
+    console.log('Attempting to scroll to:', sectionId); // Debug log
+    const element = document.getElementById(sectionId);
+    console.log('Found element:', element); // Debug log
+    
+    if (element) {
+      const navbarHeight = 80;
+      const elementTop = element.offsetTop;
+      const offsetPosition = elementTop - navbarHeight;
+      
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    } else {
+      console.warn(`Element with id "${sectionId}" not found`);
+    }
+  };
 
   return (
     <nav
@@ -58,9 +76,9 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
               {navItems.map((item) => {
                 const IconComponent = item.icon;
                 return (
-                  <Link
+                  <button
                     key={item.id}
-                    to={item.path}
+                    onClick={() => scrollToSection(item.target)}
                     className="text-white hover:bg-gray-100 dark:hover:bg-gray-800
                               px-3 py-2 rounded-md transition-all duration-500
                               flex items-center gap-2 group relative
@@ -84,7 +102,7 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
                     <span className="text-white group-hover:text-[#1DB954] transition-colors duration-200">
                       {item.label}
                     </span>
-                  </Link>
+                  </button>
                 );
               })}
             </div>

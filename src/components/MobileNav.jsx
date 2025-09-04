@@ -1,20 +1,39 @@
 import { Menu, X, Mail, Mails, Home, CodeXml, Computer, Folders } from "lucide-react";
 import { useState } from "react";
-import { Link } from 'react-router-dom'; // Add this import
 
 export const MobileNav = ({ menuOpen, setMenuOpen }) => {
   const [isHovered, setIsHovered] = useState(false);
   
   const links = [
-    { path: "/", label: "Home", icon: Home },
-    { path: "/skills", label: "Skills", icon: CodeXml },
-    { path: "/experience", label: "Experience", icon: Computer },
-    { path: "/projects", label: "Projects", icon: Folders },
+    { target: "home", label: "Home", icon: Home },
+    { target: "skills", label: "Skills", icon: CodeXml },
+    { target: "experience", label: "Experience", icon: Computer },
+    { target: "projects", label: "Projects", icon: Folders },
   ];
+
+  const scrollToSection = (sectionId) => {
+    console.log('Mobile nav - Attempting to scroll to:', sectionId); // Debug log
+    const element = document.getElementById(sectionId);
+    console.log('Mobile nav - Found element:', element); // Debug log
+    
+    if (element) {
+      const navbarHeight = 80;
+      const elementTop = element.offsetTop;
+      const offsetPosition = elementTop - navbarHeight;
+      
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    } else {
+      console.warn(`Element with id "${sectionId}" not found`);
+    }
+    setMenuOpen(false); // Close menu after clicking
+  };
 
   const handleEmailClick = () => {
     setMenuOpen(false);
-    window.location.href = "mailto:your.email@example.com";
+    window.location.href = "mailto:jhwei@ucsc.edu";
   };
 
   return (
@@ -68,7 +87,7 @@ export const MobileNav = ({ menuOpen, setMenuOpen }) => {
         >
           <div className="relative w-5 h-5">
             <Mail 
-              className={`w-5 h-5 absolute transition-all duration-300 grozup-hover:scale-110 ${
+              className={`w-5 h-5 absolute transition-all duration-300 group-hover:scale-110 ${
                 isHovered ? 'opacity-0 scale-75 rotate-12' : 'opacity-100 scale-100 rotate-0'
               }`}
             />
@@ -85,10 +104,9 @@ export const MobileNav = ({ menuOpen, setMenuOpen }) => {
         {links.map((link, index) => {
           const IconComponent = link.icon;
           return (
-            <Link
-              key={link.path}
-              to={link.path}
-              onClick={() => setMenuOpen(false)}
+            <button
+              key={link.target}
+              onClick={() => scrollToSection(link.target)}
               className={`group flex items-center gap-3 font-semibold text-white transform transition-all duration-500 font-Rubik text-lg hover:text-gray-300 cursor-pointer
                 ${menuOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"}
               `}
@@ -96,7 +114,7 @@ export const MobileNav = ({ menuOpen, setMenuOpen }) => {
             >
               <IconComponent className="w-5 h-5 transition-all duration-300 group-hover:scale-110" />
               <span>{link.label}</span>
-            </Link>
+            </button>
           );
         })}
       </div>

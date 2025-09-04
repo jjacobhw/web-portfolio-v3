@@ -145,7 +145,7 @@ export const Skills = () => {
 
   return (
     <section 
-      id="Skills" 
+      id="skills" // Changed from "Skills" to "skills" to match navigation
       className={`min-h-screen flex items-center justify-center 
                  dark:bg-black dark:text-[#1DB954] bg-white text-gray-900
                  ${isMobile ? 'py-20 px-6' : 'py-24 px-8'}

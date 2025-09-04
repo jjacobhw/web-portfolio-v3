@@ -198,7 +198,7 @@ export const Home = () => {
 
   return (
     <section
-      id="Home"
+      id="home" // Changed from "Home" to "home" to match navigation
       className={`min-h-screen flex items-start justify-center relative pt-24
                 bg-black text-white 
                 transition-all duration-700 ease-out
