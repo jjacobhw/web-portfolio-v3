@@ -156,27 +156,30 @@ export const Skills = () => {
       <DevIconStyles />
       
       <div className={`max-w-6xl mx-auto w-full ${isMobile ? 'px-4' : 'px-8'}`}>
-        <div className={`text-center mb-16 transition-all duration-700 delay-300
+        {/* Header with title on left and button on right */}
+        <div className={`flex items-center justify-between mb-16 transition-all duration-700 delay-300
                         ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-          <h2 className={`font-bold dark:text-white text-gray-900 mb-8
+          {/* Skills Title - Left Side */}
+          <h2 className={`font-bold dark:text-white text-gray-900
                          ${isMobile ? 'text-3xl sm:text-4xl' : 'text-4xl xl:text-5xl'}`}>
-            Skills & Technologies
+            Skills
           </h2>
           
-          <div className="sticky top-4 z-10 mb-10">
+          {/* Expand/Collapse Button - Right Side */}
+          <div className="sticky top-4 z-10">
             <button
               onClick={toggleAllSkills}
               className="group bg-[#1DB954] hover:bg-[#1DB954]/20 
                        border border-[#1DB954]/20 hover:border-[#1DB954]/40
                        text-[#1DB954] px-6 py-3 rounded-lg
-                       flex items-center gap-3 mx-auto
+                       flex items-center gap-3
                        hover:scale-105 transition-all duration-300
                        hover:shadow-[0_4px_12px_rgba(29,185,84,0.2)]
                        cursor-pointer backdrop-blur-sm bg-white dark:bg-black/90
                        text-lg font-semibold"
             >
               <Menu className="w-6 h-6 group-hover:animate-pulse" />
-              <span className="font-medium">
+              <span className={`font-medium ${isMobile ? 'hidden sm:inline' : ''}`}>
                 {showAllSkills ? 'Collapse All' : 'Expand All'}
               </span>
               {showAllSkills ? (

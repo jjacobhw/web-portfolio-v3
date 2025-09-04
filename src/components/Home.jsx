@@ -78,8 +78,19 @@ export const Home = () => {
         AI/ML Engineer and Full Stack Developer
       </h2>
       
-      {/* Description */}
+      {/* Location */}
       <h3 className={`text-white ${
+        isMobileLayout 
+          ? 'text-sm sm:text-base flex items-center justify-center gap-1 mb-6' 
+          : 'text-base flex items-center gap-1 mb-6'
+      } transition-all duration-700 delay-500
+      ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+        <MapPin className="w-4 h-4 text-[#1DB954]" />
+        Irvine, California
+      </h3>
+
+      {/* Description */}
+      <h4 className={`text-white ${
         isMobileLayout 
           ? 'text-xs sm:text-base mb-3' 
           : 'text-base md:text-lg mb-4'
@@ -88,28 +99,19 @@ export const Home = () => {
         I'm a Computer Science undergraduate exploring RAG, NLP, LLM fine-tuning, and deep learning.
         With a foundation in software engineering and web development, I enjoy building intelligent,
         practical systems that address real-world challenges.
-      </h3>
+      </h4>
       
       {/* Outro */}
-      <h4 className={`text-white ${
+      <h5 className={`text-white ${
         isMobileLayout 
           ? 'text-sm sm:text-base mb-3' 
           : 'text-base md:text-lg mb-4'
       } transition-all duration-700 delay-500
       ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
         Feel free to contact me for any inquiries!
-      </h4>
-
-      {/* Location */}
-      <h5 className={`text-white ${
-        isMobileLayout 
-          ? 'text-sm sm:text-base flex items-center justify-center gap-1 mb-6' 
-          : 'text-base flex items-center gap-1 mb-6'
-      } transition-all duration-700 delay-500
-      ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-        <MapPin className="w-4 h-4 text-[#1DB954]" />
-        Irvine, California
       </h5>
+
+
       
       {/* Buttons */}
       <div className={`flex ${isMobileLayout ? 'flex-wrap justify-center gap-3 sm:gap-4' : 'flex-wrap gap-4'}
