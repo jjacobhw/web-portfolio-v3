@@ -32,18 +32,18 @@ export const Home = () => {
   }, []);
 
   return (
-    <section
-      id="Home"
-      className={`min-h-screen flex items-center justify-center relative 
-                 dark:bg-black dark:text-gray-100 bg-white text-gray-900 
-                 transition-all duration-700 ease-out
-                 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-    >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+      <section
+        id="Home"
+        className={`min-h-screen flex items-start justify-center relative pt-16
+                  dark:bg-black dark:text-gray-100 bg-white text-gray-900 
+                  transition-all duration-700 ease-out
+                  ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+      >
+      <div className="container mx-auto px-6 sm:px-8 lg:px-8 max-w-4xl pt-16 md:pt-10">
         {/* Desktop Layout - side by side */}
         <div className="hidden lg:flex items-center justify-between min-h-[60vh]">
           <div className="flex-1 pr-12">
-            <div className="space-y-2">
+            <div className="space-y-9">
               <h1 className="text-3xl xl:text-5xl font-semibold">
                 <span className="text-white dark:text-white">
                   {displayedText.slice(0, 8)} {/* "Hi, I'm " */}
@@ -63,14 +63,21 @@ export const Home = () => {
               <h2 className={`dark:text-gray-300 text-gray-600 text-lg xl:text-xl
                            transition-all duration-700 delay-300
                            ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-                AI/ML Engineer, Software/Full Stack Developer
+                AI/ML Engineer and Full Stack Developer
               </h2>
-              <h3 className={`dark:text-gray-300 text-gray-600 text-base xl:text-lg flex items-center gap-1
+              <h3 className={`dark:text-gray-300 text-gray-600 text-base s:text-s flex items-center gap-1
+                           transition-all duration-700 delay-500
+                           ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+                A Computer Science undergrad developing expertise in RAG, NLP, LLM fine-tuning, deep learning,
+                software engineering and web development. I'm passionate about building intelligent and practical systems to solve
+                real-world problems. 
+              </h3>
+              <h4 className={`dark:text-gray-300 text-gray-600 text-base s:text-s flex items-center gap-1
                            transition-all duration-700 delay-500
                            ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
                 <MapPin className="w-4 h-4" />
                 Irvine, California
-              </h3>
+              </h4>
             </div>
             
             <div className={`flex flex-wrap gap-4 pt-6
