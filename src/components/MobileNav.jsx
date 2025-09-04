@@ -1,12 +1,21 @@
-import { Menu, X } from "lucide-react";
+import { Menu, X, Mail, Mails, Home, User, Computer, FolderOpen } from "lucide-react";
+import { useState } from "react";
 
 export const MobileNav = ({ menuOpen, setMenuOpen }) => {
+  const [isHovered, setIsHovered] = useState(false);
+  
   const links = [
-    { href: "#Home", label: "Home" },
-    { href: "#About", label: "About" },
-    { href: "#Experience", label: "Experience" },
-    { href: "#Projects", label: "Projects" },
+    { href: "#Home", label: "Home", icon: Home },
+    { href: "#About", label: "About", icon: User },
+    { href: "#Experience", label: "Experience", icon: Computer },
+    { href: "#Projects", label: "Projects", icon: FolderOpen },
   ];
+
+  // Function to handle email redirection
+  const handleEmailClick = () => {
+    setMenuOpen(false);
+    window.location.href = "mailto:your.email@example.com";
+  };
 
   return (
     <>
@@ -38,7 +47,7 @@ export const MobileNav = ({ menuOpen, setMenuOpen }) => {
 
       {/* Slide-out menu — only on mobile */}
       <div
-        className={`fixed top-0 right-0 w-full bg-[rgba(10,10,10,0.65)]
+        className={`fixed top-0 right-0 w-full bg-[rgba(10,10,10,0.9)]
         z-40 flex flex-col items-center justify-center gap-y-6 md:hidden
         transition-all duration-400 ease-in-out overflow-hidden
         ${
@@ -47,19 +56,49 @@ export const MobileNav = ({ menuOpen, setMenuOpen }) => {
             : "h-0 opacity-0 pointer-events-none"
         }`}
       >
-        {links.map((link, index) => (
-          <a
-            key={link.href}
-            href={link.href}
-            onClick={() => setMenuOpen(false)}
-            className={`font-semibold text-white transform transition-all duration-500 font-Rubik text-lg hover:text-gray-300
-              ${menuOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"}
-            `}
-            style={{ transitionDelay: `${index * 150}ms` }}
-          >
-            {link.label}
-          </a>
-        ))}
+        {/* Contact Me Button - Now at the top */}
+        <button
+          onClick={handleEmailClick}
+          className={`group flex items-center gap-3 font-semibold text-white transform transition-all duration-500 font-Rubik text-lg hover:text-gray-300 cursor-pointer
+            ${menuOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"}
+          `}
+          style={{ transitionDelay: `0ms` }}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
+          <div className="relative w-5 h-5">
+            <Mail 
+              className={`w-5 h-5 absolute transition-all duration-300 grozup-hover:scale-110 ${
+                isHovered ? 'opacity-0 scale-75 rotate-12' : 'opacity-100 scale-100 rotate-0'
+              }`}
+            />
+            <Mails 
+              className={`w-5 h-5 absolute transition-all duration-300 group-hover:scale-110 ${
+                isHovered ? 'opacity-100 scale-100 rotate-0' : 'opacity-0 scale-75 rotate-12'
+              }`}
+            />
+          </div>
+          <span>Contact Me</span>
+        </button>
+        
+        {/* Other navigation links with icons */}
+        {links.map((link, index) => {
+          const IconComponent = link.icon;
+          return (
+            <a
+              key={link.href}
+              href={link.href}
+              onClick={() => setMenuOpen(false)}
+              className={`group flex items-center gap-3 font-semibold text-white transform transition-all duration-500 font-Rubik text-lg hover:text-gray-300 cursor-pointer
+                ${menuOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"}
+              `}
+              style={{ transitionDelay: `${(index + 1) * 150}ms` }}
+            >
+              <IconComponent className="w-5 h-5 transition-all duration-300 group-hover:scale-110" />
+              <span>{link.label}</span>
+            </a>
+          );
+        })}
       </div>
     </>
   );

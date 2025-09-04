@@ -15,7 +15,6 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
     >
       <div className="max-w-4xl mx-auto px-4">
         <div className="flex justify-between items-center h-16">
-          {/* Desktop navigation - full width on desktop, hidden on mobile */}
           <div className="hidden md:flex items-center justify-between w-full">
             <a 
               href="mailto:jhwei@ucsc.edu" 
@@ -71,7 +70,6 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
             </div>
           </div>
           
-          {/* Mobile: Empty space for MobileNav component to handle the menu button */}
           <div className="md:hidden w-full"></div>
         </div>
       </div>
