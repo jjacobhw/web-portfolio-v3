@@ -10,19 +10,12 @@ export const Home = () => {
   const emoji = " 👋";
   
   useEffect(() => {
-    // Check if window is available (for SSR)
     if (typeof window !== 'undefined') {
       const checkMobile = () => {
         setIsMobile(window.innerWidth < 1024); // 1024px is typically the lg breakpoint
       };
-      
-      // Initial check
       checkMobile();
-      
-      // Add event listener for window resize
       window.addEventListener('resize', checkMobile);
-      
-      // Cleanup
       return () => window.removeEventListener('resize', checkMobile);
     }
   }, []);
