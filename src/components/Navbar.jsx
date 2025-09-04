@@ -15,12 +15,7 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
     >
       <div className="max-w-5xl mx-auto px-4">
         <div className="flex justify-between items-center h-16">
-          <div
-            className="w-7 h-5 relative cursor-pointer md:hidden text-2xl text-white"
-            onClick={() => setMenuOpen((prev) => !prev)}
-          >
-            &#9776;
-          </div>
+          {/* Desktop navigation - full width on desktop, hidden on mobile */}
           <div className="hidden md:flex items-center justify-between w-full">
             <a 
               href="mailto:jhwei@ucsc.edu" 
@@ -60,6 +55,9 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
               </a>
             </div>
           </div>
+          
+          {/* Mobile: Empty space for MobileNav component to handle the menu button */}
+          <div className="md:hidden w-full"></div>
         </div>
       </div>
     </nav>
