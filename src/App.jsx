@@ -1,5 +1,5 @@
-import { Navbar } from './components/Navbar'
-import { MobileNav } from './components/MobileNav'
+import { Navbar } from './utilities/Navbar'
+import { MobileNav } from './utilities/MobileNav'
 import { Home } from './components/Home'
 import { Skills } from './components/Skills'
 import { Experience } from './components/Experience'
