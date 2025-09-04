@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { CodeXml, Globe, Brain, Terminal, ChevronDown, ChevronUp, Menu } from 'lucide-react';
+import { Code, Globe, Brain, Terminal, ChevronDown, ChevronUp, Menu } from 'lucide-react';
 
 export const Skills = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -10,8 +10,8 @@ export const Skills = () => {
   const skillCategories = [
     {
       title: "Programming Languages",
-      skills: ["Python", "C++", "C", "JavaScript", "TypeScript", "HTML", "CSS"],
-      icon: CodeXml,
+      skills: ["Python", "C++", "C", "JavaScript", "TypeScript", "HTML"],
+      icon: Code,
       id: "programming"
     },
     {
@@ -22,13 +22,13 @@ export const Skills = () => {
     },
     {
       title: "AI & Machine Learning",
-      skills: ["PyTorch", "Hugging Face", "LangChain", "ChromaDB", "Ollama"],
+      skills: ["PyTorch", "ChromaDB", "Hugging Face", "LangChain"],
       icon: Brain,
       id: "ai"
     },
     {
       title: "Platforms & Tools",
-      skills: ["Windows", "Linux", "Bash", "Git", "Visual Studio", "PowerShell", "VIM"],
+      skills: ["Windows", "Linux", "Bash", "Git", "Visual Studio", "PowerShell", "VIM", "Ubuntu"],
       icon: Terminal,
       id: "platforms"
     }
@@ -84,7 +84,9 @@ export const Skills = () => {
                       hover:bg-white/10 dark:hover:bg-gray-800/50
                       transition-all duration-500 delay-${(index + 2) * 200}
                       ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}
-                      overflow-hidden`}>
+                      overflow-hidden
+                      mb-6`} // Added bottom margin for spacing between categories
+      >
         
         {/* Category Header - Always visible */}
         <div 
@@ -117,13 +119,13 @@ export const Skills = () => {
             : 'max-h-0 opacity-0'
         } overflow-hidden`}>
           <div className="px-6 pb-6">
-            <div className="flex flex-wrap gap-2 pt-2 border-t border-gray-200/10 dark:border-gray-700/20">
+            <div className="flex flex-wrap gap-3 pt-4 border-t border-gray-200/10 dark:border-gray-700/20"> {/* Increased gap and padding */}
               {category.skills.map((tech, skillIndex) => (
                 <span 
                   key={skillIndex}
                   style={{ animationDelay: `${skillIndex * 50}ms` }}
                   className={`bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200 
-                           px-3 py-1 rounded-full text-sm font-medium
+                           px-4 py-2 rounded-full text-sm font-medium // Increased padding
                            hover:bg-[#1DB954]/10 hover:text-[#1DB954] dark:hover:bg-[#1DB954]/20
                            hover:shadow-[0_2px_8px_rgba(29,185,84,0.2)]
                            hover:scale-105 transition-all duration-300
@@ -146,15 +148,15 @@ export const Skills = () => {
       id="Skills" 
       className={`min-h-screen flex items-center justify-center 
                  dark:bg-black dark:text-[#1DB954] bg-white text-gray-900
-                 ${isMobile ? 'py-16 px-6' : 'py-20 px-8'}
+                 ${isMobile ? 'py-20 px-6' : 'py-24 px-8'} // Increased vertical padding
                  transition-all duration-700 ease-out
                  ${isVisible ? 'opacity-100' : 'opacity-0'}`}
     >
-      <div className={`max-w-4xl mx-auto ${isMobile ? 'px-4' : 'px-8'}`}>
+      <div className={`max-w-4xl mx-auto w-full ${isMobile ? 'px-4' : 'px-8'}`}> {/* Added w-full */}
         {/* Section Header */}
-        <div className={`text-center mb-12 transition-all duration-700 delay-300
+        <div className={`text-center mb-16 transition-all duration-700 delay-300 // Increased margin-bottom
                         ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-          <h2 className={`font-bold dark:text-white text-gray-900 mb-6
+          <h2 className={`font-bold dark:text-white text-gray-900 mb-8 // Increased margin-bottom
                          ${isMobile ? 'text-3xl sm:text-4xl' : 'text-4xl xl:text-5xl'}`}>
             Skills
           </h2>
@@ -167,7 +169,8 @@ export const Skills = () => {
                      text-[#1DB954] px-6 py-3 rounded-lg
                      flex items-center gap-3 mx-auto
                      hover:scale-105 transition-all duration-300
-                     hover:shadow-[0_4px_12px_rgba(29,185,84,0.2)]"
+                     hover:shadow-[0_4px_12px_rgba(29,185,84,0.2)]
+                     cursor-pointer mb-10" // Added margin-bottom
           >
             <Menu className="w-5 h-5 group-hover:animate-pulse" />
             <span className="font-medium">
@@ -182,7 +185,7 @@ export const Skills = () => {
         </div>
 
         {/* Skills Categories */}
-        <div className="space-y-4">
+        <div className="space-y-6"> {/* Increased spacing between categories */}
           {skillCategories.map((category, index) => (
             <SkillCategory 
               key={category.id}
@@ -193,7 +196,7 @@ export const Skills = () => {
         </div>
 
         {/* Bottom CTA */}
-        <div className={`text-center mt-12 transition-all duration-700 delay-1200
+        <div className={`text-center mt-16 transition-all duration-700 delay-1200 // Increased margin-top
                         ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
           <p className={`dark:text-gray-400 text-gray-600
                         ${isMobile ? 'text-sm' : 'text-base'}`}>
