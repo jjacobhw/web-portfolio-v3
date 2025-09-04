@@ -33,7 +33,7 @@ export const Home = () => {
 
   return (
     <section
-      id="home"
+      id="Home"
       className={`min-h-screen flex items-center justify-center relative 
                  dark:bg-black dark:text-gray-100 bg-white text-gray-900 
                  transition-all duration-700 ease-out

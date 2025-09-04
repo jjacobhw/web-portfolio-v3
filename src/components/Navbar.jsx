@@ -8,6 +8,27 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
     document.body.style.overflow = menuOpen ? "hidden" : "auto";
   }, [menuOpen]);
 
+  const scrollToSection = (sectionId) => {
+    // Try both the original case and lowercase to handle mixed casing
+    let element = document.getElementById(sectionId);
+    if (!element) {
+      element = document.getElementById(sectionId.toLowerCase());
+    }
+    
+    if (element) {
+      const navbarHeight = 64; // h-16 = 64px
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
+
+      window.scrollTo({
+        top: Math.max(0, offsetPosition), // Ensure we don't scroll past the top
+        behavior: 'smooth'
+      });
+    } else {
+      console.warn(`Element with ID "${sectionId}" or "${sectionId.toLowerCase()}" not found`);
+    }
+  };
+
   return (
     <nav
       className="fixed top-0 w-full z-40 bg-[rgba(10,10,10,0.65)]
@@ -55,18 +76,30 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
             </a>
             
             <div className="flex items-center space-x-7 font-Rubik">
-              <a href="#Home" className="text-white font-Rubik hover:text-[#1DB954] transition-colors duration-200">
+              <button 
+                onClick={() => scrollToSection('Home')}
+                className="text-white font-Rubik hover:text-[#1DB954] transition-colors duration-200 cursor-pointer"
+              >
                 Home
-              </a>
-              <a href="#About" className="text-white font-Rubik hover:text-[#1DB954] transition-colors duration-200">
-                About
-              </a>
-              <a href="#Experience" className="text-white font-Rubik hover:text-[#1DB954] transition-colors duration-200">
+              </button>
+              <button 
+                onClick={() => scrollToSection('Experience')}
+                className="text-white font-Rubik hover:text-[#1DB954] transition-colors duration-200 cursor-pointer"
+              >
                 Experience
-              </a>
-              <a href="#Projects" className="text-white font-Rubik hover:text-[#1DB954] transition-colors duration-200">
+              </button>
+              <button 
+                onClick={() => scrollToSection('Skills')}
+                className="text-white font-Rubik hover:text-[#1DB954] transition-colors duration-200 cursor-pointer"
+              >
+                Skills
+              </button>
+              <button 
+                onClick={() => scrollToSection('Projects')}
+                className="text-white font-Rubik hover:text-[#1DB954] transition-colors duration-200 cursor-pointer"
+              >
                 Projects
-              </a>             
+              </button>             
             </div>
           </div>
           

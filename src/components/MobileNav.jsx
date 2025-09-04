@@ -6,12 +6,11 @@ export const MobileNav = ({ menuOpen, setMenuOpen }) => {
   
   const links = [
     { href: "#Home", label: "Home", icon: Home },
-    { href: "#About", label: "About", icon: User },
+    { href: "#Skills", label: "Skills", icon: User },
     { href: "#Experience", label: "Experience", icon: Computer },
     { href: "#Projects", label: "Projects", icon: FolderOpen },
   ];
 
-  // Function to handle email redirection
   const handleEmailClick = () => {
     setMenuOpen(false);
     window.location.href = "mailto:your.email@example.com";
