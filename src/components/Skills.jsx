@@ -1,47 +1,12 @@
 import { useState, useEffect } from 'react';
-import { CodeXml, Globe, BrainCircuit, Terminal, ChevronDown, ChevronUp, Menu, PencilRuler } from 'lucide-react';
+import { CodeXml, Globe, BrainCircuit, Terminal, ChevronDown, ChevronUp, Menu } from 'lucide-react';
+import { SkillIcon, DevIconStyles } from './Icons';
 
 export const Skills = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [expandedCategories, setExpandedCategories] = useState({});
   const [showAllSkills, setShowAllSkills] = useState(false);
-  
-  // FIXED: Corrected Devicon mappings
-  const deviconMapping = {
-    // Programming Languages
-    "Python": "python",
-    "C++": "cplusplus",
-    "C": "c",
-    "JavaScript": "javascript",
-    "TypeScript": "typescript",
-    "HTML": "html5",
-    
-    // Web Development
-    "React": "react",
-    "Next.js": "nextjs",
-    "Node.js": "nodejs",
-    "Tailwind CSS": "tailwindcss",
-    
-    // AI & Machine Learning
-    "PyTorch": "pytorch",
-    "NumPy": "numpy",
-    "Pandas": "pandas", // Using python icon instead
-    "ChromaDB": null, // No Devicon available - will use PencilRuler
-    "Hugging Face": null, // No Devicon available - will use PencilRuler
-    "LangChain": null, // No Devicon available - will use PencilRuler
-    
-    // Platforms & Tools
-    "Windows": "windows8",
-    "Linux": "linux",
-    "GitHub": "github",
-    "Ubuntu": "ubuntu",
-    "Visual Studio": "visualstudio",
-    "PowerShell": null, // No Devicon available - will use PencilRuler
-    "Bash": "bash",
-    "Git": "git",
-    "VIM": "vim"
-  };
 
   const skillCategories = [
     {
@@ -52,40 +17,23 @@ export const Skills = () => {
     },
     {
       title: "Web Development", 
-      skills: ["React", "Next.js", "Node.js", "Tailwind CSS",],
+      skills: ["React", "Next.js", "Node.js", "Tailwind CSS"],
       icon: Globe,
       id: "web"
     },
     {
       title: "AI & Machine Learning",
-      skills: ["PyTorch", "NumPy", "Pandas", "ChromaDB", "Hugging Face", "LangChain"],
+      skills: ["PyTorch", "NumPy", "Pandas", "ChromaDB", "HuggingFace", "LangChain"],
       icon: BrainCircuit,
       id: "ai"
     },
     {
       title: "Platforms & Tools",
-      skills: ["Windows", "Linux", "GitHub", "Ubuntu", "Visual Studio", "PowerShell", "Bash", "Git", "VIM"],
+      skills: ["Windows", "Linux", "GitHub", "Ubuntu", "Visual Studio", "Bash", "Git", "VIM"],
       icon: Terminal,
       id: "platforms"
     }
   ];
-
-  // UPDATED: Check for valid Devicon
-  const hasValidDevicon = (tech) => {
-    const deviconClass = deviconMapping[tech];
-    return deviconClass !== null && deviconClass !== undefined;
-  };
-
-  // NEW: Function to get skill icon component
-  const getSkillIcon = (tech) => {
-    const deviconClass = deviconMapping[tech];
-    
-    if (deviconClass) {
-      return { type: 'devicon', class: deviconClass };
-    } else {
-      return { type: 'lucide', component: PencilRuler };
-    }
-  };
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -138,7 +86,6 @@ export const Skills = () => {
                       overflow-hidden
                       transform-gpu`}
       >
-        
         <div 
           onClick={() => toggleCategory(category.id)}
           className="flex items-center justify-between p-6 cursor-pointer
@@ -169,41 +116,27 @@ export const Skills = () => {
         } overflow-hidden`}>
           <div className="px-6 pb-6">
             <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-4 pt-4 border-t border-gray-200/10 dark:border-gray-700/20">
-              {category.skills.map((tech, skillIndex) => {
-                const skillIcon = getSkillIcon(tech);
-                
-                return (
-                  <div 
-                    key={skillIndex}
-                    style={{ animationDelay: `${skillIndex * 50}ms` }}
-                    className={`bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200 
-                             p-3 rounded-xl text-sm font-medium
-                             hover:bg-[#1DB954]/10 hover:text-[#1DB954] dark:hover:bg-[#1DB954]/20
-                             hover:shadow-[0_4px_12px_rgba(29,185,84,0.3)]
-                             hover:scale-105 transition-all duration-300
-                             cursor-pointer border border-transparent 
-                             hover:border-[#1DB954]/30
-                             flex flex-col items-center justify-center gap-3
-                             ${isExpanded ? 'animate-fade-in-up' : ''}
-                             h-32`}
-                  >
-                    {skillIcon.type === 'devicon' ? (
-                      // Devicon implementation
-                      <div className="flex flex-col items-center gap-2">
-                        <i 
-                          className={`devicon-${skillIcon.class}-plain text-4xl md:text-5xl skill-icon`}
-                        ></i>
-                      </div>
-                    ) : (
-                      // Lucide PencilRuler implementation
-                      <div className="flex flex-col items-center gap-2">
-                        <PencilRuler className="w-10 h-10 md:w-12 md:h-12 text-[#1DB954]" />
-                      </div>
-                    )}
-                    <span className="text-center text-xs font-semibold mt-1">{tech}</span>
+              {category.skills.map((tech, skillIndex) => (
+                <div 
+                  key={skillIndex}
+                  style={{ animationDelay: `${skillIndex * 50}ms` }}
+                  className={`bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200 
+                           p-3 rounded-xl text-sm font-medium
+                           hover:bg-[#1DB954]/10 hover:text-[#1DB954] dark:hover:bg-[#1DB954]/20
+                           hover:shadow-[0_4px_12px_rgba(29,185,84,0.3)]
+                           hover:scale-105 transition-all duration-300
+                           cursor-pointer border border-transparent 
+                           hover:border-[#1DB954]/30
+                           flex flex-col items-center justify-center gap-3
+                           ${isExpanded ? 'animate-fade-in-up' : ''}
+                           h-32`}
+                >
+                  <div className="flex flex-col items-center gap-2">
+                    <SkillIcon tech={tech} />
                   </div>
-                );
-              })}
+                  <span className="text-center text-xs font-semibold mt-1">{tech}</span>
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -220,28 +153,7 @@ export const Skills = () => {
                  transition-all duration-700 ease-out
                  ${isVisible ? 'opacity-100' : 'opacity-0'}`}
     >
-      {/* Load Devicon CSS in head for better loading */}
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css" />
-      
-      <style jsx>{`
-        .skill-icon {
-          color: #1DB954 !important;
-        }
-        /* Add animation for fade-in-up */
-        @keyframes fade-in-up {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        .animate-fade-in-up {
-          animation: fade-in-up 0.5s ease-out forwards;
-        }
-      `}</style>
+      <DevIconStyles />
       
       <div className={`max-w-6xl mx-auto w-full ${isMobile ? 'px-4' : 'px-8'}`}>
         <div className={`text-center mb-16 transition-all duration-700 delay-300
