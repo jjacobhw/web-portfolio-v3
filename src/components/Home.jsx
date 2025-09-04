@@ -58,7 +58,7 @@ export const Home = () => {
                   transition-all duration-700 ease-out
                   ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
       >
-      <div className="container mx-auto px-6 sm:px-8 lg:px-8 max-w-4xl pt-16 md:pt-10">
+      <div className="container mx-auto px-6 sm:px-8 lg:px-8 max-w-4xl pt-16 md:pt-2">
         {/* Desktop Layout - side by side */}
         <div className={`${isMobile ? 'hidden' : 'flex'} items-center justify-between min-h-[60vh]`}>
           <div className="flex-1 pr-12">
@@ -89,7 +89,7 @@ export const Home = () => {
                            ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
                 A Computer Science undergraduate developing expertise in RAG, NLP, LLM fine-tuning, deep learning,
                 software engineering and web development. I'm passionate about building intelligent and practical systems 
-                to solve real-world problems. 
+                to solve real-world problems.
               </h3>
               <h4 className={`dark:text-gray-300 text-gray-600 text-base flex items-center gap-1
                            transition-all duration-700 delay-500
@@ -112,18 +112,7 @@ export const Home = () => {
                           px-4 py-2 rounded-md transition-all duration-500
                           flex items-center gap-2 group
                           hover:animate-pulse
-                          transform hover:rotateY-180 hover:scale-105
-                          perspective-1000 preserve-3d"
-                style={{
-                  transformStyle: 'preserve-3d',
-                  transition: 'transform 0.6s cubic-bezier(0.4, 0.0, 0.2, 1)'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'rotateY(180deg) scale(1.1)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'rotateY(0deg) scale(1)';
-                }}
+                          transform hover:scale-105"
               >
                 <FileText className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
                 Resume
@@ -138,18 +127,7 @@ export const Home = () => {
                           px-4 py-2 rounded-md transition-all duration-500
                           flex items-center gap-2 group
                           hover:animate-pulse
-                          transform hover:rotateY-180 hover:scale-105
-                          perspective-1000 preserve-3d"
-                style={{
-                  transformStyle: 'preserve-3d',
-                  transition: 'transform 0.6s cubic-bezier(0.4, 0.0, 0.2, 1)'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'rotateY(180deg) scale(1.1)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'rotateY(0deg) scale(1)';
-                }}
+                          transform hover:scale-105"
               >
                 <Github className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
                 GitHub
@@ -164,18 +142,7 @@ export const Home = () => {
                           px-4 py-2 rounded-md transition-all duration-500
                           flex items-center gap-2 group
                           hover:animate-pulse
-                          transform hover:rotateY-180 hover:scale-105
-                          perspective-1000 preserve-3d"
-                style={{
-                  transformStyle: 'preserve-3d',
-                  transition: 'transform 0.6s cubic-bezier(0.4, 0.0, 0.2, 1)'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'rotateY(180deg) scale(1.05)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'rotateY(0deg) scale(1)';
-                }}
+                          transform hover:scale-105"
               >
                 <Linkedin className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
                 LinkedIn
@@ -275,18 +242,7 @@ export const Home = () => {
                           px-3 py-2 sm:px-4 sm:py-2 rounded-md transition-all duration-500
                           flex items-center gap-2 group text-sm sm:text-base
                           hover:animate-pulse
-                          transform hover:rotateY-180 hover:scale-105
-                          perspective-1000 preserve-3d"
-                style={{
-                  transformStyle: 'preserve-3d',
-                  transition: 'transform 0.6s cubic-bezier(0.4, 0.0, 0.2, 1)'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'rotateY(180deg) scale(1.1)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'rotateY(0deg) scale(1)';
-                }}
+                          transform hover:scale-105"
               >
                 <FileText className="w-4 h-4 sm:w-5 sm:h-5 group-hover:scale-110 transition-transform duration-300" />
                 Resume
@@ -301,18 +257,7 @@ export const Home = () => {
                           px-3 py-2 sm:px-4 sm:py-2 rounded-md transition-all duration-500
                           flex items-center gap-2 group text-sm sm:text-base
                           hover:animate-pulse
-                          transform hover:rotateY-180 hover:scale-105
-                          perspective-1000 preserve-3d"
-                style={{
-                  transformStyle: 'preserve-3d',
-                  transition: 'transform 0.6s cubic-bezier(0.4, 0.0, 0.2, 1)'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'rotateY(180deg) scale(1.1)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'rotateY(0deg) scale(1)';
-                }}
+                          transform hover:scale-105"
               >
                 <Github className="w-4 h-4 sm:w-5 sm:h-5 group-hover:scale-110 transition-transform duration-300" />
                 GitHub
@@ -327,18 +272,7 @@ export const Home = () => {
                           px-3 py-2 sm:px-4 sm:py-2 rounded-md transition-all duration-500
                           flex items-center gap-2 group text-sm sm:text-base
                           hover:animate-pulse
-                          transform hover:rotateY-180 hover:scale-105
-                          perspective-1000 preserve-3d"
-                style={{
-                  transformStyle: 'preserve-3d',
-                  transition: 'transform 0.6s cubic-bezier(0.4, 0.0, 0.2, 1)'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'rotateY(180deg) scale(1.05)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'rotateY(0deg) scale(1)';
-                }}
+                          transform hover:scale-105"
               >
                 <Linkedin className="w-4 h-4 sm:w-5 sm:h-5 group-hover:scale-110 transition-transform duration-300" />
                 LinkedIn

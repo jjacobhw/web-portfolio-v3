@@ -55,7 +55,7 @@ export const MobileNav = ({ menuOpen, setMenuOpen }) => {
             : "h-0 opacity-0 pointer-events-none"
         }`}
       >
-        {/* Contact Me Button - Now at the top */}
+        {/* Contact Button - Now at the top */}
         <button
           onClick={handleEmailClick}
           className={`group flex items-center gap-3 font-semibold text-white transform transition-all duration-500 font-Rubik text-lg hover:text-gray-300 cursor-pointer
@@ -77,7 +77,7 @@ export const MobileNav = ({ menuOpen, setMenuOpen }) => {
               }`}
             />
           </div>
-          <span>Contact Me</span>
+          <span>Contact</span>
         </button>
         
         {/* Other navigation links with icons */}

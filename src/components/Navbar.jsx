@@ -45,20 +45,9 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
                         px-4 py-2 rounded-md transition-all duration-500
                         flex items-center gap-2 group
                         hover:animate-pulse
-                        transform hover:rotateY-180 hover:scale-105
-                        perspective-1000 preserve-3d"
-              style={{
-                transformStyle: 'preserve-3d',
-                transition: 'transform 0.6s cubic-bezier(0.4, 0.0, 0.2, 1), background-color 0.2s, color 0.2s'
-              }}
-              onMouseEnter={(e) => {
-                setIsHovered(true);
-                e.currentTarget.style.transform = 'rotateY(180deg) scale(1.1)';
-              }}
-              onMouseLeave={(e) => {
-                setIsHovered(false);
-                e.currentTarget.style.transform = 'rotateY(0deg) scale(1)';
-              }}
+                        transform hover:scale-105"
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
             >
               <div className="relative w-4 h-4">
                 <Mail 
@@ -72,7 +61,7 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
                   }`}
                 />
               </div>
-              <span>Contact Me</span>
+              <span>Contact</span>
             </a>
             
             <div className="flex items-center space-x-7 font-Rubik">

@@ -1,10 +1,10 @@
 export const Skills = () => { 
-    const programmingLanguages = ["Python",  "C++", "C", "JavaScript", "TypeScript", "HTML", "CSS"];
+    const programmingLanguages = ["Python", "C++", "C", "JavaScript", "TypeScript", "HTML", "CSS"];
     const webDev = ["React", "Next.js", "Node.js", "Tailwind CSS", "Vercel", "Vite"];
     const aiMachineLearning = ["PyTorch", "Hugging Face", "LangChain", "ChromaDB", "Ollama"];
     const platforms = ["Windows", "Linux", "Bash", "Git", "Visual Studio", "PowerShell", "VIM"];
     return (
-        <section id="Skills" className="min-h-screen flex items-center justify-center py-20 px-4">
+        <section id="Skills" className="min-h-screen flex items-center justify-center py-20 px-20">
             <div className="max-w-3xl mx-auto px-4">
                 <h2 className="text-3xl font-bold mb-8">{""}
                     Skills
