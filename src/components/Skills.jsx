@@ -85,7 +85,7 @@ export const Skills = () => {
                       transition-all duration-500 delay-${(index + 2) * 200}
                       ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}
                       overflow-hidden
-                      mb-6`} // Added bottom margin for spacing between categories
+                      transform-gpu`} // Added transform-gpu for better performance
       >
         
         {/* Category Header - Always visible */}
@@ -112,20 +112,20 @@ export const Skills = () => {
           )}
         </div>
 
-        {/* Skills List - Collapsible */}
+        {/* Skills List - Collapsible with fixed height approach */}
         <div className={`transition-all duration-500 ease-in-out ${
           isExpanded 
-            ? 'max-h-96 opacity-100' 
+            ? 'max-h-[200px] opacity-100' // Fixed max height instead of auto
             : 'max-h-0 opacity-0'
         } overflow-hidden`}>
           <div className="px-6 pb-6">
-            <div className="flex flex-wrap gap-3 pt-4 border-t border-gray-200/10 dark:border-gray-700/20"> {/* Increased gap and padding */}
+            <div className="flex flex-wrap gap-3 pt-4 border-t border-gray-200/10 dark:border-gray-700/20">
               {category.skills.map((tech, skillIndex) => (
                 <span 
                   key={skillIndex}
                   style={{ animationDelay: `${skillIndex * 50}ms` }}
                   className={`bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200 
-                           px-4 py-2 rounded-full text-sm font-medium // Increased padding
+                           px-4 py-2 rounded-full text-sm font-medium
                            hover:bg-[#1DB954]/10 hover:text-[#1DB954] dark:hover:bg-[#1DB954]/20
                            hover:shadow-[0_2px_8px_rgba(29,185,84,0.2)]
                            hover:scale-105 transition-all duration-300
@@ -148,44 +148,46 @@ export const Skills = () => {
       id="Skills" 
       className={`min-h-screen flex items-center justify-center 
                  dark:bg-black dark:text-[#1DB954] bg-white text-gray-900
-                 ${isMobile ? 'py-20 px-6' : 'py-24 px-8'} // Increased vertical padding
+                 ${isMobile ? 'py-20 px-6' : 'py-24 px-8'}
                  transition-all duration-700 ease-out
                  ${isVisible ? 'opacity-100' : 'opacity-0'}`}
     >
-      <div className={`max-w-4xl mx-auto w-full ${isMobile ? 'px-4' : 'px-8'}`}> {/* Added w-full */}
-        {/* Section Header */}
-        <div className={`text-center mb-16 transition-all duration-700 delay-300 // Increased margin-bottom
+      <div className={`max-w-4xl mx-auto w-full ${isMobile ? 'px-4' : 'px-8'}`}>
+        {/* Header - Fixed position in layout */}
+        <div className={`text-center mb-16 transition-all duration-700 delay-300
                         ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-          <h2 className={`font-bold dark:text-white text-gray-900 mb-8 // Increased margin-bottom
+          <h2 className={`font-bold dark:text-white text-gray-900 mb-8
                          ${isMobile ? 'text-3xl sm:text-4xl' : 'text-4xl xl:text-5xl'}`}>
             Skills
           </h2>
           
-          {/* Hamburger Toggle Button */}
-          <button
-            onClick={toggleAllSkills}
-            className="group bg-[#1DB954]/10 hover:bg-[#1DB954]/20 
-                     border border-[#1DB954]/20 hover:border-[#1DB954]/40
-                     text-[#1DB954] px-6 py-3 rounded-lg
-                     flex items-center gap-3 mx-auto
-                     hover:scale-105 transition-all duration-300
-                     hover:shadow-[0_4px_12px_rgba(29,185,84,0.2)]
-                     cursor-pointer mb-10" // Added margin-bottom
-          >
-            <Menu className="w-5 h-5 group-hover:animate-pulse" />
-            <span className="font-medium">
-              {showAllSkills ? 'Hide All' : 'Show All'}
-            </span>
-            {showAllSkills ? (
-              <ChevronUp className="w-5 h-5" />
-            ) : (
-              <ChevronDown className="w-5 h-5" />
-            )}
-          </button>
+          {/* Fixed Toggle Button */}
+          <div className="sticky top-4 z-10 mb-10"> {/* Made sticky to keep it visible */}
+            <button
+              onClick={toggleAllSkills}
+              className="group bg-[#1DB954]/10 hover:bg-[#1DB954]/20 
+                       border border-[#1DB954]/20 hover:border-[#1DB954]/40
+                       text-[#1DB954] px-6 py-3 rounded-lg
+                       flex items-center gap-3 mx-auto
+                       hover:scale-105 transition-all duration-300
+                       hover:shadow-[0_4px_12px_rgba(29,185,84,0.2)]
+                       cursor-pointer backdrop-blur-sm bg-white/90 dark:bg-black/90"
+            >
+              <Menu className="w-5 h-5 group-hover:animate-pulse" />
+              <span className="font-medium">
+                {showAllSkills ? 'Hide All' : 'Show All'}
+              </span>
+              {showAllSkills ? (
+                <ChevronUp className="w-5 h-5" />
+              ) : (
+                <ChevronDown className="w-5 h-5" />
+              )}
+            </button>
+          </div>
         </div>
 
-        {/* Skills Categories */}
-        <div className="space-y-6"> {/* Increased spacing between categories */}
+        {/* Skills Categories - Using CSS Grid for stable layout */}
+        <div className="grid gap-6 grid-cols-1">
           {skillCategories.map((category, index) => (
             <SkillCategory 
               key={category.id}
@@ -195,8 +197,8 @@ export const Skills = () => {
           ))}
         </div>
 
-        {/* Bottom CTA */}
-        <div className={`text-center mt-16 transition-all duration-700 delay-1200 // Increased margin-top
+        {/* Bottom CTA - Fixed position */}
+        <div className={`text-center mt-16 transition-all duration-700 delay-1200
                         ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
           <p className={`dark:text-gray-400 text-gray-600
                         ${isMobile ? 'text-sm' : 'text-base'}`}>
@@ -220,6 +222,11 @@ export const Skills = () => {
         
         .animate-fade-in-up {
           animation: fade-in-up 0.3s ease-out forwards;
+        }
+        
+        /* Ensure smooth transitions without layout shifts */
+        .grid {
+          contain: layout;
         }
       `}</style>
     </section>

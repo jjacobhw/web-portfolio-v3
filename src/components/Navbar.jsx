@@ -51,7 +51,7 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
           <div className="hidden md:flex items-center justify-between w-full">
             <a 
               href="mailto:jhwei@ucsc.edu" 
-              className="text-[#1DB954] hover:bg-gray-100 dark:hover:bg-gray-800
+              className="text-white hover:bg-gray-100 dark:hover:bg-gray-800
                         px-4 py-2 rounded-md transition-all duration-500
                         flex items-center gap-2 group
                         hover:animate-pulse
@@ -61,17 +61,19 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
             >
               <div className="relative w-4 h-4">
                 <Mail 
-                  className={`w-4 h-4 absolute transition-all duration-300 group-hover:scale-110 ${
+                  className={`w-4 h-4 absolute transition-all duration-300 group-hover:scale-110 text-[#1DB954] ${
                     isHovered ? 'opacity-0 scale-75 rotate-12' : 'opacity-100 scale-100 rotate-0'
                   }`}
                 />
                 <Mails 
-                  className={`w-4 h-4 absolute transition-all duration-300 group-hover:scale-110 ${
+                  className={`w-4 h-4 absolute transition-all duration-300 group-hover:scale-110 text-[#1DB954] ${
                     isHovered ? 'opacity-100 scale-100 rotate-0' : 'opacity-0 scale-75 rotate-12'
                   }`}
                 />
               </div>
-              <span>Contact</span>
+              <span className="text-white group-hover:text-[#1DB954] transition-colors duration-200">
+                Contact
+              </span>
             </a>
             
             <div className="flex items-center space-x-3 font-Rubik">
@@ -91,7 +93,7 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
                   >
                     <div className="relative w-4 h-4">
                       <IconComponent 
-                        className={`w-4 h-4 absolute transition-all duration-300 group-hover:scale-110 ${
+                        className={`w-4 h-4 absolute transition-all duration-300 group-hover:scale-110 text-[#1DB954] ${
                           hoveredButton === item.id ? 'opacity-0 scale-75 rotate-12' : 'opacity-100 scale-100 rotate-0'
                         }`}
                       />
