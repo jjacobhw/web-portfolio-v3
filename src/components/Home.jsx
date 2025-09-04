@@ -4,61 +4,80 @@ import { useState, useEffect } from 'react';
 export const Home = () => {
   const [displayedText, setDisplayedText] = useState('');
   const [isTypingComplete, setIsTypingComplete] = useState(false);
-  const fullText = "Hi, I'm ";
-  const name = "Jacob Wei";
+  const [isVisible, setIsVisible] = useState(false);
+  const fullText = "Hi, I'm Jacob Wei";
   const emoji = " 👋";
   
   useEffect(() => {
-    setDisplayedText('');
-    setIsTypingComplete(false);
+    // Make content visible immediately
+    setIsVisible(true);
     
-    let currentIndex = 0;
-    const typingInterval = setInterval(() => {
-      if (currentIndex <= fullText.length) {
-        setDisplayedText(fullText.slice(0, currentIndex));
-        currentIndex++;
-      } else {
-        setIsTypingComplete(true);
-        clearInterval(typingInterval);
-      }
-    }, 100);
+    // Start typing animation after a short delay
+    const startDelay = setTimeout(() => {
+      setDisplayedText('');
+      setIsTypingComplete(false);
+      
+      let currentIndex = 0;
+      const typingInterval = setInterval(() => {
+        if (currentIndex <= fullText.length) {
+          setDisplayedText(fullText.slice(0, currentIndex));
+          currentIndex++;
+        } else {
+          setIsTypingComplete(true);
+          clearInterval(typingInterval);
+        }
+      }, 150);
 
-    return () => clearInterval(typingInterval);
+      return () => clearInterval(typingInterval);
+    }, 300);
+
+    return () => clearTimeout(startDelay);
   }, []);
 
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center justify-start relative 
+      className={`min-h-screen flex items-center justify-start relative 
                  dark:bg-black dark:text-gray-100 bg-white text-gray-900 
-                 transition-colors duration-300"
+                 transition-all duration-700 ease-out
+                 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-7 max-w-6xl h-full">
         <div className="flex items-center h-full">
           <div className="text-left space-y-6">
             <div className="space-y-3">
               <h1 className="text-2xl md:text-4xl font-semibold">
-                <span className="text-white dark:text-white">{displayedText}</span>
-                {displayedText.length >= fullText.length && (
-                  <>
-                    <span className="text-[#1DB954]">{name}</span>
-                    <span className="text-white dark:text-white">{emoji}</span>
-                  </>
+                <span className="text-white dark:text-white">
+                  {displayedText.slice(0, 8)} {/* "Hi, I'm " */}
+                </span>
+                {displayedText.length > 8 && (
+                  <span className="text-[#1DB954]">
+                    {displayedText.slice(8)} {/* "Jacob Wei" */}
+                  </span>
                 )}
-                {!isTypingComplete && (
+                {isTypingComplete && (
+                  <span className="text-white dark:text-white">{emoji}</span>
+                )}
+                {!isTypingComplete && displayedText.length > 0 && (
                   <span className="animate-pulse text-white dark:text-white">|</span>
                 )}
               </h1>
-              <h2 className="dark:text-gray-300 text-gray-600 text-lg md:text-lg">
+              <h2 className={`dark:text-gray-300 text-gray-600 text-lg md:text-lg
+                           transition-all duration-700 delay-300
+                           ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
                 AI/ML Engineer, Software/Full Stack Developer
               </h2>
-              <h3 className="dark:text-gray-300 text-gray-600 text-base flex items-center gap-1">
+              <h3 className={`dark:text-gray-300 text-gray-600 text-base flex items-center gap-1
+                           transition-all duration-700 delay-500
+                           ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
                 <MapPin className="w-4 h-4" />
                 Irvine, California
               </h3>
             </div>
             
-            <div className="flex flex-wrap gap-4 pt-2">
+            <div className={`flex flex-wrap gap-4 pt-2
+                          transition-all duration-700 delay-700
+                          ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
               <a
                 href="src\media\Jacob's Resume.pdf"
                 target="_blank"
