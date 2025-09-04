@@ -9,10 +9,7 @@ export const Home = () => {
   const emoji = " 👋";
   
   useEffect(() => {
-    // Make content visible immediately
     setIsVisible(true);
-    
-    // Start typing animation after a short delay
     const startDelay = setTimeout(() => {
       setDisplayedText('');
       setIsTypingComplete(false);
@@ -42,9 +39,9 @@ export const Home = () => {
                  transition-all duration-700 ease-out
                  ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-7 max-w-6xl h-full">
-        <div className="flex items-center h-full">
-          <div className="text-left space-y-6">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-7 max-w-5xl h-full">
+        <div className="flex items-center justify-between h-full">
+          <div className="text-left space-y-6 flex-1 pr-8">
             <div className="space-y-3">
               <h1 className="text-2xl md:text-4xl font-semibold">
                 <span className="text-white dark:text-white">
@@ -62,7 +59,7 @@ export const Home = () => {
                   <span className="animate-pulse text-white dark:text-white">|</span>
                 )}
               </h1>
-              <h2 className={`dark:text-gray-300 text-gray-600 text-lg md:text-lg
+              <h2 className={`dark:text-gray-300 text-gray-600 text-md md:text-md
                            transition-all duration-700 delay-300
                            ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
                 AI/ML Engineer, Software/Full Stack Developer
@@ -79,7 +76,7 @@ export const Home = () => {
                           transition-all duration-700 delay-700
                           ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
               <a
-                href="src\media\Jacob's Resume.pdf"
+                href="media\Jacob's Resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="border dark:border-gray-600 border-gray-300 
@@ -157,6 +154,48 @@ export const Home = () => {
                 LinkedIn
               </a>
             </div>
+          </div>
+
+          {/* Profile Picture - Right Side */}
+          <div className={`flex-shrink-0 hidden md:block
+                          transition-all duration-700 delay-900
+                          ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}>
+            <div className="relative group">
+              <div className="absolute -inset-1 bg-gradient-to-r from-[#1DB954] to-green-600 
+                            square-full blur opacity-75 group-hover:opacity-100 
+                            transition duration-1000 group-hover:duration-200 animate-pulse"></div>
+              <img
+                src="/media/profile-photo.jpg" // Replace with your actual image path
+                alt="Jacob Wei"
+                className="relative w-64 h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 
+                          square-full object-cover border-4 border-[#1]
+                          transform transition-all duration-500 
+                          group-hover:scale-105 group-hover:rotate-2
+                          shadow-2xl"
+              />
+              {/* Optional: Add a subtle overlay effect */}
+              <div className="absolute inset-0 rounded-full bg-gradient-to-t 
+                            from-black/20 to-transparent opacity-0 
+                            group-hover:opacity-100 transition-opacity duration-300"></div>
+            </div>
+          </div>
+        </div>
+        
+        {/* Mobile Profile Picture - Below text on smaller screens */}
+        <div className={`md:hidden mt-8 flex justify-center
+                        transition-all duration-700 delay-900
+                        ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          <div className="relative group">
+            <div className="absolute -inset-1 bg-gradient-to-r from-[#1DB954] to-green-600 
+                          rounded-full blur opacity-75 group-hover:opacity-100 
+                          transition duration-1000 group-hover:duration-200 animate-pulse"></div>
+            <img
+              src="/path/to/your/profile-picture.jpg" // Replace with your actual image path
+              alt="Jacob Wei"
+              className="relative w-48 h-48 rounded-full object-cover 
+                        border-4 border-[#1DB954] transform transition-all duration-500 
+                        group-hover:scale-105 group-hover:rotate-2 shadow-2xl"
+            />
           </div>
         </div>
       </div>
