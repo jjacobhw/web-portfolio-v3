@@ -28,7 +28,7 @@ export const Skills = () => {
     },
     {
       title: "Platforms & Tools",
-      skills: ["Windows", "Linux", "Bash", "Git", "Visual Studio", "PowerShell", "VIM", "Ubuntu"],
+      skills: ["Windows", "Linux", "GitHub" , "Ubuntu", "Visual Studio", "PowerShell", "Bash", "Git",  "VIM"],
       icon: Terminal,
       id: "platforms"
     }
