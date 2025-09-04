@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Code, Globe, Brain, Terminal, ChevronDown, ChevronUp, Menu } from 'lucide-react';
+import { CodeXml, Globe, Brain, Terminal, ChevronDown, ChevronUp, Menu } from 'lucide-react';
 
 export const Skills = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -11,7 +11,7 @@ export const Skills = () => {
     {
       title: "Programming Languages",
       skills: ["Python", "C++", "C", "JavaScript", "TypeScript", "HTML", "CSS"],
-      icon: Code,
+      icon: CodeXml,
       id: "programming"
     },
     {
