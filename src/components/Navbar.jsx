@@ -92,7 +92,7 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
                 onClick={() => scrollToSection('Skills')}
                 className="text-white font-Rubik hover:text-[#1DB954] transition-colors duration-200 cursor-pointer"
               >
-                About
+                Skills
               </button>
               <button 
                 onClick={() => scrollToSection('Projects')}
