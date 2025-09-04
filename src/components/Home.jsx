@@ -52,7 +52,7 @@ export const Home = () => {
           ? 'text-3xl sm:text-4xl md:text-5xl mb-6' 
           : 'text-4xl xl:text-5xl mb-6'
       }`}>
-        <span className="text-white dark:text-white">
+        <span className="text-white">
           {displayedText.slice(0, 8)} {/* "Hi, I'm " */}
         </span>
         {displayedText.length > 8 && (
@@ -61,15 +61,15 @@ export const Home = () => {
           </span>
         )}
         {isTypingComplete && (
-          <span className="animate-wave text-white dark:text-white">{emoji}</span>
+          <span className="animate-wave text-white">{emoji}</span>
         )}
         {!isTypingComplete && displayedText.length > 0 && (
-          <span className="animate-pulse text-white dark:text-white">|</span>
+          <span className="animate-pulse text-white">|</span>
         )}
       </h1>
       
       {/* Job title */}
-      <h2 className={`dark:text-[#1DB954] text-gray-600 ${
+      <h2 className={`text-[#1DB954] ${
         isMobileLayout 
           ? 'text-base sm:text-lg md:text-xl mb-3' 
           : 'text-lg xl:text-xl mb-6'
@@ -79,19 +79,19 @@ export const Home = () => {
       </h2>
       
       {/* Description */}
-      <h3 className={`dark:text-white text-gray-600 ${
+      <h3 className={`text-white ${
         isMobileLayout 
           ? 'text-xs sm:text-base mb-3' 
           : 'text-base md:text-lg mb-4'
       } transition-all duration-700 delay-500
       ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-        I’m a Computer Science undergraduate exploring RAG, NLP, LLM fine-tuning, and deep learning.
+        I'm a Computer Science undergraduate exploring RAG, NLP, LLM fine-tuning, and deep learning.
         With a foundation in software engineering and web development, I enjoy building intelligent,
         practical systems that address real-world challenges.
       </h3>
       
       {/* Outro */}
-      <h4 className={`dark:text-white text-gray-600 ${
+      <h4 className={`text-white ${
         isMobileLayout 
           ? 'text-sm sm:text-base mb-3' 
           : 'text-base md:text-lg mb-4'
@@ -101,13 +101,13 @@ export const Home = () => {
       </h4>
 
       {/* Location */}
-      <h5 className={`dark:text-white text-gray-600 ${
+      <h5 className={`text-white ${
         isMobileLayout 
           ? 'text-sm sm:text-base flex items-center justify-center gap-1 mb-6' 
           : 'text-base flex items-center gap-1 mb-6'
       } transition-all duration-700 delay-500
       ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-        <MapPin className="w-4 h-4" />
+        <MapPin className="w-4 h-4 text-[#1DB954]" />
         Irvine, California
       </h5>
       
@@ -119,51 +119,51 @@ export const Home = () => {
           href="media\Jacob's Resume.pdf"
           target="_blank"
           rel="noopener noreferrer"
-          className={`border dark:border-gray-600 border-gray-300 
-                    dark:hover:border-gray-400 hover:border-gray-500
-                    text-[#1DB954] dark:hover:bg-gray-800 hover:bg-gray-100
+          className={`bg-black/70 backdrop-blur-sm border border-[#1DB954]/30
+                    shadow-[0_0_20px_rgba(29,185,84,0.5),inset_0_0_20px_rgba(29,185,84,0.1)] 
+                    hover:shadow-[0_0_40px_rgba(29,185,84,0.8),0_0_60px_rgba(29,185,84,0.4),inset_0_0_30px_rgba(29,185,84,0.2)]
+                    text-white hover:text-[#1DB954]
                     ${isMobileLayout ? 'px-3 py-2 sm:px-4 sm:py-2 text-sm sm:text-base' : 'px-4 py-2'}
                     rounded-md transition-all duration-500
                     flex items-center gap-2 group
-                    hover:animate-pulse
                     transform hover:scale-105`}
         >
           <FileText className={`${isMobileLayout ? 'w-4 h-4 sm:w-5 sm:h-5' : 'w-5 h-5'} 
-                              group-hover:animate-bounce transition-transform duration-300`} />
+                              group-hover:animate-bounce transition-transform duration-300 text-[#1DB954]`} />
           Resume
         </a>
         <a
           href="https://github.com/jjacobhw"
           target="_blank"
           rel="noopener noreferrer"
-          className={`border dark:border-gray-600 border-gray-300 
-                    dark:hover:border-gray-400 hover:border-gray-500
-                    text-[#1DB954] dark:hover:bg-gray-800 hover:bg-gray-100
+          className={`bg-black/70 backdrop-blur-sm border border-[#1DB954]/30
+                    shadow-[0_0_20px_rgba(29,185,84,0.5),inset_0_0_20px_rgba(29,185,84,0.1)] 
+                    hover:shadow-[0_0_40px_rgba(29,185,84,0.8),0_0_60px_rgba(29,185,84,0.4),inset_0_0_30px_rgba(29,185,84,0.2)]
+                    text-white hover:text-[#1DB954]
                     ${isMobileLayout ? 'px-3 py-2 sm:px-4 sm:py-2 text-sm sm:text-base' : 'px-4 py-2'}
                     rounded-md transition-all duration-500
                     flex items-center gap-2 group
-                    hover:animate-pulse
                     transform hover:scale-105`}
         >
           <Github className={`${isMobileLayout ? 'w-4 h-4 sm:w-5 sm:h-5' : 'w-5 h-5'} 
-                            group-hover:animate-bounce transition-transform duration-300`} />
+                              group-hover:animate-bounce transition-transform duration-300 text-[#1DB954]`} />
           GitHub
         </a>
         <a
-          href="https://linkedin.com/in/jacob-wei"
+          href="https://www.linkedin.com/in/jacob-wei/"
           target="_blank"
           rel="noopener noreferrer"
-          className={`border border-gray-300 dark:border-gray-600 
-                    hover:border-gray-500 dark:hover:border-gray-400
-                    text-[#1DB954] hover:bg-gray-100 dark:hover:bg-gray-800
+          className={`bg-black/70 backdrop-blur-sm border border-[#1DB954]/30
+                    shadow-[0_0_20px_rgba(29,185,84,0.5),inset_0_0_20px_rgba(29,185,84,0.1)] 
+                    hover:shadow-[0_0_40px_rgba(29,185,84,0.8),0_0_60px_rgba(29,185,84,0.4),inset_0_0_30px_rgba(29,185,84,0.2)]
+                    text-white hover:text-[#1DB954]
                     ${isMobileLayout ? 'px-3 py-2 sm:px-4 sm:py-2 text-sm sm:text-base' : 'px-4 py-2'}
                     rounded-md transition-all duration-500
                     flex items-center gap-2 group
-                    hover:animate-pulse
                     transform hover:scale-105`}
         >
           <Linkedin className={`${isMobileLayout ? 'w-4 h-4 sm:w-5 sm:h-5' : 'w-5 h-5'} 
-                              group-hover:animate-bounce transition-transform duration-300`} />
+                              group-hover:animate-bounce transition-transform duration-300 text-[#1DB954]`} />
           LinkedIn
         </a>
       </div>
@@ -184,9 +184,10 @@ export const Home = () => {
               ? 'w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 mx-auto' 
               : 'w-64 h-64 xl:w-72 xl:h-72'
           } rounded-lg object-cover 
-          border-2 border-gray-200 dark:border-gray-700
+          shadow-[0_0_15px_rgba(29,185,84,0.4)] 
+          hover:shadow-[0_0_30px_rgba(29,185,84,0.8),0_0_45px_rgba(29,185,84,0.4)]
           transform transition-all duration-500 
-          group-hover:scale-105 shadow-lg`}
+          group-hover:scale-105`}
         />
         <div className="absolute inset-0 rounded-lg bg-gradient-to-t 
                       from-black/10 to-transparent opacity-0 
@@ -199,7 +200,7 @@ export const Home = () => {
     <section
       id="Home"
       className={`min-h-screen flex items-start justify-center relative pt-24
-                dark:bg-black dark:text-gray-100 bg-white text-gray-900 
+                bg-black text-white 
                 transition-all duration-700 ease-out
                 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
     >

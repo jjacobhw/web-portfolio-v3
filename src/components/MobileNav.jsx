@@ -46,7 +46,7 @@ export const MobileNav = ({ menuOpen, setMenuOpen }) => {
 
       {/* Slide-out menu — only on mobile */}
       <div
-        className={`fixed top-0 right-0 w-full bg-[rgba(10,10,10,0.9)]
+        className={`fixed top-0 right-0 w-full bg-[rgba(10,10,10,0.95)]
         z-40 flex flex-col items-center justify-center gap-y-6 md:hidden
         transition-all duration-400 ease-in-out overflow-hidden
         ${
