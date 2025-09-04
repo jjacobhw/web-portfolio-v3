@@ -43,7 +43,7 @@ export const Home = () => {
         {/* Desktop Layout - side by side */}
         <div className="hidden lg:flex items-center justify-between min-h-[60vh]">
           <div className="flex-1 pr-12">
-            <div className="space-y-9">
+            <div className="space-y-7">
               <h1 className="text-3xl xl:text-5xl font-semibold">
                 <span className="text-white dark:text-white">
                   {displayedText.slice(0, 8)} {/* "Hi, I'm " */}
@@ -68,9 +68,9 @@ export const Home = () => {
               <h3 className={`dark:text-gray-300 text-gray-600 text-base s:text-s flex items-center gap-1
                            transition-all duration-700 delay-500
                            ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-                A Computer Science undergrad developing expertise in RAG, NLP, LLM fine-tuning, deep learning,
-                software engineering and web development. I'm passionate about building intelligent and practical systems to solve
-                real-world problems. 
+                A Computer Science undergraduate developing expertise in RAG, NLP, LLM fine-tuning, deep learning,
+                software engineering and web development. I'm passionate about building intelligent and practical systems 
+                to solve real-world problems. 
               </h3>
               <h4 className={`dark:text-gray-300 text-gray-600 text-base s:text-s flex items-center gap-1
                            transition-all duration-700 delay-500
