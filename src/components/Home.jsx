@@ -79,7 +79,7 @@ export const Home = () => {
                   <span className="animate-pulse text-white dark:text-white">|</span>
                 )}
               </h1>
-              <h2 className={`dark:text-gray-300 text-gray-600 text-lg xl:text-xl
+              <h2 className={`dark:text-[#1DB954] text-gray-600 text-lg xl:text-xl
                            transition-all duration-700 delay-300
                            ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
                 AI/ML Engineer and Full Stack Developer
@@ -209,10 +209,10 @@ export const Home = () => {
                   <span className="animate-pulse text-white dark:text-white">|</span>
                 )}
               </h1>
-              <h2 className={`dark:text-gray-300 text-gray-600 text-base sm:text-lg md:text-xl
+              <h2 className={`dark:text-[#1DB954] text-gray-600 text-base sm:text-lg md:text-xl
                            transition-all duration-700 delay-500
                            ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-                AI/ML Engineer, Software/Full Stack Developer
+                AI/ML Engineer and Full Stack Developer
               </h2>
               <h3 className={`dark:text-gray-300 text-gray-600 text-sm sm:text-base
                            transition-all duration-700 delay-700
