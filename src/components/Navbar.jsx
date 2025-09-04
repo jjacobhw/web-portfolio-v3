@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Mail, Mails, Home, Computer, CodeXml, Folders } from 'lucide-react';
+import { Link } from 'react-router-dom'; // Add this import
 
 export const Navbar = ({ menuOpen, setMenuOpen }) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -9,34 +10,11 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
     document.body.style.overflow = menuOpen ? "hidden" : "auto";
   }, [menuOpen]);
 
-  const scrollToSection = (sectionId) => {
-    // Try both lowercase and capitalized versions
-    let element = document.getElementById(sectionId);
-    if (!element) {
-      // Try capitalized version
-      const capitalizedId = sectionId.charAt(0).toUpperCase() + sectionId.slice(1);
-      element = document.getElementById(capitalizedId);
-    }
-    
-    if (element) {
-      const navbarHeight = 64;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
-
-      window.scrollTo({
-        top: Math.max(0, offsetPosition),
-        behavior: 'smooth'
-      });
-    } else {
-      console.warn(`Element with ID "${sectionId}" not found`);
-    }
-  };
-
   const navItems = [
-    { id: 'home', label: 'Home', icon: Home },
-    { id: 'skills', label: 'Skills', icon: CodeXml },
-    { id: 'experience', label: 'Experience', icon: Computer },
-    { id: 'projects', label: 'Projects', icon: Folders },
+    { id: 'home', label: 'Home', icon: Home, path: '/' },
+    { id: 'skills', label: 'Skills', icon: CodeXml, path: '/skills' },
+    { id: 'experience', label: 'Experience', icon: Computer, path: '/experience' },
+    { id: 'projects', label: 'Projects', icon: Folders, path: '/projects' },
   ];
 
   return (
@@ -80,9 +58,9 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
               {navItems.map((item) => {
                 const IconComponent = item.icon;
                 return (
-                  <button
+                  <Link
                     key={item.id}
-                    onClick={() => scrollToSection(item.id)}
+                    to={item.path}
                     className="text-white hover:bg-gray-100 dark:hover:bg-gray-800
                               px-3 py-2 rounded-md transition-all duration-500
                               flex items-center gap-2 group relative
@@ -106,7 +84,7 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
                     <span className="text-white group-hover:text-[#1DB954] transition-colors duration-200">
                       {item.label}
                     </span>
-                  </button>
+                  </Link>
                 );
               })}
             </div>
