@@ -39,7 +39,7 @@ export const Home = () => {
                  transition-all duration-700 ease-out
                  ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-7 max-w-5xl h-full">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-6 max-w-3xl h-full">
         <div className="flex items-center justify-between h-full">
           <div className="text-left space-y-6 flex-1 pr-8">
             <div className="space-y-3">
@@ -161,21 +161,18 @@ export const Home = () => {
                           transition-all duration-700 delay-900
                           ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}>
             <div className="relative group">
-              <div className="absolute -inset-1 bg-gradient-to-r from-[#1DB954] to-green-600 
-                            square-full blur opacity-75 group-hover:opacity-100 
-                            transition duration-1000 group-hover:duration-200 animate-pulse"></div>
               <img
                 src="/media/profile-photo.jpg" // Replace with your actual image path
                 alt="Jacob Wei"
-                className="relative w-64 h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 
-                          square-full object-cover border-4 border-[#1]
+                className="relative w-45 h-45 md:w-50 md:h-50 lg:w-55 lg:h-55
+                          rounded-lg object-cover border-2 border-gray-200 dark:border-gray-700
                           transform transition-all duration-500 
-                          group-hover:scale-105 group-hover:rotate-2
-                          shadow-2xl"
+                          group-hover:scale-105
+                          shadow-lg"
               />
               {/* Optional: Add a subtle overlay effect */}
-              <div className="absolute inset-0 rounded-full bg-gradient-to-t 
-                            from-black/20 to-transparent opacity-0 
+              <div className="absolute inset-0 rounded-lg bg-gradient-to-t 
+                            from-black/10 to-transparent opacity-0 
                             group-hover:opacity-100 transition-opacity duration-300"></div>
             </div>
           </div>
@@ -186,15 +183,12 @@ export const Home = () => {
                         transition-all duration-700 delay-900
                         ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <div className="relative group">
-            <div className="absolute -inset-1 bg-gradient-to-r from-[#1DB954] to-green-600 
-                          rounded-full blur opacity-75 group-hover:opacity-100 
-                          transition duration-1000 group-hover:duration-200 animate-pulse"></div>
             <img
               src="/path/to/your/profile-picture.jpg" // Replace with your actual image path
               alt="Jacob Wei"
-              className="relative w-48 h-48 rounded-full object-cover 
-                        border-4 border-[#1DB954] transform transition-all duration-500 
-                        group-hover:scale-105 group-hover:rotate-2 shadow-2xl"
+              className="relative w-48 h-48 rounded-lg object-cover 
+                        border-2 border-gray-200 dark:border-gray-700 transform transition-all duration-500 
+                        group-hover:scale-105 shadow-lg"
             />
           </div>
         </div>
