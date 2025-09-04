@@ -10,9 +10,12 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
   }, [menuOpen]);
 
   const scrollToSection = (sectionId) => {
+    // Try both lowercase and capitalized versions
     let element = document.getElementById(sectionId);
     if (!element) {
-      element = document.getElementById(sectionId.toLowerCase());
+      // Try capitalized version
+      const capitalizedId = sectionId.charAt(0).toUpperCase() + sectionId.slice(1);
+      element = document.getElementById(capitalizedId);
     }
     
     if (element) {
@@ -52,7 +55,7 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
                         px-4 py-2 rounded-md transition-all duration-500
                         flex items-center gap-2 group
                         hover:animate-pulse
-                        transform hover:scale-105"
+                        transform hover:scale-105 cursor-pointer"
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
             >
@@ -71,15 +74,18 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
               <span>Contact</span>
             </a>
             
-            <div className="flex items-center space-x-7 font-Rubik">
+            <div className="flex items-center space-x-3 font-Rubik">
               {navItems.map((item) => {
                 const IconComponent = item.icon;
                 return (
                   <button
                     key={item.id}
                     onClick={() => scrollToSection(item.id)}
-                    className="text-white font-Rubik hover:text-[#1DB954] transition-colors duration-200 cursor-pointer
-                              flex items-center gap-1 group relative"
+                    className="text-white hover:bg-gray-100 dark:hover:bg-gray-800
+                              px-3 py-2 rounded-md transition-all duration-500
+                              flex items-center gap-2 group relative
+                              hover:animate-pulse
+                              transform hover:scale-105 cursor-pointer"
                     onMouseEnter={() => setHoveredButton(item.id)}
                     onMouseLeave={() => setHoveredButton(null)}
                   >
@@ -95,7 +101,9 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
                         }`}
                       />
                     </div>
-                    <span>{item.label}</span>
+                    <span className="text-white group-hover:text-[#1DB954] transition-colors duration-200">
+                      {item.label}
+                    </span>
                   </button>
                 );
               })}
