@@ -5,9 +5,28 @@ export const Home = () => {
   const [displayedText, setDisplayedText] = useState('');
   const [isTypingComplete, setIsTypingComplete] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const fullText = "Hi, I'm Jacob Wei";
   const emoji = " 👋";
   
+  useEffect(() => {
+    // Check if window is available (for SSR)
+    if (typeof window !== 'undefined') {
+      const checkMobile = () => {
+        setIsMobile(window.innerWidth < 1024); // 1024px is typically the lg breakpoint
+      };
+      
+      // Initial check
+      checkMobile();
+      
+      // Add event listener for window resize
+      window.addEventListener('resize', checkMobile);
+      
+      // Cleanup
+      return () => window.removeEventListener('resize', checkMobile);
+    }
+  }, []);
+
   useEffect(() => {
     setIsVisible(true);
     const startDelay = setTimeout(() => {
@@ -41,9 +60,9 @@ export const Home = () => {
       >
       <div className="container mx-auto px-6 sm:px-8 lg:px-8 max-w-4xl pt-16 md:pt-10">
         {/* Desktop Layout - side by side */}
-        <div className="hidden lg:flex items-center justify-between min-h-[60vh]">
+        <div className={`${isMobile ? 'hidden' : 'flex'} items-center justify-between min-h-[60vh]`}>
           <div className="flex-1 pr-12">
-            <div className="space-y-7">
+            <div className="space-y-9">
               <h1 className="text-3xl xl:text-5xl font-semibold">
                 <span className="text-white dark:text-white">
                   {displayedText.slice(0, 8)} {/* "Hi, I'm " */}
@@ -54,7 +73,7 @@ export const Home = () => {
                   </span>
                 )}
                 {isTypingComplete && (
-                  <span className="text-white dark:text-white">{emoji}</span>
+                  <span className="animate-wave text-white dark:text-white">{emoji}</span>
                 )}
                 {!isTypingComplete && displayedText.length > 0 && (
                   <span className="animate-pulse text-white dark:text-white">|</span>
@@ -65,14 +84,14 @@ export const Home = () => {
                            ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
                 AI/ML Engineer and Full Stack Developer
               </h2>
-              <h3 className={`dark:text-gray-300 text-gray-600 text-base s:text-s flex items-center gap-1
+              <h3 className={`dark:text-gray-300 text-gray-600 text-base md:text-lg
                            transition-all duration-700 delay-500
                            ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
                 A Computer Science undergraduate developing expertise in RAG, NLP, LLM fine-tuning, deep learning,
                 software engineering and web development. I'm passionate about building intelligent and practical systems 
                 to solve real-world problems. 
               </h3>
-              <h4 className={`dark:text-gray-300 text-gray-600 text-base s:text-s flex items-center gap-1
+              <h4 className={`dark:text-gray-300 text-gray-600 text-base flex items-center gap-1
                            transition-all duration-700 delay-500
                            ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
                 <MapPin className="w-4 h-4" />
@@ -185,7 +204,7 @@ export const Home = () => {
         </div>
         
         {/* Tablet/Mobile Layout - stacked vertically */}
-        <div className="lg:hidden flex flex-col items-center text-center space-y-8 py-12">
+        <div className={`${isMobile ? 'flex' : 'hidden'} flex-col items-center text-center space-y-8 py-12`}>
           {/* Profile Picture First on Mobile */}
           <div className={`transition-all duration-700 delay-300
                           ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
@@ -217,7 +236,7 @@ export const Home = () => {
                   </span>
                 )}
                 {isTypingComplete && (
-                  <span className="text-white dark:text-white">{emoji}</span>
+                  <span className="animate-wave text-white dark:text-white">{emoji}</span>
                 )}
                 {!isTypingComplete && displayedText.length > 0 && (
                   <span className="animate-pulse text-white dark:text-white">|</span>
@@ -228,12 +247,19 @@ export const Home = () => {
                            ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
                 AI/ML Engineer, Software/Full Stack Developer
               </h2>
-              <h3 className={`dark:text-gray-300 text-gray-600 text-sm sm:text-base flex items-center justify-center gap-1
+              <h3 className={`dark:text-gray-300 text-gray-600 text-sm sm:text-base
+                           transition-all duration-700 delay-700
+                           ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+                A Computer Science undergraduate developing expertise in RAG, NLP, LLM fine-tuning, deep learning,
+                software engineering and web development. I'm passionate about building intelligent and practical systems 
+                to solve real-world problems.
+              </h3>
+              <h4 className={`dark:text-gray-300 text-gray-600 text-sm sm:text-base flex items-center justify-center gap-1
                            transition-all duration-700 delay-700
                            ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
                 <MapPin className="w-4 h-4" />
                 Irvine, California
-              </h3>
+              </h4>
             </div>
             
             <div className={`flex flex-wrap justify-center gap-3 sm:gap-4 pt-4

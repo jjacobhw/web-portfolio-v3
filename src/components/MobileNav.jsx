@@ -1,4 +1,4 @@
-import { Menu, X, Mail, Mails, Home, User, Computer, FolderOpen } from "lucide-react";
+import { Menu, X, Mail, Mails, Home, PencilRuler, Computer, FolderOpen } from "lucide-react";
 import { useState } from "react";
 
 export const MobileNav = ({ menuOpen, setMenuOpen }) => {
@@ -6,7 +6,7 @@ export const MobileNav = ({ menuOpen, setMenuOpen }) => {
   
   const links = [
     { href: "#Home", label: "Home", icon: Home },
-    { href: "#Skills", label: "Skills", icon: User },
+    { href: "#Skills", label: "Skills", icon: PencilRuler },
     { href: "#Experience", label: "Experience", icon: Computer },
     { href: "#Projects", label: "Projects", icon: FolderOpen },
   ];
