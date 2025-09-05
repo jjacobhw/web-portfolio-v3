@@ -149,7 +149,7 @@ export const Skills = () => {
     id="skills"
     className={`min-h-auto pt-6 flex items-start justify-center
                 dark:bg-black dark:text-[#1DB954] bg-white text-gray-900
-                ${isMobile ? 'pb-64 px-8' : 'pb-64 px-8'} // Reduced top padding
+                ${isMobile ? 'pb-70 px-20' : 'pb-64 px-70'} // Reduced top padding
                 transition-all duration-700 ease-out
                 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
     >
