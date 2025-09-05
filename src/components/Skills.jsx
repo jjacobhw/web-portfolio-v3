@@ -107,7 +107,7 @@ export const Skills = () => {
       >
         <div 
           onClick={() => toggleCategory(category.id)}
-          className="flex items-center justify-between p-6 cursor-pointer"
+          className="flex items-center justify-between p-4 cursor-pointer"
         >
           <div className="flex items-center gap-3">
             <Icon className="w-6 h-6 text-[#1DB954] transition-transform duration-300" />
@@ -130,8 +130,8 @@ export const Skills = () => {
             ? 'max-h-[1000px] opacity-100 scale-y-100'
             : 'max-h-0 opacity-0 scale-y-0'
         } overflow-hidden`}>
-          <div className="px-6 pb-6">
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 pt-4 border-t border-white/20">
+          <div className="px-4 pb-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 pt-3 border-t border-white/20">
               {category.skills.map((tech, skillIndex) => (
                 <div
                   key={skillIndex}
@@ -143,7 +143,7 @@ export const Skills = () => {
                            px-3 py-2 rounded-lg transition-all duration-500
                            flex flex-col items-center justify-center gap-2
                            transform hover:scale-105
-                           cursor-pointer text-sm font-medium h-24`}
+                           cursor-pointer text-sm font-medium h-28`}
                 >
                   <SkillIcon tech={tech} className="w-8 h-8 text-[#1DB954] transition-transform duration-300" />
                   <span className="text-center text-xs font-semibold mt-1">{tech}</span>
@@ -175,7 +175,7 @@ export const Skills = () => {
             onClick={toggleAllSkills}
             className="group bg-[#1DB954]/10 hover:bg-[#1DB954]/20 
                      border border-[#1DB954]/20 hover:border-[#1DB954]/40
-                     text-white px-4 py-2 rounded-lg
+                     text-white px-4 py-3 rounded-lg
                      flex items-center gap-2
                      hover:scale-105 transition-all duration-300
                      hover:shadow-[0_4px_12px_rgba(29,185,84,0.2)]
