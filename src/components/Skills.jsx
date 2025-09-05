@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { CodeXml, Globe, BrainCircuit, Terminal, ChevronDown, ChevronUp, Menu } from 'lucide-react';
 import { SkillIcon, DevIconStyles } from './Icons';
 
@@ -6,6 +6,7 @@ export const Skills = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [expandedCategories, setExpandedCategories] = useState({});
+  const hasAnimated = useRef(false); // Track if animations have run
 
   const skillCategories = [
     {
@@ -49,11 +50,18 @@ export const Skills = () => {
     }
   }, []);
 
+  // Simple entrance animation - only runs once when component mounts
   useEffect(() => {
-    const timer = setTimeout(() => {
+    if (!hasAnimated.current) {
+      const timer = setTimeout(() => {
+        setIsVisible(true);
+        hasAnimated.current = true;
+      }, 100);
+      return () => clearTimeout(timer);
+    } else {
+      // If already animated, show immediately
       setIsVisible(true);
-    }, 100);
-    return () => clearTimeout(timer);
+    }
   }, []);
 
   const toggleCategory = (categoryId) => {
@@ -89,9 +97,9 @@ export const Skills = () => {
     const Icon = category.icon;
     
     return (
-      <div className={`group bg-white/5 dark:bg-gray-800/30 backdrop-blur-sm 
-                      rounded-xl border border-gray-200/20 dark:border-gray-700/30
-                      hover:bg-white/10 dark:hover:bg-gray-800/50
+      <div className={`group bg-black/90 backdrop-blur-sm 
+                      rounded-xl border border-[#1DB954]/30
+                      hover:bg-black
                       transition-all duration-500 delay-${(index + 2) * 200}
                       ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}
                       overflow-hidden h-full
@@ -103,7 +111,7 @@ export const Skills = () => {
         >
           <div className="flex items-center gap-3">
             <Icon className="w-6 h-6 text-[#1DB954] transition-transform duration-300" />
-            <h3 className={`font-semibold dark:text-white text-gray-900 
+            <h3 className={`font-semibold text-white
                            ${isMobile ? 'text-xl' : 'text-2xl'} relative`}
             >
               {category.title}
@@ -123,7 +131,7 @@ export const Skills = () => {
             : 'max-h-0 opacity-0 scale-y-0'
         } overflow-hidden`}>
           <div className="px-6 pb-6">
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 pt-4 border-t border-gray-200/10 dark:border-gray-700/20">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 pt-4 border-t border-white/20">
               {category.skills.map((tech, skillIndex) => (
                 <div
                   key={skillIndex}
@@ -152,7 +160,7 @@ export const Skills = () => {
     <div className="w-full h-full flex items-start justify-center pt-24 pb-16 bg-black">
       <DevIconStyles />
       
-      <div className={`max-w-5xl mx-auto px-4 w-full h-full flex flex-col`}>
+      <div className={`max-w-5xl mx-auto px-4 w-full flex flex-col`}>
         {/* Header with title on left and button on right */}
         <div className={`flex items-center justify-between mb-8 transition-all duration-700 delay-300
                         ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
@@ -181,9 +189,9 @@ export const Skills = () => {
           </button>
         </div>
 
-        {/* Skills grid - with flex-1 to take remaining space and overflow handling */}
-        <div className="flex-1 overflow-y-auto">
-          <div className="grid gap-6 grid-cols-1 pb-4">
+        {/* Skills grid - Fixed overflow issues */}
+        <div className="flex-1 min-h-0">
+          <div className="grid gap-6 grid-cols-1 pb-4 max-h-full">
             {skillCategories.map((category, index) => (
               <SkillCategory 
                 key={category.id}
