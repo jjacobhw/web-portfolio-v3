@@ -29,10 +29,8 @@ export const deviconMapping = {
   "Linux": "linux",
   "GitHub": "github",
   "Ubuntu": "ubuntu",
-  "Visual Studio": "visualstudio",
   "Bash": "bash",
   "Git": "git",
-  "VIM": "vim"
 };
 
 // Check if a technology has a valid Devicon
