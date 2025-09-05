@@ -148,7 +148,7 @@ export const Skills = () => {
     <div className="w-full h-full flex items-start justify-center pt-16 pb-8">
       <DevIconStyles />
       
-      <div className={`max-w-4xl mx-auto w-full h-full flex flex-col ${isMobile ? 'px-4' : 'px-8'}`}>
+      <div className={`max-w-5xl mx-auto px-4 w-full h-full flex flex-col`}>
         {/* Header with title on left and button on right */}
         <div className={`flex items-center justify-between mb-8 transition-all duration-700 delay-300
                         ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
@@ -198,7 +198,7 @@ export const Skills = () => {
                           ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
             <p className={`dark:text-gray-400 text-gray-600
                           ${isMobile ? 'text-sm' : 'text-base'}`}>
-              More skills tba :)
+                            
             </p>
           </div>
         </div>

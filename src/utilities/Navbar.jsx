@@ -32,7 +32,7 @@ export const Navbar = ({ menuOpen, setMenuOpen, activeSection, setActiveSection 
         boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06), 0 8px 25px -5px rgba(29, 185, 84, 0.3)'
       }}
     >
-      <div className="max-w-4xl mx-auto px-4">
+      <div className="max-w-5xl mx-auto px-4">
         <div className="flex justify-between items-center h-16">
           <div className="hidden md:flex items-center justify-between w-full">
             <a 

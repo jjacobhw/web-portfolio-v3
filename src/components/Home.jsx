@@ -197,7 +197,7 @@ export const Home = () => {
 
   return (
     <div className="w-full h-full flex items-center justify-center bg-black text-white">
-      <div className="container mx-auto px-6 sm:px-8 lg:px-8 max-w-6xl">
+      <div className="max-w-5xl mx-auto px-4">
         {/* Desktop Layout - side by side */}
         <div className={`${isMobile ? 'hidden' : 'flex'} items-center justify-between`}>
           <div className="flex-1 pr-12">
