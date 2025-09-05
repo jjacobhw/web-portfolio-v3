@@ -23,6 +23,7 @@ function App() {
   const scrollTimeoutRef = useRef(null);
   const isScrollingRef = useRef(false);
   const observerRef = useRef(null);
+  const isNavigatingRef = useRef(false); // Flag for navigation clicks
   
   // Check if device is mobile on initial render and resize
   useEffect(() => {
@@ -47,7 +48,7 @@ function App() {
     };
     
     const handleIntersect = (entries) => {
-      if (menuOpen || isScrollingRef.current) return;
+      if (menuOpen || isScrollingRef.current || isNavigatingRef.current) return;
       
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -76,13 +77,39 @@ function App() {
     };
   }, [isMobile, menuOpen]);
   
-  // Scroll to active section when it changes - only for desktop
+  // Scroll to active section when it changes
   useEffect(() => {
-    if (!isMobile && sectionRefs[activeSection]?.current && isScrollingRef.current) {
+    if (sectionRefs[activeSection]?.current) {
+      // Set scrolling flags
+      isScrollingRef.current = true;
+      if (!isMobile) {
+        isNavigatingRef.current = true;
+      }
+      
+      // Clear any existing timeout
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+      
       // Use requestAnimationFrame for smoother scrolling
       requestAnimationFrame(() => {
-        sectionRefs[activeSection].current.scrollIntoView({ behavior: 'smooth' });
+        if (isMobile) {
+          // For mobile, use regular smooth scrolling
+          sectionRefs[activeSection].current.scrollIntoView({ 
+            behavior: 'smooth',
+            block: 'start'
+          });
+        } else {
+          // For desktop, use smooth scrolling but with snap behavior
+          sectionRefs[activeSection].current.scrollIntoView({ behavior: 'smooth' });
+        }
       });
+      
+      // Reset flags after scrolling completes
+      scrollTimeoutRef.current = setTimeout(() => {
+        isScrollingRef.current = false;
+        isNavigatingRef.current = false;
+      }, 1000); // Increased timeout for navigation
     }
   }, [activeSection, isMobile]);
 
@@ -94,7 +121,7 @@ function App() {
     if (!container) return;
 
     const handleWheel = (e) => {
-      if (isScrollingRef.current || menuOpen) return;
+      if (isScrollingRef.current || isNavigatingRef.current || menuOpen) return;
       
       e.preventDefault();
       isScrollingRef.current = true;
@@ -119,7 +146,7 @@ function App() {
     };
     
     const handleKeyDown = (e) => {
-      if (isScrollingRef.current || menuOpen) return;
+      if (isScrollingRef.current || isNavigatingRef.current || menuOpen) return;
       
       if (e.key === 'ArrowDown' || e.key === 'PageDown') {
         e.preventDefault();
