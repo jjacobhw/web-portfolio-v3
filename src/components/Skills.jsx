@@ -6,7 +6,6 @@ export const Skills = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [expandedCategories, setExpandedCategories] = useState({});
-  const [showAllSkills, setShowAllSkills] = useState(false);
 
   const skillCategories = [
     {
@@ -35,6 +34,10 @@ export const Skills = () => {
     }
   ];
 
+  // Derived state - calculate based on actual expanded categories
+  const allExpanded = skillCategories.every(cat => expandedCategories[cat.id]);
+  const noneExpanded = skillCategories.every(cat => !expandedCategories[cat.id]);
+
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const checkMobile = () => {
@@ -61,20 +64,28 @@ export const Skills = () => {
   };
 
   const toggleAllSkills = () => {
-    setShowAllSkills(!showAllSkills);
-    if (!showAllSkills) {
-      const allExpanded = {};
-      skillCategories.forEach(cat => {
-        allExpanded[cat.id] = true;
-      });
-      setExpandedCategories(allExpanded);
-    } else {
+    if (allExpanded) {
+      // All are expanded, so collapse all
       setExpandedCategories({});
+    } else {
+      // Some or none expanded, so expand all
+      const allExpandedState = {};
+      skillCategories.forEach(cat => {
+        allExpandedState[cat.id] = true;
+      });
+      setExpandedCategories(allExpandedState);
     }
   };
 
+  // Get button text based on current state
+  const getButtonText = () => {
+    if (allExpanded) return 'Collapse All';
+    if (noneExpanded) return 'Expand All';
+    return 'Expand All'; // Default for mixed states - prioritize expanding
+  };
+
   const SkillCategory = ({ category, index }) => {
-    const isExpanded = expandedCategories[category.id] || showAllSkills;
+    const isExpanded = expandedCategories[category.id];
     const Icon = category.icon;
     
     return (
@@ -164,7 +175,7 @@ export const Skills = () => {
                      text-sm font-semibold"
           >
             <span className={`font-medium ${isMobile ? 'hidden sm:inline' : ''}`}>
-              {showAllSkills ? 'Collapse All' : 'Expand All'}
+              {getButtonText()}
             </span>
             <Menu className="w-5 h-5 text-[#1DB954] group-hover:animate-pulse" />
           </button>
