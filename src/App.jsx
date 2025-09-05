@@ -23,7 +23,6 @@ function App() {
   const scrollTimeoutRef = useRef(null);
   const isScrollingRef = useRef(false);
   const observerRef = useRef(null);
-  const lastScrollTimeRef = useRef(0);
   
   // Check if device is mobile on initial render and resize
   useEffect(() => {
@@ -41,16 +40,16 @@ function App() {
   useEffect(() => {
     const options = {
       root: null,
-      rootMargin: '-20% 0px -20% 0px',
-      threshold: [0, 0.1, 0.5, 0.9, 1]
+      rootMargin: '-30% 0px -30% 0px',
+      threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]
     };
     
     const handleIntersect = (entries) => {
       if (menuOpen || isScrollingRef.current) return;
       
       // Find the section with the highest intersection ratio
-      let maxRatio = 0;
-      let maxSectionIndex = -1;
+      let maxRatio = 0.1;
+      let maxSectionIndex = activeSection;
       
       entries.forEach(entry => {
         if (entry.intersectionRatio > maxRatio) {
@@ -63,7 +62,8 @@ function App() {
         }
       });
       
-      if (maxSectionIndex !== -1 && maxRatio > 0.1) {
+      // Only update if we have a clear winner and it's different from current
+      if (maxSectionIndex !== activeSection && maxRatio > 0.3) {
         setActiveSection(maxSectionIndex);
       }
     };
@@ -82,11 +82,57 @@ function App() {
         observerRef.current.disconnect();
       }
     };
-  }, [menuOpen]);
+  }, [menuOpen, activeSection]);
+
+  // Smooth scroll function
+  const smoothScrollToSection = (sectionIndex) => {
+    const targetElement = sectionRefs[sectionIndex]?.current;
+    if (!targetElement) return;
+
+    const startPosition = window.pageYOffset;
+    const targetPosition = targetElement.offsetTop;
+    const distance = targetPosition - startPosition;
+    const duration = 1200;
+    let start = null;
+
+    // Custom easing function for smoother animation
+    const easeInOutCubic = (t) => {
+      return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+    };
+
+    const animation = (currentTime) => {
+      if (start === null) start = currentTime;
+      const timeElapsed = currentTime - start;
+      const progress = Math.min(timeElapsed / duration, 1);
+      const easedProgress = easeInOutCubic(progress);
+      
+      window.scrollTo(0, startPosition + distance * easedProgress);
+      
+      if (progress < 1) {
+        requestAnimationFrame(animation);
+      } else {
+        // Animation complete
+        isScrollingRef.current = false;
+        
+        // Re-enable observer after a short delay
+        setTimeout(() => {
+          if (observerRef.current) {
+            sectionRefs.forEach(ref => {
+              if (ref.current) {
+                observerRef.current.observe(ref.current);
+              }
+            });
+          }
+        }, 200);
+      }
+    };
+
+    requestAnimationFrame(animation);
+  };
 
   // Navigation function
   const navigateToSection = useCallback((sectionIndex) => {
-    if (isScrollingRef.current) return;
+    if (isScrollingRef.current || sectionIndex === activeSection) return;
     
     isScrollingRef.current = true;
     setActiveSection(sectionIndex);
@@ -95,98 +141,14 @@ function App() {
       clearTimeout(scrollTimeoutRef.current);
     }
     
-    // Scroll to section
-    if (sectionRefs[sectionIndex]?.current) {
-      sectionRefs[sectionIndex].current.scrollIntoView({ 
-        behavior: 'smooth',
-        block: 'start'
-      });
+    // Temporarily disconnect observer to prevent interference
+    if (observerRef.current) {
+      observerRef.current.disconnect();
     }
     
-    // Reset scrolling flag
-    scrollTimeoutRef.current = setTimeout(() => {
-      isScrollingRef.current = false;
-    }, 1000);
-  }, []);
-
-  // Handle scroll snap with keyboard and wheel events
-  useEffect(() => {
-    if (isMobile || menuOpen) return;
-    
-    const container = containerRef.current;
-    if (!container) return;
-
-    const handleWheel = (e) => {
-      const now = Date.now();
-      
-      // Throttle wheel events to prevent too rapid firing
-      if (now - lastScrollTimeRef.current < 150) return;
-      
-      if (isScrollingRef.current || menuOpen) return;
-      
-      // Only handle significant wheel movements
-      if (Math.abs(e.deltaY) < 30) return;
-      
-      e.preventDefault();
-      lastScrollTimeRef.current = now;
-      
-      if (e.deltaY > 0) {
-        // Scroll down
-        const nextSection = Math.min(activeSection + 1, sectionRefs.length - 1);
-        if (nextSection !== activeSection) {
-          navigateToSection(nextSection);
-        }
-      } else {
-        // Scroll up
-        const prevSection = Math.max(activeSection - 1, 0);
-        if (prevSection !== activeSection) {
-          navigateToSection(prevSection);
-        }
-      }
-    };
-    
-    const handleKeyDown = (e) => {
-      if (isScrollingRef.current || menuOpen) return;
-      
-      let targetSection = -1;
-      
-      switch(e.key) {
-        case 'ArrowDown':
-        case 'PageDown':
-          targetSection = Math.min(activeSection + 1, sectionRefs.length - 1);
-          break;
-        case 'ArrowUp':
-        case 'PageUp':
-          targetSection = Math.max(activeSection - 1, 0);
-          break;
-        case 'Home':
-          targetSection = 0;
-          break;
-        case 'End':
-          targetSection = sectionRefs.length - 1;
-          break;
-        default:
-          return;
-      }
-      
-      if (targetSection !== -1 && targetSection !== activeSection) {
-        e.preventDefault();
-        navigateToSection(targetSection);
-      }
-    };
-    
-    container.addEventListener('wheel', handleWheel, { passive: false });
-    window.addEventListener('keydown', handleKeyDown);
-    
-    return () => {
-      container.removeEventListener('wheel', handleWheel);
-      window.removeEventListener('keydown', handleKeyDown);
-      
-      if (scrollTimeoutRef.current) {
-        clearTimeout(scrollTimeoutRef.current);
-      }
-    };
-  }, [activeSection, menuOpen, isMobile, navigateToSection]);
+    // Use custom smooth scroll
+    smoothScrollToSection(sectionIndex);
+  }, [activeSection]);
 
   // Handle navbar navigation
   const handleNavClick = useCallback((sectionIndex) => {
@@ -210,52 +172,36 @@ function App() {
         setActiveSection={handleNavClick}
       />
       
-      {/* Scroll container with conditional snap behavior */}
+      {/* Scroll container without snap behavior */}
       <div 
         ref={containerRef}
-        className={`${isMobile 
-          ? 'overflow-y-auto' 
-          : 'snap-container h-screen overflow-y-auto snap-y snap-mandatory'
-        } scroll-smooth`}
-        style={{ scrollBehavior: 'smooth' }}
+        className="overflow-y-auto"
       >
         <section 
           ref={sectionRefs[0]}
           id="home"
-          className={`${isMobile 
-            ? 'min-h-screen' 
-            : 'h-screen snap-start snap-always'
-          } w-full flex items-center justify-center`}
+          className="min-h-screen w-full flex items-center justify-center"
         >
           <Home />
         </section>
         <section 
           ref={sectionRefs[1]}
           id="skills"
-          className={`${isMobile 
-            ? 'min-h-screen py-8' 
-            : 'min-h-screen snap-start snap-always'
-          } w-full flex items-start justify-center`}
+          className="min-h-screen py-8 w-full flex items-start justify-center"
         >
           <Skills />
         </section>
         <section 
           ref={sectionRefs[2]}
           id="experience"
-          className={`${isMobile 
-            ? 'min-h-screen' 
-            : 'h-screen snap-start snap-always'
-          } w-full flex items-center justify-center`}
+          className="min-h-screen w-full flex items-center justify-center"
         >
           <Experience />
         </section>
         <section 
           ref={sectionRefs[3]}
           id="projects"
-          className={`${isMobile 
-            ? 'min-h-screen' 
-            : 'h-screen snap-start snap-always'
-          } w-full flex items-center justify-center`}
+          className="min-h-screen w-full flex items-center justify-center"
         >
           <Projects />
         </section>
