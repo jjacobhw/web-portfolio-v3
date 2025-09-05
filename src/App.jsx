@@ -5,6 +5,7 @@ import { Home } from './components/Home'
 import { Skills } from './components/Skills'
 import { Experience } from './components/Experience'
 import { Projects } from './components/Projects'
+import { Footer } from './components/Footer' // Add this import
 import { useState, useRef, useEffect, useCallback } from 'react';
 import './index.css'
 
@@ -205,6 +206,9 @@ function App() {
         >
           <Projects />
         </section>
+        
+        {/* Footer placed after all sections */}
+        <Footer />
       </div>
     </div>
   ); 
