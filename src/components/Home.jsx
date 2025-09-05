@@ -196,16 +196,10 @@ export const Home = () => {
   );
 
   return (
-    <section
-      id="home" // Changed from "Home" to "home" to match navigation
-      className={`min-h-screen flex items-start justify-center relative pt-24
-                bg-black text-white 
-                transition-all duration-700 ease-out
-                ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-    >
-      <div className="container mx-auto px-6 sm:px-8 lg:px-8 max-w-4xl pt-16 md:pt-2">
+    <div className="w-full h-full flex items-center justify-center bg-black text-white">
+      <div className="container mx-auto px-6 sm:px-8 lg:px-8 max-w-6xl">
         {/* Desktop Layout - side by side */}
-        <div className={`${isMobile ? 'hidden' : 'flex'} items-center justify-between min-h-[60vh]`}>
+        <div className={`${isMobile ? 'hidden' : 'flex'} items-center justify-between`}>
           <div className="flex-1 pr-12">
             <TextContent />
           </div>
@@ -218,6 +212,6 @@ export const Home = () => {
           <TextContent isMobileLayout={true} />
         </div>
       </div>
-    </section>
+    </div>
   );
 };

@@ -22,18 +22,46 @@ html, body {
   }
 }
 
-/* ===== SNAP SCROLL STYLES ===== */
+/* ===== IMPROVED SNAP SCROLL STYLES ===== */
 .snap-container {
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
   height: 100vh;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch; /* Better iOS scrolling */
+  position: relative;
 }
 
+/* Better snap alignment for different content types */
 .snap-container section {
   scroll-snap-align: start;
-  height: 100vh;
+  scroll-snap-stop: always; /* Force snap to each section */
   width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Home section - full height, centered */
+.snap-container section#home {
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Skills section - flexible height with proper constraints */
+.snap-container section#skills {
+  min-height: 100vh;
+  max-height: 100vh;
+  overflow-y: hidden; /* Prevent section from scrolling */
+}
+
+/* Experience and Projects - full height, centered */
+.snap-container section#experience,
+.snap-container section#projects {
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Hide scrollbar for a cleaner look */
@@ -54,6 +82,11 @@ html {
 /* Prevent body scrolling when menu is open */
 body.menu-open {
   overflow: hidden;
+}
+
+/* Better section transitions */
+section {
+  transition: all 0.3s ease-in-out;
 }
 
 /* Active section indicator for navigation */
@@ -77,6 +110,40 @@ body.menu-open {
 
 .nav-indicator.active::after {
   opacity: 1;
+}
+
+/* ===== SKILLS SECTION SPECIFIC STYLES ===== */
+/* Allow skills content to scroll internally */
+.skills-content {
+  height: 100%;
+  overflow-y: auto;
+  padding-top: 0;
+  padding-bottom: 2rem;
+}
+
+/* Custom scrollbar for skills section */
+.skills-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.skills-content::-webkit-scrollbar-track {
+  background: rgba(29, 185, 84, 0.1);
+  border-radius: 3px;
+}
+
+.skills-content::-webkit-scrollbar-thumb {
+  background: rgba(29, 185, 84, 0.3);
+  border-radius: 3px;
+}
+
+.skills-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(29, 185, 84, 0.5);
+}
+
+/* Firefox scrollbar styling for skills */
+.skills-content {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(29, 185, 84, 0.3) rgba(29, 185, 84, 0.1);
 }
 
 /* ===== EXISTING ANIMATIONS AND UTILITIES ===== */
@@ -110,6 +177,17 @@ body.menu-open {
     100% { transform: rotate(0deg); }
   }
 
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
   .animate-loading-bar {
     animation: blink 0.8s step-end infinite;
   }
@@ -122,6 +200,10 @@ body.menu-open {
     display: inline-block;
     animation: wave 2s infinite;
     transform-origin: 70% 70%;
+  }
+
+  .animate-fade-in-up {
+    animation: fade-in-up 0.5s ease-out forwards;
   }
 
   /* Smooth theme transitions for all elements */
@@ -150,16 +232,69 @@ body.menu-open {
   transition: width 0.3s ease;
 }
 
-/* Responsive adjustments for mobile */
-@media (max-width: 768px) {
+/* ===== MOBILE AND RESPONSIVE IMPROVEMENTS ===== */
+@media (max-width: 1024px) {
+  /* Better mobile spacing for skills */
+  .skills-content {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  /* Adjust snap behavior for mobile */
   .snap-container {
     scroll-snap-type: y mandatory;
   }
-  
-  /* Slightly reduce height on mobile to account for browser UI */
+}
+
+@media (max-width: 768px) {
+  /* Mobile-specific adjustments */
   .snap-container section {
-    height: calc(100vh - 60px);
+    scroll-snap-align: start;
   }
+  
+  /* Account for mobile browser UI */
+  .snap-container section#home,
+  .snap-container section#experience,
+  .snap-container section#projects {
+    min-height: calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+  }
+  
+  .snap-container section#skills {
+    min-height: calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+    max-height: calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+  }
+}
+
+/* ===== TOUCH AND INTERACTION IMPROVEMENTS ===== */
+/* Better touch scrolling */
+.snap-container {
+  touch-action: pan-y;
+}
+
+/* Improve button and interactive element spacing */
+button, a {
+  touch-action: manipulation;
+}
+
+/* Better focus states for accessibility */
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid #1DB954;
+  outline-offset: 2px;
+}
+
+/* ===== PERFORMANCE OPTIMIZATIONS ===== */
+/* Use GPU acceleration for smooth animations */
+.snap-container,
+.snap-container section {
+  transform: translateZ(0);
+  will-change: scroll-position;
+}
+
+/* Optimize transitions */
+section {
+  backface-visibility: hidden;
+  perspective: 1000px;
 }
 
 /* Reduced motion support for accessibility */
@@ -176,5 +311,10 @@ body.menu-open {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+  
+  /* Disable transform animations for reduced motion */
+  .animate-wave {
+    animation: none;
   }
 }

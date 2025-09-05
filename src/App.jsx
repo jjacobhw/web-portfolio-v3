@@ -138,7 +138,7 @@ function App() {
   }, [menuOpen]);
 
   return (
-    <div className="min-h-screen bg-black text-gray-100 overflow-hidden">
+    <div className="min-h-screen bg-black text-gray-100">
       <Navbar 
         menuOpen={menuOpen} 
         setMenuOpen={setMenuOpen} 
@@ -152,36 +152,37 @@ function App() {
         setActiveSection={setActiveSection} 
       />
       
-      {/* Scroll container with snap sections */}
+      {/* Scroll container with snap sections - removed overflow-hidden and added proper scroll behavior */}
       <div 
         ref={containerRef}
-        className="snap-container h-screen overflow-y-auto snap-y snap-mandatory"
+        className="snap-container h-screen overflow-y-auto snap-y snap-mandatory scroll-smooth"
+        style={{ scrollBehavior: 'smooth' }}
       >
         <section 
           ref={sectionRefs[0]}
           id="home"
-          className="h-screen snap-start snap-always"
+          className="h-screen w-full snap-start snap-always flex items-center justify-center"
         >
           <Home />
         </section>
         <section 
           ref={sectionRefs[1]}
           id="skills"
-          className="h-screen snap-start snap-always"
+          className="min-h-screen w-full snap-start snap-always flex items-start justify-center py-8"
         >
           <Skills />
         </section>
         <section 
           ref={sectionRefs[2]}
           id="experience"
-          className="h-screen snap-start snap-always"
+          className="h-screen w-full snap-start snap-always flex items-center justify-center"
         >
           <Experience />
         </section>
         <section 
           ref={sectionRefs[3]}
           id="projects"
-          className="h-screen snap-start snap-always"
+          className="h-screen w-full snap-start snap-always flex items-center justify-center"
         >
           <Projects />
         </section>

@@ -114,7 +114,7 @@ export const Skills = () => {
             ? 'max-h-[1000px] opacity-100'
             : 'max-h-0 opacity-0'
         } overflow-hidden`}>
-          <div className="px-10 pb-10">
+          <div className="px-6 pb-6">
             <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-4 pt-4 border-t border-gray-200/10 dark:border-gray-700/20">
               {category.skills.map((tech, skillIndex) => (
                 <div 
@@ -129,10 +129,10 @@ export const Skills = () => {
                            hover:border-[#1DB954]/30
                            flex flex-col items-center justify-center gap-3
                            ${isExpanded ? 'animate-fade-in-up' : ''}
-                           h-32`}
+                           h-24`}
                 >
                   <div className="flex flex-col items-center gap-2">
-                    <SkillIcon tech={tech} />
+                    <SkillIcon tech={tech} className="w-8 h-8" />
                   </div>
                   <span className="text-center text-xs font-semibold mt-1">{tech}</span>
                 </div>
@@ -145,19 +145,12 @@ export const Skills = () => {
   };
 
   return (
-    <section 
-    id="skills"
-    className={`min-h-auto pt-6 flex items-start justify-center
-                dark:bg-black dark:text-[#1DB954] bg-white text-gray-900
-                ${isMobile ? 'pb-120 px-20' : 'pb-120 px-20'} // Reduced top padding
-                transition-all duration-700 ease-out
-                ${isVisible ? 'opacity-100' : 'opacity-0'}`}
-    >
+    <div className="w-full h-full flex items-start justify-center pt-16 pb-8">
       <DevIconStyles />
       
-      <div className={`max-w-5xl mx-auto w-full ${isMobile ? 'px-6' : 'px-20'}`}>
+      <div className={`max-w-4xl mx-auto w-full h-full flex flex-col ${isMobile ? 'px-4' : 'px-8'}`}>
         {/* Header with title on left and button on right */}
-        <div className={`flex items-center justify-between mb-16 transition-all duration-700 delay-300
+        <div className={`flex items-center justify-between mb-8 transition-all duration-700 delay-300
                         ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
           {/* Skills Title - Left Side */}
           <h2 className={`font-bold dark:text-white text-gray-900
@@ -166,49 +159,50 @@ export const Skills = () => {
           </h2>
           
           {/* Expand/Collapse Button - Right Side */}
-          <div className="sticky top-4 z-10">
-            <button
-              onClick={toggleAllSkills}
-              className="group bg-[#1DB954] hover:bg-[#1DB954]/20 
-                       border border-[#1DB954]/20 hover:border-[#1DB954]/40
-                       text-[#1DB954] px-6 py-3 rounded-lg
-                       flex items-center gap-3
-                       hover:scale-105 transition-all duration-300
-                       hover:shadow-[0_4px_12px_rgba(29,185,84,0.2)]
-                       cursor-pointer backdrop-blur-sm bg-white dark:bg-black/90
-                       text-lg font-semibold"
-            >
-              <Menu className="w-6 h-6 group-hover:animate-pulse" />
-              <span className={`font-medium ${isMobile ? 'hidden sm:inline' : ''}`}>
-                {showAllSkills ? 'Collapse All' : 'Expand All'}
-              </span>
-              {showAllSkills ? (
-                <ChevronUp className="w-6 h-6" />
-              ) : (
-                <ChevronDown className="w-6 h-6" />
-              )}
-            </button>
+          <button
+            onClick={toggleAllSkills}
+            className="group bg-[#1DB954]/10 hover:bg-[#1DB954]/20 
+                     border border-[#1DB954]/20 hover:border-[#1DB954]/40
+                     text-[#1DB954] px-4 py-2 rounded-lg
+                     flex items-center gap-2
+                     hover:scale-105 transition-all duration-300
+                     hover:shadow-[0_4px_12px_rgba(29,185,84,0.2)]
+                     cursor-pointer backdrop-blur-sm
+                     text-sm font-semibold"
+          >
+            <Menu className="w-5 h-5 group-hover:animate-pulse" />
+            <span className={`font-medium ${isMobile ? 'hidden sm:inline' : ''}`}>
+              {showAllSkills ? 'Collapse All' : 'Expand All'}
+            </span>
+            {showAllSkills ? (
+              <ChevronUp className="w-5 h-5" />
+            ) : (
+              <ChevronDown className="w-5 h-5" />
+            )}
+          </button>
+        </div>
+
+        {/* Skills grid - with flex-1 to take remaining space and overflow handling */}
+        <div className="flex-1 overflow-y-auto">
+          <div className="grid gap-6 grid-cols-1 pb-4">
+            {skillCategories.map((category, index) => (
+              <SkillCategory 
+                key={category.id}
+                category={category}
+                index={index}
+              />
+            ))}
+          </div>
+
+          <div className={`text-center mt-8 transition-all duration-700 delay-1200
+                          ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+            <p className={`dark:text-gray-400 text-gray-600
+                          ${isMobile ? 'text-sm' : 'text-base'}`}>
+              More skills tba :)
+            </p>
           </div>
         </div>
-
-        <div className="grid gap-8 grid-cols-1">
-          {skillCategories.map((category, index) => (
-            <SkillCategory 
-              key={category.id}
-              category={category}
-              index={index}
-            />
-          ))}
-        </div>
-
-        <div className={`text-center mt-16 transition-all duration-700 delay-1200
-                        ${isVisible ? 'opacity-100 translate-y-50' : 'opacity-0 translate-y-4'}`}>
-          <p className={`dark:text-gray-400 text-gray-600
-                        ${isMobile ? 'text-sm' : 'text-base'}`}>
-            More skills tba :)
-          </p>
-        </div>
       </div>
-    </section>
+    </div>
   );
 };
