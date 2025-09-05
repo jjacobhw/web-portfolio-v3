@@ -11,6 +11,7 @@ import './index.css'
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
   const containerRef = useRef(null);
   const sectionRefs = [
     useRef(null),
@@ -19,8 +20,26 @@ function App() {
     useRef(null)
   ];
   
-  // Handle scroll snap with keyboard and wheel events
+  // Check if device is mobile on initial render and resize
   useEffect(() => {
+    const checkIfMobile = () => {
+      setIsMobile(window.innerWidth < 768); // 768px is a common breakpoint for mobile
+    };
+    
+    // Check initially
+    checkIfMobile();
+    
+    // Add event listener for window resize
+    window.addEventListener('resize', checkIfMobile);
+    
+    // Cleanup
+    return () => window.removeEventListener('resize', checkIfMobile);
+  }, []);
+  
+  // Handle scroll snap with keyboard and wheel events - only for desktop
+  useEffect(() => {
+    if (isMobile || menuOpen) return;
+    
     const container = containerRef.current;
     if (!container) return;
 
@@ -42,32 +61,6 @@ function App() {
       }
       
       setTimeout(() => { isScrolling = false; }, 1000);
-    };
-    
-    const handleTouchStart = (e) => {
-      touchStartY = e.touches[0].clientY;
-    };
-    
-    const handleTouchEnd = (e) => {
-      if (isScrolling || menuOpen) return;
-      
-      const touchEndY = e.changedTouches[0].clientY;
-      const diff = touchStartY - touchEndY;
-      
-      // Minimum swipe distance to trigger section change
-      if (Math.abs(diff) > 50) {
-        isScrolling = true;
-        
-        if (diff > 0) {
-          // Swipe up - go to next section
-          setActiveSection(prev => Math.min(prev + 1, sectionRefs.length - 1));
-        } else {
-          // Swipe down - go to previous section
-          setActiveSection(prev => Math.max(prev - 1, 0));
-        }
-        
-        setTimeout(() => { isScrolling = false; }, 1000);
-      }
     };
     
     const handleKeyDown = (e) => {
@@ -93,27 +86,25 @@ function App() {
     };
     
     container.addEventListener('wheel', handleWheel, { passive: false });
-    container.addEventListener('touchstart', handleTouchStart, { passive: true });
-    container.addEventListener('touchend', handleTouchEnd, { passive: true });
     window.addEventListener('keydown', handleKeyDown);
     
     return () => {
       container.removeEventListener('wheel', handleWheel);
-      container.removeEventListener('touchstart', handleTouchStart);
-      container.removeEventListener('touchend', handleTouchEnd);
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [menuOpen, sectionRefs.length]);
+  }, [menuOpen, sectionRefs.length, isMobile]);
   
-  // Scroll to active section when it changes
+  // Scroll to active section when it changes - only for desktop
   useEffect(() => {
-    if (sectionRefs[activeSection]?.current) {
+    if (!isMobile && sectionRefs[activeSection]?.current) {
       sectionRefs[activeSection].current.scrollIntoView({ behavior: 'smooth' });
     }
-  }, [activeSection]);
+  }, [activeSection, isMobile]);
 
-  // Update active section based on scroll position
+  // Update active section based on scroll position - only for desktop
   useEffect(() => {
+    if (isMobile) return;
+    
     const handleScroll = () => {
       if (menuOpen) return;
       
@@ -135,7 +126,7 @@ function App() {
     
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [menuOpen]);
+  }, [menuOpen, isMobile]);
 
   return (
     <div className="min-h-screen bg-black text-gray-100">
@@ -144,6 +135,7 @@ function App() {
         setMenuOpen={setMenuOpen} 
         activeSection={activeSection} 
         setActiveSection={setActiveSection} 
+        isMobile={isMobile}
       />
       <MobileNav 
         menuOpen={menuOpen} 
@@ -152,37 +144,37 @@ function App() {
         setActiveSection={setActiveSection} 
       />
       
-      {/* Scroll container with snap sections - removed overflow-hidden and added proper scroll behavior */}
+      {/* Scroll container with conditional snap behavior */}
       <div 
         ref={containerRef}
-        className="snap-container h-screen overflow-y-auto snap-y snap-mandatory scroll-smooth"
+        className={`${isMobile ? 'overflow-y-auto' : 'snap-container h-screen overflow-y-auto snap-y snap-mandatory'} scroll-smooth`}
         style={{ scrollBehavior: 'smooth' }}
       >
         <section 
           ref={sectionRefs[0]}
           id="home"
-          className="h-screen w-full snap-start snap-always flex items-center justify-center"
+          className={`${isMobile ? 'min-h-screen' : 'h-screen snap-start snap-always'} w-full flex items-center justify-center`}
         >
           <Home />
         </section>
         <section 
           ref={sectionRefs[1]}
           id="skills"
-          className="min-h-screen w-full snap-start snap-always flex items-start justify-center py-8"
+          className={`${isMobile ? 'min-h-screen py-8' : 'min-h-screen snap-start snap-always'} w-full flex items-start justify-center`}
         >
           <Skills />
         </section>
         <section 
           ref={sectionRefs[2]}
           id="experience"
-          className="h-screen w-full snap-start snap-always flex items-center justify-center"
+          className={`${isMobile ? 'min-h-screen' : 'h-screen snap-start snap-always'} w-full flex items-center justify-center`}
         >
           <Experience />
         </section>
         <section 
           ref={sectionRefs[3]}
           id="projects"
-          className="h-screen w-full snap-start snap-always flex items-center justify-center"
+          className={`${isMobile ? 'min-h-screen' : 'h-screen snap-start snap-always'} w-full flex items-center justify-center`}
         >
           <Projects />
         </section>
