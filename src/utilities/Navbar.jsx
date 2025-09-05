@@ -81,9 +81,7 @@ export const Navbar = ({ menuOpen, setMenuOpen, activeSection, setActiveSection 
                   >
                     <div className="relative w-4 h-4">
                       <IconComponent 
-                        className={`w-4 h-4 absolute transition-all duration-300 group-hover:scale-110 ${
-                          isActive ? 'text-[#1DB954]' : 'text-white'
-                        } ${
+                        className={`w-4 h-4 absolute transition-all duration-300 group-hover:scale-110 text-[#1DB954] ${
                           hoveredButton === item.id ? 'opacity-0 scale-75 rotate-12' : 'opacity-100 scale-100 rotate-0'
                         }`}
                       />
