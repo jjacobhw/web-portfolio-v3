@@ -131,7 +131,7 @@ export const Skills = () => {
             : 'max-h-0 opacity-0 scale-y-0'
         } overflow-hidden`}>
           <div className="px-4 pb-4">
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 pt-3 border-t border-white/20">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 pt-3">
               {category.skills.map((tech, skillIndex) => (
                 <div
                   key={skillIndex}
@@ -175,7 +175,7 @@ export const Skills = () => {
             onClick={toggleAllSkills}
             className="group bg-[#1DB954]/10 hover:bg-[#1DB954]/20 
                      border border-[#1DB954]/20 hover:border-[#1DB954]/40
-                     text-white px-4 py-3 rounded-lg
+                     text-white px-3 py-3 rounded-lg
                      flex items-center gap-2
                      hover:scale-105 transition-all duration-300
                      hover:shadow-[0_4px_12px_rgba(29,185,84,0.2)]
