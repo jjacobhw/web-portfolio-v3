@@ -131,9 +131,10 @@ function App() {
     requestAnimationFrame(animation);
   };
 
-  // Navigation function
+  // Navigation function - MODIFIED to always scroll to section top
   const navigateToSection = useCallback((sectionIndex) => {
-    if (isScrollingRef.current || sectionIndex === activeSection) return;
+    // Remove the condition that prevents scrolling to the same section
+    if (isScrollingRef.current) return;
     
     isScrollingRef.current = true;
     setActiveSection(sectionIndex);
@@ -149,7 +150,7 @@ function App() {
     
     // Use custom smooth scroll
     smoothScrollToSection(sectionIndex);
-  }, [activeSection]);
+  }, []); // Remove activeSection from dependencies since we always want to scroll
 
   // Handle navbar navigation
   const handleNavClick = useCallback((sectionIndex) => {

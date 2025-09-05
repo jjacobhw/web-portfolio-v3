@@ -22,6 +22,7 @@ export const Navbar = ({ menuOpen, setMenuOpen, activeSection, setActiveSection 
   ];
 
   const handleNavClick = (sectionId) => {
+    // Call the parent's navigation handler which will jump to section
     setActiveSection(sectionId);
   };
 

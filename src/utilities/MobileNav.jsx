@@ -13,6 +13,7 @@ export const MobileNav = ({ menuOpen, setMenuOpen, activeSection, setActiveSecti
   ];
 
   const handleNavClick = (sectionId) => {
+    // Call the parent's navigation handler which will jump to section
     setActiveSection(sectionId);
     setMenuOpen(false);
   };
