@@ -124,8 +124,8 @@ export const Home = () => {
       {/* Outro */}
       <h5 className={`text-white/90 ${
         isMobileLayout 
-          ? 'text-lg sm:text-xl mb-8'
-          : 'text-base lg:text-lg xl:text-xl 2xl:text-2xl mb-10'
+          ? 'text-base sm:text-lg mb-7'
+          : 'text-sm lg:text-base xl:text-lg mb-8 max-w-2xl'
       } transition-all duration-700 delay-500
       ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
         Feel free to contact me for any inquiries!
