@@ -149,13 +149,13 @@ export const Skills = () => {
     id="skills"
     className={`min-h-auto pt-6 flex items-start justify-center
                 dark:bg-black dark:text-[#1DB954] bg-white text-gray-900
-                ${isMobile ? 'pb-70 px-20' : 'pb-64 px-70'} // Reduced top padding
+                ${isMobile ? 'pb-120 px-20' : 'pb-120 px-20'} // Reduced top padding
                 transition-all duration-700 ease-out
                 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
     >
       <DevIconStyles />
       
-      <div className={`max-w-6xl mx-auto w-full ${isMobile ? 'px-6' : 'px-20'}`}>
+      <div className={`max-w-5xl mx-auto w-full ${isMobile ? 'px-6' : 'px-20'}`}>
         {/* Header with title on left and button on right */}
         <div className={`flex items-center justify-between mb-16 transition-all duration-700 delay-300
                         ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
