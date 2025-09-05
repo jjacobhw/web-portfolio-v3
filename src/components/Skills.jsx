@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { CodeXml, Globe, BrainCircuit, Terminal, ChevronDown, ChevronUp, Menu } from 'lucide-react';
+import { CodeXml, Globe, BrainCircuit, Terminal, ChevronDown, ChevronUp, Menu , Cloudy} from 'lucide-react';
 import { SkillIcon, DevIconStyles } from './Icons';
 
 export const Skills = () => {
@@ -23,7 +23,7 @@ export const Skills = () => {
     },
     {
       title: "AI & Machine Learning",
-      skills: ["PyTorch", "NumPy", "Pandas", "ChromaDB", "HuggingFace", "LangChain"],
+      skills: ["PyTorch", "NumPy", "Pandas", "Scikit-learn", "ChromaDB", "HuggingFace", "LangChain"],
       icon: BrainCircuit,
       id: "ai"
     },
@@ -32,6 +32,12 @@ export const Skills = () => {
       skills: ["Windows", "Linux", "GitHub", "Ubuntu", "Bash", "Git"],
       icon: Terminal,
       id: "platforms"
+    },
+    {
+      title: "Cloud & DevOps",
+      skills: ["Coming Soon..."],
+      icon: Cloudy,
+      id: "cloud"
     }
   ];
 
