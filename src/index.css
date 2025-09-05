@@ -8,13 +8,6 @@ html, body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Default styles - let Tailwind handle theme switching */
-html, body {
-  margin: 0;
-  padding: 0;
-  font-family: "Rubik", sans-serif;
-}
-
 /* Enable Tailwind dark mode */
 @media (prefers-color-scheme: dark) {
   html:not(.light) {
@@ -28,18 +21,22 @@ html, body {
   scroll-behavior: smooth;
   height: 100vh;
   overflow-y: auto;
-  -webkit-overflow-scrolling: touch; /* Better iOS scrolling */
+  -webkit-overflow-scrolling: touch;
   position: relative;
+  /* Disable default scrolling to prevent conflicts */
+  overscroll-behavior: none;
 }
 
-/* Better snap alignment for different content types */
+/* Better snap alignment with stronger snap points */
 .snap-container section {
   scroll-snap-align: start;
-  scroll-snap-stop: always; /* Force snap to each section */
+  scroll-snap-stop: always;
   width: 100%;
   position: relative;
   display: flex;
   flex-direction: column;
+  /* Prevent content from interfering with snap */
+  scroll-margin-top: 0;
 }
 
 /* Home section - full height, centered */
@@ -47,13 +44,15 @@ html, body {
   height: 100vh;
   justify-content: center;
   align-items: center;
+  scroll-snap-align: start;
 }
 
 /* Skills section - flexible height with proper constraints */
 .snap-container section#skills {
   min-height: 100vh;
   max-height: 100vh;
-  overflow-y: hidden; /* Prevent section from scrolling */
+  overflow-y: hidden;
+  scroll-snap-align: start;
 }
 
 /* Experience and Projects - full height, centered */
@@ -62,9 +61,10 @@ html, body {
   height: 100vh;
   justify-content: center;
   align-items: center;
+  scroll-snap-align: start;
 }
 
-/* Hide scrollbar for a cleaner look */
+/* Hide scrollbar for a cleaner look but keep functionality */
 .snap-container {
   scrollbar-width: none;  /* Firefox */
   -ms-overflow-style: none;  /* IE and Edge */
@@ -119,6 +119,8 @@ section {
   overflow-y: auto;
   padding-top: 0;
   padding-bottom: 2rem;
+  /* Prevent skills scrolling from interfering with main snap */
+  scroll-snap-type: none;
 }
 
 /* Custom scrollbar for skills section */
@@ -240,16 +242,23 @@ section {
     padding-right: 1rem;
   }
   
-  /* Adjust snap behavior for mobile */
+  /* Adjust snap behavior for tablets */
   .snap-container {
-    scroll-snap-type: y mandatory;
+    scroll-snap-type: y proximity;
   }
 }
 
 @media (max-width: 768px) {
-  /* Mobile-specific adjustments */
+  /* Mobile-specific adjustments - disable snap scroll for better mobile experience */
+  .snap-container {
+    scroll-snap-type: none;
+    height: auto;
+    overflow-y: auto;
+  }
+  
   .snap-container section {
-    scroll-snap-align: start;
+    scroll-snap-align: none;
+    scroll-snap-stop: normal;
   }
   
   /* Account for mobile browser UI */
@@ -257,16 +266,18 @@ section {
   .snap-container section#experience,
   .snap-container section#projects {
     min-height: calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+    height: auto;
   }
   
   .snap-container section#skills {
     min-height: calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
-    max-height: calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+    max-height: none;
+    overflow-y: visible;
   }
 }
 
 /* ===== TOUCH AND INTERACTION IMPROVEMENTS ===== */
-/* Better touch scrolling */
+/* Better touch scrolling for desktop */
 .snap-container {
   touch-action: pan-y;
 }
@@ -289,6 +300,8 @@ a:focus-visible {
 .snap-container section {
   transform: translateZ(0);
   will-change: scroll-position;
+  /* Optimize rendering performance */
+  contain: layout style paint;
 }
 
 /* Optimize transitions */
@@ -297,10 +310,25 @@ section {
   perspective: 1000px;
 }
 
+/* Prevent scrolling conflicts */
+.snap-container * {
+  /* Prevent child elements from interfering with scroll snap */
+  scroll-behavior: inherit;
+}
+
+/* Stronger snap points for better reliability */
+@supports (scroll-snap-type: y mandatory) {
+  .snap-container section {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+}
+
 /* Reduced motion support for accessibility */
 @media (prefers-reduced-motion: reduce) {
   .snap-container {
     scroll-behavior: auto;
+    scroll-snap-type: none;
   }
   
   html {
@@ -318,3 +346,15 @@ section {
     animation: none;
   }
 }
+
+/* ===== SCROLL SNAP DEBUGGING (remove in production) ===== */
+/* Uncomment to visualize snap points during development */
+/*
+.snap-container section {
+  border-top: 2px dashed rgba(29, 185, 84, 0.3);
+}
+
+.snap-container section:first-child {
+  border-top: none;
+}
+*/
