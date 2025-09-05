@@ -43,6 +43,7 @@ export const Home = () => {
     return () => clearTimeout(startDelay);
   }, []);
 
+  // Reusable Button Component
   const ActionButton = ({ href, icon: Icon, children, isMobileLayout = false }) => (
     <a
       href={href}
@@ -55,7 +56,7 @@ export const Home = () => {
                 ${isMobileLayout ? 'px-4 py-2.5 sm:px-5 sm:py-3 text-sm sm:text-base' : 'px-5 py-3'}
                 rounded-lg transition-all duration-500
                 flex items-center gap-2 group
-                transform hover:scale-105`}
+                transform hover:scale-105 whitespace-nowrap`}
     >
       <Icon className={`${isMobileLayout ? 'w-4 h-4 sm:w-5 sm:h-5' : 'w-5 h-5'} 
                         group-hover:animate-bounce transition-transform duration-300 text-[#1DB954]`} />
@@ -63,14 +64,15 @@ export const Home = () => {
     </a>
   );
 
+  // Reusable text content component with improved spacing
   const TextContent = ({ isMobileLayout = false }) => (
-    <div className={isMobileLayout ? 'w-full max-w-lg' : 'w-full'}>
+    <div className={isMobileLayout ? 'w-full max-w-lg' : 'w-full min-w-0 flex-1'}>
       {/* Fixed height container for the heading */}
       <div className={`relative ${isMobileLayout ? 'h-16 sm:h-20 mb-6' : 'h-20 xl:h-24 mb-8'}`}>
-        <h1 className={`font-bold absolute w-full ${
+        <h1 className={`font-bold absolute w-full whitespace-nowrap ${
           isMobileLayout 
-            ? 'text-3xl sm:text-4xl md:text-5xl' 
-            : 'text-4xl xl:text-5xl'
+            ? 'text-4xl sm:text-5xl md:text-6xl'
+            : 'text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl'
         }`}>
           <span className="text-white">
             {displayedText.slice(0, 8)} {/* "Hi, I'm " */}
@@ -87,31 +89,31 @@ export const Home = () => {
       </div>
       
       {/* Job title */}
-      <h2 className={`text-[#1DB954] font-medium ${
+      <h2 className={`text-[#1DB954] font-medium whitespace-nowrap ${
         isMobileLayout 
-          ? 'text-lg sm:text-xl mb-6' 
-          : 'text-xl xl:text-2xl mb-7'
+          ? 'text-xl sm:text-2xl mb-7'
+          : 'text-lg lg:text-xl xl:text-2xl 2xl:text-3xl mb-8'
       } transition-all duration-700 delay-300
       ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
         AI/ML Engineer and Full Stack Developer
       </h2>
       
       {/* Location */}
-      <h3 className={`text-white/90 ${
+      <h3 className={`text-white/90 whitespace-nowrap ${
         isMobileLayout 
-          ? 'text-base sm:text-lg flex items-center justify-center gap-1.5 mb-6' 
-          : 'text-lg flex items-center gap-1.5 mb-7'
+          ? 'text-lg sm:text-xl flex items-center justify-center gap-1.5 mb-7'
+          : 'text-base lg:text-lg xl:text-xl flex items-center gap-1.5 mb-8'
       } transition-all duration-700 delay-500
       ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-        <MapPin className="w-5 h-5 text-[#1DB954]" />
+        <MapPin className="w-5 h-5 text-[#1DB954] flex-shrink-0" />
         Irvine, California
       </h3>
 
-      {/* Description */}
-      <h4 className={`text-white/85 leading-relaxed ${
+      {/* Description - Constrained width for better readability */}
+      <h4 className={`text-white/90 leading-relaxed ${
         isMobileLayout 
-          ? 'text-sm sm:text-base mb-5' 
-          : 'text-base md:text-lg mb-7'
+          ? 'text-base sm:text-lg mb-7'
+          : 'text-sm lg:text-base xl:text-lg mb-8 max-w-2xl'
       } transition-all duration-700 delay-500
       ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
         I'm a Computer Science undergraduate exploring RAG, NLP, LLM fine-tuning, and deep learning.
@@ -122,14 +124,15 @@ export const Home = () => {
       {/* Outro */}
       <h5 className={`text-white/90 ${
         isMobileLayout 
-          ? 'text-base sm:text-lg mb-7' 
-          : 'text-lg md:text-xl mb-9'
+          ? 'text-lg sm:text-xl mb-8'
+          : 'text-base lg:text-lg xl:text-xl 2xl:text-2xl mb-10'
       } transition-all duration-700 delay-500
       ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
         Feel free to contact me for any inquiries!
       </h5>
       
-      <div className={`flex ${isMobileLayout ? 'flex-wrap justify-center gap-4 sm:gap-5' : 'flex-wrap gap-5'}
+      {/* Buttons - Now using the reusable component */}
+      <div className={`flex ${isMobileLayout ? 'flex-wrap justify-center gap-4 sm:gap-5' : 'flex-wrap gap-3 lg:gap-4 xl:gap-5'}
                       transition-all duration-700 delay-700
                       ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
         <ActionButton 
@@ -159,6 +162,7 @@ export const Home = () => {
     </div>
   );
 
+  // Reusable profile picture component - Modified for vertical expansion
   const ProfilePicture = ({ isMobileLayout = false }) => (
     <div className={`${isMobileLayout ? '' : 'flex-shrink-0'} 
                     transition-all duration-700 ${isMobileLayout ? 'delay-300' : 'delay-900'}
@@ -169,9 +173,9 @@ export const Home = () => {
           alt="Jacob Wei"
           className={`${
             isMobileLayout 
-              ? 'w-52 h-64 sm:w-60 sm:h-72 md:w-72 md:h-80 mx-auto' 
-              : 'w-72 h-80 xl:w-80 xl:h-96'
-          } rounded-xl object-cover object-top
+              ? 'w-52 h-64 sm:w-60 sm:h-72 md:w-72 md:h-80 mx-auto'
+              : 'w-56 h-64 lg:w-64 lg:h-80 xl:w-72 xl:h-80 2xl:w-80 2xl:h-96' 
+          } rounded-xl object-cover object-top  
           shadow-[0_0_15px_rgba(29,185,84,0.4)] 
           hover:shadow-[0_0_30px_rgba(29,185,84,0.8),0_0_45px_rgba(29,185,84,0.4)]
           transform transition-all duration-500 
@@ -186,10 +190,10 @@ export const Home = () => {
 
   return (
     <div className="w-full min-h-screen flex items-center justify-center bg-black text-white py-8">
-      <div className="container mx-auto px-6 sm:px-8 lg:px-10 max-w-6xl">
-        {/* Desktop Layout - side by side with better spacing */}
-        <div className={`${isMobile ? 'hidden' : 'flex'} items-center justify-between gap-12`}>
-          <div className="flex-1">
+      <div className="container mx-auto px-6 sm:px-8 lg:px-10 max-w-7xl">
+        {/* Desktop Layout - side by side with better spacing and flex properties */}
+        <div className={`${isMobile ? 'hidden' : 'flex'} items-center justify-between gap-8 lg:gap-10 xl:gap-12 min-w-0`}>
+          <div className="flex-1 min-w-0">
             <TextContent />
           </div>
           <ProfilePicture />
