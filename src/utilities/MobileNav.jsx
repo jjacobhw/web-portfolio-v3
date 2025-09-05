@@ -1,34 +1,20 @@
+// MobileNav.jsx
 import { Menu, X, Mail, Mails, Home, CodeXml, Computer, Folders } from "lucide-react";
 import { useState } from "react";
 
-export const MobileNav = ({ menuOpen, setMenuOpen }) => {
+export const MobileNav = ({ menuOpen, setMenuOpen, activeSection, setActiveSection }) => {
   const [isHovered, setIsHovered] = useState(false);
   
   const links = [
-    { target: "home", label: "Home", icon: Home },
-    { target: "skills", label: "Skills", icon: CodeXml },
-    { target: "experience", label: "Experience", icon: Computer },
-    { target: "projects", label: "Projects", icon: Folders },
+    { id: 0, label: "Home", icon: Home, target: "home" },
+    { id: 1, label: "Skills", icon: CodeXml, target: "skills" },
+    { id: 2, label: "Experience", icon: Computer, target: "experience" },
+    { id: 3, label: "Projects", icon: Folders, target: "projects" },
   ];
 
-  const scrollToSection = (sectionId) => {
-    console.log('Mobile nav - Attempting to scroll to:', sectionId); // Debug log
-    const element = document.getElementById(sectionId);
-    console.log('Mobile nav - Found element:', element); // Debug log
-    
-    if (element) {
-      const navbarHeight = 80;
-      const elementTop = element.offsetTop;
-      const offsetPosition = elementTop - navbarHeight;
-      
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-    } else {
-      console.warn(`Element with id "${sectionId}" not found`);
-    }
-    setMenuOpen(false); // Close menu after clicking
+  const handleNavClick = (sectionId) => {
+    setActiveSection(sectionId);
+    setMenuOpen(false);
   };
 
   const handleEmailClick = () => {
@@ -103,11 +89,13 @@ export const MobileNav = ({ menuOpen, setMenuOpen }) => {
         {/* Navigation links */}
         {links.map((link, index) => {
           const IconComponent = link.icon;
+          const isActive = activeSection === link.id;
+          
           return (
             <button
-              key={link.target}
-              onClick={() => scrollToSection(link.target)}
-              className={`group flex items-center gap-3 font-semibold text-white transform transition-all duration-500 font-Rubik text-lg hover:text-gray-300 cursor-pointer
+              key={link.id}
+              onClick={() => handleNavClick(link.id)}
+              className={`group flex items-center gap-3 font-semibold ${isActive ? 'text-[#1DB954]' : 'text-white'} transform transition-all duration-500 font-Rubik text-lg hover:text-gray-300 cursor-pointer
                 ${menuOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"}
               `}
               style={{ transitionDelay: `${(index + 1) * 150}ms` }}

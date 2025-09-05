@@ -22,6 +22,64 @@ html, body {
   }
 }
 
+/* ===== SNAP SCROLL STYLES ===== */
+.snap-container {
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.snap-container section {
+  scroll-snap-align: start;
+  height: 100vh;
+  width: 100%;
+}
+
+/* Hide scrollbar for a cleaner look */
+.snap-container {
+  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;  /* IE and Edge */
+}
+
+.snap-container::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari and Opera */
+}
+
+/* Smooth scrolling for the entire page */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Prevent body scrolling when menu is open */
+body.menu-open {
+  overflow: hidden;
+}
+
+/* Active section indicator for navigation */
+.nav-indicator {
+  position: relative;
+}
+
+.nav-indicator::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 5px;
+  height: 5px;
+  background-color: #1DB954;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.nav-indicator.active::after {
+  opacity: 1;
+}
+
+/* ===== EXISTING ANIMATIONS AND UTILITIES ===== */
 @layer utilities {
   @keyframes loading {
     0%, 100% {
@@ -71,5 +129,52 @@ html, body {
     transition-property: background-color, border-color, color, fill, stroke;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 300ms;
+  }
+}
+
+/* Progress indicator for scroll navigation */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: rgba(29, 185, 84, 0.2);
+  z-index: 1000;
+}
+
+.scroll-progress-bar {
+  height: 100%;
+  background: #1DB954;
+  width: 0%;
+  transition: width 0.3s ease;
+}
+
+/* Responsive adjustments for mobile */
+@media (max-width: 768px) {
+  .snap-container {
+    scroll-snap-type: y mandatory;
+  }
+  
+  /* Slightly reduce height on mobile to account for browser UI */
+  .snap-container section {
+    height: calc(100vh - 60px);
+  }
+}
+
+/* Reduced motion support for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .snap-container {
+    scroll-behavior: auto;
+  }
+  
+  html {
+    scroll-behavior: auto;
+  }
+  
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

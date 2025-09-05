@@ -114,7 +114,7 @@ export const Skills = () => {
             ? 'max-h-[1000px] opacity-100'
             : 'max-h-0 opacity-0'
         } overflow-hidden`}>
-          <div className="px-6 pb-10">
+          <div className="px-10 pb-10">
             <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-4 pt-4 border-t border-gray-200/10 dark:border-gray-700/20">
               {category.skills.map((tech, skillIndex) => (
                 <div 

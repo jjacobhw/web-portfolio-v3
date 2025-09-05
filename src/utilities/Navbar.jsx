@@ -1,38 +1,28 @@
+// Navbar.jsx
 import { useEffect, useState } from "react";
 import { Mail, Mails, Home, Computer, CodeXml, Folders } from 'lucide-react';
 
-export const Navbar = ({ menuOpen, setMenuOpen }) => {
+export const Navbar = ({ menuOpen, setMenuOpen, activeSection, setActiveSection }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [hoveredButton, setHoveredButton] = useState(null);
 
   useEffect(() => {
-    document.body.style.overflow = menuOpen ? "hidden" : "auto";
+    if (menuOpen) {
+      document.body.classList.add('menu-open');
+    } else {
+      document.body.classList.remove('menu-open');
+    }
   }, [menuOpen]);
 
   const navItems = [
-    { id: 'home', label: 'Home', icon: Home, target: 'home' },
-    { id: 'skills', label: 'Skills', icon: CodeXml, target: 'skills' },
-    { id: 'experience', label: 'Experience', icon: Computer, target: 'experience' },
-    { id: 'projects', label: 'Projects', icon: Folders, target: 'projects' },
+    { id: 0, label: 'Home', icon: Home, target: 'home' },
+    { id: 1, label: 'Skills', icon: CodeXml, target: 'skills' },
+    { id: 2, label: 'Experience', icon: Computer, target: 'experience' },
+    { id: 3, label: 'Projects', icon: Folders, target: 'projects' },
   ];
 
-  const scrollToSection = (sectionId) => {
-    console.log('Attempting to scroll to:', sectionId); // Debug log
-    const element = document.getElementById(sectionId);
-    console.log('Found element:', element); // Debug log
-    
-    if (element) {
-      const navbarHeight = 80;
-      const elementTop = element.offsetTop;
-      const offsetPosition = elementTop - navbarHeight;
-      
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-    } else {
-      console.warn(`Element with id "${sectionId}" not found`);
-    }
+  const handleNavClick = (sectionId) => {
+    setActiveSection(sectionId);
   };
 
   return (
@@ -75,21 +65,25 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
             <div className="flex items-center space-x-3 font-Rubik">
               {navItems.map((item) => {
                 const IconComponent = item.icon;
+                const isActive = activeSection === item.id;
+                
                 return (
                   <button
                     key={item.id}
-                    onClick={() => scrollToSection(item.target)}
-                    className="text-white hover:bg-gray-100 dark:hover:bg-gray-800
+                    onClick={() => handleNavClick(item.id)}
+                    className={`${isActive ? 'text-[#1DB954]' : 'text-white'} hover:bg-gray-100 dark:hover:bg-gray-800
                               px-3 py-2 rounded-md transition-all duration-500
                               flex items-center gap-2 group relative
                               hover:animate-pulse
-                              transform hover:scale-105 cursor-pointer"
+                              transform hover:scale-105 cursor-pointer`}
                     onMouseEnter={() => setHoveredButton(item.id)}
                     onMouseLeave={() => setHoveredButton(null)}
                   >
                     <div className="relative w-4 h-4">
                       <IconComponent 
-                        className={`w-4 h-4 absolute transition-all duration-300 group-hover:scale-110 text-[#1DB954] ${
+                        className={`w-4 h-4 absolute transition-all duration-300 group-hover:scale-110 ${
+                          isActive ? 'text-[#1DB954]' : 'text-white'
+                        } ${
                           hoveredButton === item.id ? 'opacity-0 scale-75 rotate-12' : 'opacity-100 scale-100 rotate-0'
                         }`}
                       />
@@ -99,7 +93,7 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
                         }`}
                       />
                     </div>
-                    <span className="text-white group-hover:text-[#1DB954] transition-colors duration-200">
+                    <span className={`${isActive ? 'text-[#1DB954]' : 'text-white'} group-hover:text-[#1DB954] transition-colors duration-200`}>
                       {item.label}
                     </span>
                   </button>
