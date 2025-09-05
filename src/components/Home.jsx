@@ -46,11 +46,10 @@ export const Home = () => {
   // Reusable text content component
   const TextContent = ({ isMobileLayout = false }) => (
     <div className={isMobileLayout ? 'w-full max-w-lg' : ''}>
-      {/* Main heading */}
       <h1 className={`font-semibold ${
         isMobileLayout 
-          ? 'text-3xl sm:text-4xl md:text-5xl mb-6' 
-          : 'text-4xl xl:text-5xl mb-6'
+          ? 'text-3xl sm:text-4xl md:text-5xl mb-8' 
+          : 'text-4xl xl:text-5xl mb-8'
       }`}>
         <span className="text-white">
           {displayedText.slice(0, 8)} {/* "Hi, I'm " */}
@@ -71,8 +70,8 @@ export const Home = () => {
       {/* Job title */}
       <h2 className={`text-[#1DB954] ${
         isMobileLayout 
-          ? 'text-base sm:text-lg md:text-xl mb-3' 
-          : 'text-lg xl:text-xl mb-6'
+          ? 'text-base sm:text-lg md:text-xl mb-8' 
+          : 'text-lg xl:text-xl mb-8'
       } transition-all duration-700 delay-300
       ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
         AI/ML Engineer and Full Stack Developer
@@ -81,8 +80,8 @@ export const Home = () => {
       {/* Location */}
       <h3 className={`text-white ${
         isMobileLayout 
-          ? 'text-sm sm:text-base flex items-center justify-center gap-1 mb-6' 
-          : 'text-base flex items-center gap-1 mb-6'
+          ? 'text-sm sm:text-base flex items-center justify-center gap-1 mb-8' 
+          : 'text-base flex items-center gap-1 mb-8'
       } transition-all duration-700 delay-500
       ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
         <MapPin className="w-4 h-4 text-[#1DB954]" />
@@ -92,8 +91,8 @@ export const Home = () => {
       {/* Description */}
       <h4 className={`text-white ${
         isMobileLayout 
-          ? 'text-xs sm:text-base mb-3' 
-          : 'text-base md:text-lg mb-4'
+          ? 'text-xs sm:text-base mb-4' 
+          : 'text-base md:text-lg mb-6'
       } transition-all duration-700 delay-500
       ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
         I'm a Computer Science undergraduate exploring RAG, NLP, LLM fine-tuning, and deep learning.
@@ -104,19 +103,17 @@ export const Home = () => {
       {/* Outro */}
       <h5 className={`text-white ${
         isMobileLayout 
-          ? 'text-sm sm:text-base mb-3' 
-          : 'text-base md:text-lg mb-4'
+          ? 'text-sm sm:text-base mb-4' 
+          : 'text-base md:text-lg mb-10'
       } transition-all duration-700 delay-500
       ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
         Feel free to contact me for any inquiries!
       </h5>
-
-
       
       {/* Buttons */}
       <div className={`flex ${isMobileLayout ? 'flex-wrap justify-center gap-3 sm:gap-4' : 'flex-wrap gap-4'}
                       transition-all duration-700 delay-700
-                      ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+                      ${isVisible ? 'opacity-100 translate-y-1' : 'opacity-0 translate-y-4'}`}>
         <a
           href="media\Jacob's Resume.pdf"
           target="_blank"

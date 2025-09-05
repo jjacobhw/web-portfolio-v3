@@ -114,7 +114,7 @@ export const Skills = () => {
             ? 'max-h-[1000px] opacity-100'
             : 'max-h-0 opacity-0'
         } overflow-hidden`}>
-          <div className="px-6 pb-6">
+          <div className="px-6 pb-10">
             <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-4 pt-4 border-t border-gray-200/10 dark:border-gray-700/20">
               {category.skills.map((tech, skillIndex) => (
                 <div 
@@ -146,16 +146,16 @@ export const Skills = () => {
 
   return (
     <section 
-      id="skills"
-      className={`min-h-screen flex items-center justify-center 
-                 dark:bg-black dark:text-[#1DB954] bg-white text-gray-900
-                 ${isMobile ? 'py-20 px-6' : 'py-24 px-8'}
-                 transition-all duration-700 ease-out
-                 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
+    id="skills"
+    className={`min-h-auto pt-6 flex items-start justify-center
+                dark:bg-black dark:text-[#1DB954] bg-white text-gray-900
+                ${isMobile ? 'pb-64 px-8' : 'pb-64 px-8'} // Reduced top padding
+                transition-all duration-700 ease-out
+                ${isVisible ? 'opacity-100' : 'opacity-0'}`}
     >
       <DevIconStyles />
       
-      <div className={`max-w-6xl mx-auto w-full ${isMobile ? 'px-4' : 'px-8'}`}>
+      <div className={`max-w-6xl mx-auto w-full ${isMobile ? 'px-6' : 'px-20'}`}>
         {/* Header with title on left and button on right */}
         <div className={`flex items-center justify-between mb-16 transition-all duration-700 delay-300
                         ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
@@ -202,7 +202,7 @@ export const Skills = () => {
         </div>
 
         <div className={`text-center mt-16 transition-all duration-700 delay-1200
-                        ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+                        ${isVisible ? 'opacity-100 translate-y-50' : 'opacity-0 translate-y-4'}`}>
           <p className={`dark:text-gray-400 text-gray-600
                         ${isMobile ? 'text-sm' : 'text-base'}`}>
             More skills tba :)
