@@ -20,22 +20,72 @@ function App() {
     useRef(null)
   ];
   
+  const scrollTimeoutRef = useRef(null);
+  const isScrollingRef = useRef(false);
+  const observerRef = useRef(null);
+  
   // Check if device is mobile on initial render and resize
   useEffect(() => {
     const checkIfMobile = () => {
-      setIsMobile(window.innerWidth < 768); // 768px is a common breakpoint for mobile
+      setIsMobile(window.innerWidth < 768);
     };
     
-    // Check initially
     checkIfMobile();
-    
-    // Add event listener for window resize
     window.addEventListener('resize', checkIfMobile);
     
-    // Cleanup
     return () => window.removeEventListener('resize', checkIfMobile);
   }, []);
   
+  // Setup Intersection Observer for section detection
+  useEffect(() => {
+    if (isMobile) return;
+    
+    const options = {
+      root: null,
+      rootMargin: '-40% 0px -40% 0px', // 40% from top and bottom
+      threshold: 0
+    };
+    
+    const handleIntersect = (entries) => {
+      if (menuOpen || isScrollingRef.current) return;
+      
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          const sectionIndex = ['home', 'skills', 'experience', 'projects'].indexOf(id);
+          if (sectionIndex !== -1) {
+            setActiveSection(sectionIndex);
+          }
+        }
+      });
+    };
+    
+    observerRef.current = new IntersectionObserver(handleIntersect, options);
+    
+    // Observe all sections
+    sectionRefs.forEach(ref => {
+      if (ref.current) {
+        observerRef.current.observe(ref.current);
+      }
+    });
+    
+    return () => {
+      if (observerRef.current) {
+        observerRef.current.disconnect();
+      }
+    };
+  }, [isMobile, menuOpen]);
+  
+  // Scroll to active section when it changes - only for desktop
+  useEffect(() => {
+    if (!isMobile && sectionRefs[activeSection]?.current && isScrollingRef.current) {
+      // Use requestAnimationFrame for smoother scrolling
+      requestAnimationFrame(() => {
+        sectionRefs[activeSection].current.scrollIntoView({ behavior: 'smooth' });
+      });
+    }
+  }, [activeSection, isMobile]);
+
   // Handle scroll snap with keyboard and wheel events - only for desktop
   useEffect(() => {
     if (isMobile || menuOpen) return;
@@ -43,39 +93,58 @@ function App() {
     const container = containerRef.current;
     if (!container) return;
 
-    let isScrolling = false;
-    let touchStartY = 0;
-    
     const handleWheel = (e) => {
-      if (isScrolling || menuOpen) return;
+      if (isScrollingRef.current || menuOpen) return;
       
       e.preventDefault();
-      isScrolling = true;
+      isScrollingRef.current = true;
       
-      if (e.deltaY > 0) {
+      if (e.deltaY > 50) {
         // Scroll down
         setActiveSection(prev => Math.min(prev + 1, sectionRefs.length - 1));
-      } else {
+      } else if (e.deltaY < -50) {
         // Scroll up
         setActiveSection(prev => Math.max(prev - 1, 0));
       }
       
-      setTimeout(() => { isScrolling = false; }, 1000);
+      // Clear any existing timeout
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+      
+      // Set new timeout
+      scrollTimeoutRef.current = setTimeout(() => {
+        isScrollingRef.current = false;
+      }, 800);
     };
     
     const handleKeyDown = (e) => {
-      if (isScrolling || menuOpen) return;
+      if (isScrollingRef.current || menuOpen) return;
       
       if (e.key === 'ArrowDown' || e.key === 'PageDown') {
         e.preventDefault();
-        isScrolling = true;
+        isScrollingRef.current = true;
         setActiveSection(prev => Math.min(prev + 1, sectionRefs.length - 1));
-        setTimeout(() => { isScrolling = false; }, 1000);
+        
+        if (scrollTimeoutRef.current) {
+          clearTimeout(scrollTimeoutRef.current);
+        }
+        
+        scrollTimeoutRef.current = setTimeout(() => {
+          isScrollingRef.current = false;
+        }, 800);
       } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
         e.preventDefault();
-        isScrolling = true;
+        isScrollingRef.current = true;
         setActiveSection(prev => Math.max(prev - 1, 0));
-        setTimeout(() => { isScrolling = false; }, 1000);
+        
+        if (scrollTimeoutRef.current) {
+          clearTimeout(scrollTimeoutRef.current);
+        }
+        
+        scrollTimeoutRef.current = setTimeout(() => {
+          isScrollingRef.current = false;
+        }, 800);
       } else if (e.key === 'Home') {
         e.preventDefault();
         setActiveSection(0);
@@ -91,42 +160,13 @@ function App() {
     return () => {
       container.removeEventListener('wheel', handleWheel);
       window.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [menuOpen, sectionRefs.length, isMobile]);
-  
-  // Scroll to active section when it changes - only for desktop
-  useEffect(() => {
-    if (!isMobile && sectionRefs[activeSection]?.current) {
-      sectionRefs[activeSection].current.scrollIntoView({ behavior: 'smooth' });
-    }
-  }, [activeSection, isMobile]);
-
-  // Update active section based on scroll position - only for desktop
-  useEffect(() => {
-    if (isMobile) return;
-    
-    const handleScroll = () => {
-      if (menuOpen) return;
       
-      const scrollPosition = window.scrollY + 100; // Offset for navbar
-      
-      for (let i = 0; i < sectionRefs.length; i++) {
-        const section = sectionRefs[i].current;
-        if (section) {
-          const sectionTop = section.offsetTop;
-          const sectionBottom = sectionTop + section.offsetHeight;
-          
-          if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
-            setActiveSection(i);
-            break;
-          }
-        }
+      // Clean up timeout on unmount
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
       }
     };
-    
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [menuOpen, isMobile]);
+  }, [menuOpen, sectionRefs.length, isMobile]);
 
   return (
     <div className="min-h-screen bg-black text-gray-100">
