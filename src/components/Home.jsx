@@ -189,8 +189,9 @@ export const Home = () => {
   );
 
   return (
-    <div className="w-full min-h-screen flex items-center justify-center bg-black text-white py-8">
-      <div className="container mx-auto px-6 sm:px-8 lg:px-10 max-w-7xl">
+    <div className="w-full min-h-screen flex items-center justify-center bg-black text-white py-8 pt-24">
+      {/* Changed container to match Navbar: max-w-5xl and px-4 */}
+      <div className="max-w-5xl mx-auto px-4">
         {/* Desktop Layout - side by side with better spacing and flex properties */}
         <div className={`${isMobile ? 'hidden' : 'flex'} items-center justify-between gap-8 lg:gap-10 xl:gap-12 min-w-0`}>
           <div className="flex-1 min-w-0">
