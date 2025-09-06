@@ -114,8 +114,11 @@ export const Projects = () => {
                    ${isMobile 
                      ? (isCenter ? 'w-full max-w-sm opacity-100 scale-100 z-20' : 'hidden')
                      : (isCenter 
-                       ? 'w-72 md:w-80 lg:w-96 opacity-100 scale-100 z-20' 
-                       : 'w-56 md:w-64 lg:w-80 opacity-60 scale-90 z-10'
+                       ? 'w-72 md:w-80 lg:w-96 opacity-100 scale-100 z-30 mx-[-20px]' 
+                       : (isLeft 
+                         ? 'w-56 md:w-64 lg:w-80 opacity-60 scale-90 z-20 mr-[-60px]' 
+                         : 'w-56 md:w-64 lg:w-80 opacity-60 scale-90 z-20 ml-[-60px]'
+                       )
                      )
                    }
                    transform hover:scale-[1.02]`}
@@ -154,7 +157,7 @@ export const Projects = () => {
           <div className={`flex flex-col flex-1 p-5 md:p-6 lg:p-7`}>
             {/* Title Section - Fixed space */}
             <div className="flex-shrink-0 mb-4">
-              <h3 className={`font-bold text-white relative group transition-all duration-300 leading-tight
+              <h3 className={`font-bold text-[#1DB954] relative group transition-all duration-300 leading-tight
                              ${isCenter ? 'text-lg md:text-xl' : 'text-base md:text-lg'}`}>
                 <span className="block line-clamp-2">
                   {project.title}
@@ -266,12 +269,12 @@ export const Projects = () => {
               {/* Left Navigation Button */}
               <button
                 onClick={prevProject}
-                className="absolute left-0 z-30 p-2 md:p-3 rounded-full
+                className="absolute left-0 z-40 p-2 md:p-3 rounded-full
                          bg-[#1DB954]/10 border-2 border-[#1DB954]/30
                          text-[#1DB954] hover:bg-[#1DB954]/20 hover:border-[#1DB954]/50
                          shadow-lg hover:shadow-xl backdrop-blur-sm
                          transform hover:scale-110 transition-all duration-300
-                         -translate-x-4 md:-translate-x-6 lg:-translate-x-12"
+                         -translate-x-2 md:-translate-x-3 lg:-translate-x-4"
               >
                 <ChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
               </button>
@@ -279,12 +282,12 @@ export const Projects = () => {
               {/* Right Navigation Button */}
               <button
                 onClick={nextProject}
-                className="absolute right-0 z-30 p-2 md:p-3 rounded-full
+                className="absolute right-0 z-40 p-2 md:p-3 rounded-full
                          bg-[#1DB954]/10 border-2 border-[#1DB954]/30
                          text-[#1DB954] hover:bg-[#1DB954]/20 hover:border-[#1DB954]/50
                          shadow-lg hover:shadow-xl backdrop-blur-sm
                          transform hover:scale-110 transition-all duration-300
-                         translate-x-4 md:translate-x-6 lg:translate-x-12"
+                         translate-x-2 md:translate-x-3 lg:translate-x-4"
               >
                 <ChevronRight className="w-5 h-5 md:w-6 md:h-6" />
               </button>
@@ -296,7 +299,7 @@ export const Projects = () => {
             className={`flex items-center justify-center w-full
                        ${isMobile 
                          ? 'px-4' 
-                         : 'gap-4 md:gap-6 lg:gap-8 px-8 md:px-12 lg:px-16'
+                         : 'px-8 md:px-12 lg:px-16'
                        }`}
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
@@ -310,7 +313,7 @@ export const Projects = () => {
                 onClick={() => {}}
               />
             ) : (
-              // Desktop: Show all three projects
+              // Desktop: Show all three projects with overlapping
               <>
                 {/* Left Project */}
                 <ProjectCard 
