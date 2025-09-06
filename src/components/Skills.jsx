@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { CodeXml, Globe, BrainCircuit, Terminal, ChevronDown, ChevronUp, Menu , Cloudy} from 'lucide-react';
-import { SkillIcon, DevIconStyles } from './Icons';
+import { SkillIcon, DevIconStyles } from '../utilities/Icons';
 
 export const Skills = () => {
   const [isVisible, setIsVisible] = useState(false);

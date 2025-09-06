@@ -50,8 +50,6 @@ export const Home = () => {
       target="_blank"
       rel="noopener noreferrer"
       className={`bg-black/70 backdrop-blur-sm border border-[#1DB954]/30
-                shadow-[0_0_20px_rgba(29,185,84,0.5),inset_0_0_20px_rgba(29,185,84,0.1)] 
-                hover:shadow-[0_0_40px_rgba(29,185,84,0.8),0_0_60px_rgba(29,185,84,0.4),inset_0_0_30px_rgba(29,185,84,0.2)]
                 text-white hover:text-[#1DB954]
                 ${isMobileLayout ? 'px-4 py-2.5 sm:px-5 sm:py-3 text-sm sm:text-base' : 'px-5 py-3'}
                 rounded-lg transition-all duration-500
