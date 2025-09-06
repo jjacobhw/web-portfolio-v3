@@ -116,19 +116,19 @@ export const Projects = () => {
                      : (isCenter 
                        ? 'w-72 md:w-80 lg:w-96 opacity-100 scale-100 z-30 mx-[-20px]' 
                        : (isLeft 
-                         ? 'w-56 md:w-64 lg:w-80 opacity-60 scale-90 z-20 mr-[-60px]' 
-                         : 'w-56 md:w-64 lg:w-80 opacity-60 scale-90 z-20 ml-[-60px]'
+                         ? 'w-56 md:w-64 lg:w-80 opacity-35 scale-80 z-20 mr-[-60px]' 
+                         : 'w-56 md:w-64 lg:w-80 opacity-35 scale-80 z-20 ml-[-60px]'
                        )
                      )
                    }
-                   transform hover:scale-[1.02]`}
+                   transform ${isCenter ? 'hover:scale-[1.005]' : 'hover:scale-[1.005]'}`}
         onClick={onClick}
       >
         {/* Project Card */}
         <div className={`bg-black/90 backdrop-blur-sm rounded-xl md:rounded-2xl border overflow-hidden transition-all duration-300 flex flex-col
                         ${isCenter 
                           ? 'border-[#1DB954]/60 shadow-2xl shadow-[#1DB954]/25' 
-                          : 'border-[#1DB954]/20 hover:border-[#1DB954]/40'
+                          : 'border-[#1DB954] hover:border-[#1DB954]/40'
                         }
                         ${isMobile 
                           ? 'min-h-[520px] max-h-[620px]' 
@@ -257,18 +257,18 @@ export const Projects = () => {
 
         {/* Carousel Container */}
         <div className={`relative flex items-center justify-center ${isMobile ? 'px-0' : ''}`}>
-          {/* Navigation Buttons - Hide on mobile */}
           {!isMobile && (
             <>
               {/* Left Navigation Button */}
               <button
                 onClick={prevProject}
                 className="absolute left-0 z-40 p-2 md:p-3 rounded-full
-                         bg-[#1DB954]/10 border-2 border-[#1DB954]/30
-                         text-[#1DB954] hover:bg-[#1DB954]/20 hover:border-[#1DB954]/50
-                         shadow-lg hover:shadow-xl backdrop-blur-sm
-                         transform hover:scale-110 transition-all duration-300
-                         -translate-x-2 md:-translate-x-3 lg:-translate-x-4"
+                        bg-[#1DB954]/10 border-2 border-[#1DB954]/30
+                        text-[#1DB954] hover:bg-[#1DB954]/20 hover:border-[#1DB954]/50
+                        shadow-lg hover:shadow-xl backdrop-blur-sm
+                        transform hover:scale-110 transition-all duration-300
+                        -translate-x-2 md:-translate-x-3 lg:-translate-x-4
+                        cursor-pointer" // Added cursor-pointer
               >
                 <ChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
               </button>
@@ -277,11 +277,12 @@ export const Projects = () => {
               <button
                 onClick={nextProject}
                 className="absolute right-0 z-40 p-2 md:p-3 rounded-full
-                         bg-[#1DB954]/10 border-2 border-[#1DB954]/30
-                         text-[#1DB954] hover:bg-[#1DB954]/20 hover:border-[#1DB954]/50
-                         shadow-lg hover:shadow-xl backdrop-blur-sm
-                         transform hover:scale-110 transition-all duration-300
-                         translate-x-2 md:translate-x-3 lg:translate-x-4"
+                        bg-[#1DB954]/10 border-2 border-[#1DB954]/30
+                        text-[#1DB954] hover:bg-[#1DB954]/20 hover:border-[#1DB954]/50
+                        shadow-lg hover:shadow-xl backdrop-blur-sm
+                        transform hover:scale-110 transition-all duration-300
+                        translate-x-2 md:translate-x-3 lg:translate-x-4
+                        cursor-pointer" // Added cursor-pointer
               >
                 <ChevronRight className="w-5 h-5 md:w-6 md:h-6" />
               </button>
