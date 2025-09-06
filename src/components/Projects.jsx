@@ -154,7 +154,7 @@ export const Projects = () => {
           <div className={`flex flex-col flex-1 p-5 md:p-6 lg:p-7`}>
             {/* Title Section - Fixed space */}
             <div className="flex-shrink-0 mb-4">
-              <h3 className={`font-bold text-white relative group transition-all duration-300 leading-tight
+              <h3 className={`font-bold text-[#1DB954] relative group transition-all duration-300 leading-tight
                              ${isCenter ? 'text-lg md:text-xl' : 'text-base md:text-lg'}`}>
                 <span className="block line-clamp-2">
                   {project.title}
@@ -185,8 +185,8 @@ export const Projects = () => {
                     key={tagIndex}
                     className={`inline-block px-3 md:px-3.5 py-1.5 text-xs font-medium rounded-full transition-all duration-300 whitespace-nowrap
                              ${(isCenter || isMobile)
-                               ? 'bg-[#1DB954]/15 text-[#1DB954] border border-[#1DB954]/30 hover:bg-[#1DB954]/25' 
-                               : 'bg-[#1DB954]/10 text-[#1DB954]/80 border border-[#1DB954]/20'
+                               ? 'bg-[#1DB954]/15 text-white border border-[#1DB954]/30 hover:bg-[#1DB954]/25' 
+                               : 'bg-[#1DB954]/10 text-white/80 border border-[#1DB954]/20'
                              }`}
                   >
                     {tag}
@@ -214,12 +214,12 @@ export const Projects = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex-1 inline-flex items-center justify-center px-4 md:px-5 py-2.5 md:py-3 text-sm md:text-base font-semibold 
-                             text-[#1DB954] bg-[#1DB954]/10 border-2 border-[#1DB954]/30 rounded-lg 
+                             text-white bg-[#1DB954]/10 border-2 border-[#1DB954]/30 rounded-lg 
                              hover:bg-[#1DB954]/20 hover:border-[#1DB954]/50
                              transform hover:scale-105 transition-all duration-300 backdrop-blur-sm min-w-0"
                     onClick={(e) => e.stopPropagation()}
                   >
-                    <Github className="w-4 h-4 md:w-5 md:h-5 mr-2 flex-shrink-0" />
+                    <Github className="w-4 h-4 md:w-5 md:h-5 mr-2 flex-shrink-0 text-[#1DB954]" />
                     <span className="truncate">Source Code</span>
                   </a>
                 )}
@@ -229,7 +229,7 @@ export const Projects = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex-1 inline-flex items-center justify-center px-4 md:px-5 py-2.5 md:py-3 text-sm md:text-base font-semibold 
-                             text-[#1DB954] bg-[#1DB954]/10 border-2 border-[#1DB954]/30 rounded-lg 
+                             text-white bg-[#1DB954]/10 border-2 border-[#1DB954]/30 rounded-lg 
                              hover:bg-[#1DB954]/20 hover:border-[#1DB954]/50
                              transform hover:scale-105 transition-all duration-300 backdrop-blur-sm min-w-0"
                     onClick={(e) => e.stopPropagation()}
@@ -252,7 +252,7 @@ export const Projects = () => {
         {/* Header */}
         <div className={`text-center mb-8 md:mb-12 transition-all duration-700 delay-300
                         ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-          <h2 className={`font-bold text-[#1DB954] mb-4
+          <h2 className={`font-bold text-white mb-4
                          ${isMobile ? 'text-2xl sm:text-3xl' : 'text-3xl md:text-4xl xl:text-5xl'}`}>
             Projects
           </h2>

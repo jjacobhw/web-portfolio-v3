@@ -171,7 +171,7 @@ export const Skills = () => {
         <div className={`flex items-center justify-between mb-8 transition-all duration-700 delay-300
                         ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
           {/* Skills Title - Left Side */}
-          <h2 className={`font-bold text-[#1DB954]
+          <h2 className={`font-bold text-white
                          ${isMobile ? 'text-3xl sm:text-4xl' : 'text-4xl xl:text-5xl'}`}>
             Skills
           </h2>
