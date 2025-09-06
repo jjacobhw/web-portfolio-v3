@@ -42,7 +42,7 @@ export const Projects = () => {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const checkMobile = () => {
-        setIsMobile(window.innerWidth < 1024);
+        setIsMobile(window.innerWidth < 768);
       };
       checkMobile();
       window.addEventListener('resize', checkMobile);
@@ -111,22 +111,30 @@ export const Projects = () => {
     return (
       <div
         className={`flex-shrink-0 transition-all duration-500 ease-out cursor-pointer
-                   ${isCenter 
-                     ? 'w-80 lg:w-96 opacity-100 scale-100 z-20' 
-                     : 'w-64 lg:w-80 opacity-70 scale-90 z-10'
+                   ${isMobile 
+                     ? (isCenter ? 'w-full max-w-sm opacity-100 scale-100 z-20' : 'hidden')
+                     : (isCenter 
+                       ? 'w-72 md:w-80 lg:w-96 opacity-100 scale-100 z-20' 
+                       : 'w-56 md:w-64 lg:w-80 opacity-60 scale-90 z-10'
+                     )
                    }
                    transform hover:scale-[1.02]`}
         onClick={onClick}
       >
         {/* Project Card */}
-        <div className={`bg-black/90 backdrop-blur-sm rounded-2xl border overflow-hidden transition-all duration-300
+        <div className={`bg-black/90 backdrop-blur-sm rounded-xl md:rounded-2xl border overflow-hidden transition-all duration-300 flex flex-col
                         ${isCenter 
-                          ? 'border-[#1DB954]/60 shadow-2xl shadow-[#1DB954]/25 h-[480px]' 
-                          : 'border-[#1DB954]/20 hover:border-[#1DB954]/40 h-[440px]'
+                          ? 'border-[#1DB954]/60 shadow-2xl shadow-[#1DB954]/25' 
+                          : 'border-[#1DB954]/20 hover:border-[#1DB954]/40'
+                        }
+                        ${isMobile 
+                          ? 'min-h-[500px] max-h-[600px]' 
+                          : (isCenter ? 'h-[520px] md:h-[560px]' : 'h-[480px] md:h-[520px]')
                         }`}>
           
-          {/* Project Image */}
-          <div className={`relative overflow-hidden ${isCenter ? 'h-52' : 'h-48'}`}>
+          {/* Project Image - Fixed height */}
+          <div className={`relative overflow-hidden flex-shrink-0
+                          ${isMobile ? 'h-44' : (isCenter ? 'h-44 md:h-48' : 'h-40 md:h-44')}`}>
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10"></div>
             <img 
               src={project.image} 
@@ -136,83 +144,83 @@ export const Projects = () => {
                 e.target.src = 'https://via.placeholder.com/400x300/1a1a1a/666666?text=Project+Image';
               }}
             />
-            {/* Project number indicator */}
-            <div className={`absolute top-4 right-4 z-20 rounded-full flex items-center justify-center text-white font-bold
-                           ${isCenter 
-                             ? 'w-10 h-10 bg-[#1DB954] text-base shadow-lg' 
-                             : 'w-8 h-8 bg-[#1DB954]/80 text-sm'
-                           }`}>
-              {project.displayIndex + 1}
-            </div>
             {/* Center project glow effect */}
             {isCenter && (
               <div className="absolute inset-0 bg-gradient-to-t from-[#1DB954]/10 via-transparent to-transparent"></div>
             )}
           </div>
 
-          {/* Project Content */}
-          <div className={`p-6 ${isCenter ? 'pb-8' : 'pb-6'}`}>
-            {/* Project Title */}
-            <h3 className={`font-bold text-white mb-3 relative group transition-all duration-300
-                           ${isCenter ? 'text-xl mb-4' : 'text-lg mb-2'}`}>
-              {project.title}
-              <span className={`absolute left-0 -bottom-1 h-0.5 bg-gradient-to-r from-[#1DB954] to-green-400 transition-all duration-300
-                              ${isCenter ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
-            </h3>
-
-            {/* Description - only show on center card with animation */}
-            <div className={`overflow-hidden transition-all duration-500 ease-out
-                           ${isCenter 
-                             ? 'max-h-32 opacity-100 mb-4' 
-                             : 'max-h-0 opacity-0 mb-0'
-                           }`}>
-              <p className="text-gray-400 text-sm leading-relaxed">
-                {project.description}
-              </p>
+          {/* Project Content - Flexible height with proper spacing */}
+          <div className={`flex flex-col flex-1 p-5 md:p-6 lg:p-7`}>
+            {/* Title Section - Fixed space */}
+            <div className="flex-shrink-0 mb-4">
+              <h3 className={`font-bold text-white relative group transition-all duration-300 leading-tight
+                             ${isCenter ? 'text-lg md:text-xl' : 'text-base md:text-lg'}`}>
+                <span className="block line-clamp-2">
+                  {project.title}
+                </span>
+              </h3>
             </div>
 
-            {/* Tags */}
-            <div className="flex flex-wrap gap-2 mb-4">
-              {project.tags.slice(0, isCenter ? project.tags.length : 2).map((tag, tagIndex) => (
-                <span
-                  key={tagIndex}
-                  className={`px-3 py-1 text-xs font-medium rounded-full transition-all duration-300
-                           ${isCenter 
-                             ? 'bg-[#1DB954]/15 text-[#1DB954] border border-[#1DB954]/30 hover:bg-[#1DB954]/25' 
-                             : 'bg-[#1DB954]/10 text-[#1DB954]/80 border border-[#1DB954]/20'
-                           }`}
-                >
-                  {tag}
-                </span>
-              ))}
-              {!isCenter && project.tags.length > 2 && (
-                <span className="px-3 py-1 text-xs font-medium rounded-full 
-                               bg-gray-800/60 text-gray-400 border border-gray-700/50">
-                  +{project.tags.length - 2}
-                </span>
-              )}
+            {/* Description Section - Flexible but constrained */}
+            <div className={`flex-shrink-0 transition-all duration-500 ease-out
+                           ${(isCenter || isMobile) ? 'mb-5' : 'mb-3'}`}>
+              <div className={`overflow-hidden
+                             ${(isCenter || isMobile)
+                               ? 'opacity-100' 
+                               : 'opacity-0 max-h-0'
+                             }`}>
+                <p className={`text-gray-400 leading-relaxed
+                              ${isMobile ? 'text-sm line-clamp-4' : 'text-sm line-clamp-3'}`}>
+                  {project.description}
+                </p>
+              </div>
             </div>
 
-            {/* Buttons - only show on center card with slide animation */}
-            <div className={`transition-all duration-500 ease-out overflow-hidden
-                           ${isCenter 
-                             ? 'max-h-20 opacity-100 translate-y-0' 
-                             : 'max-h-0 opacity-0 translate-y-4'
+            {/* Tags Section - Flexible with proper wrapping */}
+            <div className="flex-1 min-h-0 mb-5">
+              <div className="flex flex-wrap gap-2 md:gap-2.5 items-start">
+                {project.tags.slice(0, (isCenter || isMobile) ? project.tags.length : 4).map((tag, tagIndex) => (
+                  <span
+                    key={tagIndex}
+                    className={`inline-block px-3 md:px-3.5 py-1.5 text-xs font-medium rounded-full transition-all duration-300 whitespace-nowrap
+                             ${(isCenter || isMobile)
+                               ? 'bg-[#1DB954]/15 text-[#1DB954] border border-[#1DB954]/30 hover:bg-[#1DB954]/25' 
+                               : 'bg-[#1DB954]/10 text-[#1DB954]/80 border border-[#1DB954]/20'
+                             }`}
+                  >
+                    {tag}
+                  </span>
+                ))}
+                {!isMobile && !isCenter && project.tags.length > 4 && (
+                  <span className="inline-block px-3 md:px-3.5 py-1.5 text-xs font-medium rounded-full whitespace-nowrap
+                                 bg-gray-800/60 text-gray-400 border border-gray-700/50">
+                    +{project.tags.length - 4}
+                  </span>
+                )}
+              </div>
+            </div>
+
+            {/* Buttons Section - Fixed at bottom */}
+            <div className={`flex-shrink-0 transition-all duration-500 ease-out
+                           ${(isCenter || isMobile)
+                             ? 'opacity-100 translate-y-0' 
+                             : 'opacity-0 translate-y-4 max-h-0 overflow-hidden'
                            }`}>
-              <div className="flex space-x-3">
+              <div className="flex gap-3 md:gap-4">
                 {project.github && (
                   <a 
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 inline-flex items-center justify-center px-4 py-2.5 text-sm font-semibold 
-                             text-white bg-gradient-to-r from-[#1DB954] to-[#1ed760] rounded-lg 
-                             hover:from-[#1ed760] hover:to-[#1DB954] transform hover:scale-105 
-                             transition-all duration-300 shadow-lg hover:shadow-[#1DB954]/30"
+                    className="flex-1 inline-flex items-center justify-center px-4 md:px-5 py-2.5 md:py-3 text-sm md:text-base font-semibold 
+                             text-[#1DB954] bg-[#1DB954]/10 border-2 border-[#1DB954]/30 rounded-lg 
+                             hover:bg-[#1DB954]/20 hover:border-[#1DB954]/50
+                             transform hover:scale-105 transition-all duration-300 backdrop-blur-sm min-w-0"
                     onClick={(e) => e.stopPropagation()}
                   >
-                    <Github className="w-4 h-4 mr-2" />
-                    Source Code
+                    <Github className="w-4 h-4 md:w-5 md:h-5 mr-2 flex-shrink-0" />
+                    <span className="truncate">Source Code</span>
                   </a>
                 )}
                 {project.demo && (
@@ -220,14 +228,14 @@ export const Projects = () => {
                     href={project.demo}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 inline-flex items-center justify-center px-4 py-2.5 text-sm font-semibold 
-                             text-[#1DB954] border-2 border-[#1DB954]/50 rounded-lg 
-                             hover:bg-[#1DB954] hover:text-white hover:border-[#1DB954]
-                             transform hover:scale-105 transition-all duration-300 backdrop-blur-sm"
+                    className="flex-1 inline-flex items-center justify-center px-4 md:px-5 py-2.5 md:py-3 text-sm md:text-base font-semibold 
+                             text-[#1DB954] bg-[#1DB954]/10 border-2 border-[#1DB954]/30 rounded-lg 
+                             hover:bg-[#1DB954]/20 hover:border-[#1DB954]/50
+                             transform hover:scale-105 transition-all duration-300 backdrop-blur-sm min-w-0"
                     onClick={(e) => e.stopPropagation()}
                   >
-                    <ExternalLink className="w-4 h-4 mr-2" />
-                    Live Demo
+                    <ExternalLink className="w-4 h-4 md:w-5 md:h-5 mr-2 flex-shrink-0" />
+                    <span className="truncate">Demo</span>
                   </a>
                 )}
               </div>
@@ -239,84 +247,104 @@ export const Projects = () => {
   };
 
   return (
-    <div className="w-full h-full flex items-start justify-center pt-24 pb-16 bg-black">
-      <div className={`max-w-7xl mx-auto px-4 w-full flex flex-col`}>
+    <div className="w-full h-full flex items-start justify-center pt-16 md:pt-20 lg:pt-24 pb-12 md:pb-16 bg-black overflow-hidden">
+      <div className={`max-w-7xl mx-auto px-4 md:px-6 lg:px-8 w-full flex flex-col`}>
         {/* Header */}
-        <div className={`text-center mb-12 transition-all duration-700 delay-300
+        <div className={`text-center mb-8 md:mb-12 transition-all duration-700 delay-300
                         ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
           <h2 className={`font-bold text-[#1DB954] mb-4
-                         ${isMobile ? 'text-3xl sm:text-4xl' : 'text-4xl xl:text-5xl'}`}>
+                         ${isMobile ? 'text-2xl sm:text-3xl' : 'text-3xl md:text-4xl xl:text-5xl'}`}>
             Projects
           </h2>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            Explore my latest work and projects • Infinite scroll enabled
-          </p>
         </div>
 
         {/* Carousel Container */}
-        <div className="relative flex items-center justify-center">
-          {/* Left Navigation Button */}
-          <button
-            onClick={prevProject}
-            className="absolute left-0 z-30 p-3 rounded-full
-                     bg-[#1DB954]/90 hover:bg-[#1DB954] 
-                     text-white shadow-lg hover:shadow-xl
-                     transform hover:scale-110 transition-all duration-300
-                     -translate-x-6 lg:-translate-x-12"
-          >
-            <ChevronLeft className="w-6 h-6" />
-          </button>
+        <div className={`relative flex items-center justify-center ${isMobile ? 'px-0' : ''}`}>
+          {/* Navigation Buttons - Hide on mobile */}
+          {!isMobile && (
+            <>
+              {/* Left Navigation Button */}
+              <button
+                onClick={prevProject}
+                className="absolute left-0 z-30 p-2 md:p-3 rounded-full
+                         bg-[#1DB954]/10 border-2 border-[#1DB954]/30
+                         text-[#1DB954] hover:bg-[#1DB954]/20 hover:border-[#1DB954]/50
+                         shadow-lg hover:shadow-xl backdrop-blur-sm
+                         transform hover:scale-110 transition-all duration-300
+                         -translate-x-4 md:-translate-x-6 lg:-translate-x-12"
+              >
+                <ChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
+              </button>
+
+              {/* Right Navigation Button */}
+              <button
+                onClick={nextProject}
+                className="absolute right-0 z-30 p-2 md:p-3 rounded-full
+                         bg-[#1DB954]/10 border-2 border-[#1DB954]/30
+                         text-[#1DB954] hover:bg-[#1DB954]/20 hover:border-[#1DB954]/50
+                         shadow-lg hover:shadow-xl backdrop-blur-sm
+                         transform hover:scale-110 transition-all duration-300
+                         translate-x-4 md:translate-x-6 lg:translate-x-12"
+              >
+                <ChevronRight className="w-5 h-5 md:w-6 md:h-6" />
+              </button>
+            </>
+          )}
 
           {/* Cards Container */}
           <div 
-            className="flex items-center justify-center gap-6 lg:gap-8 px-8 lg:px-16 w-full"
+            className={`flex items-center justify-center w-full
+                       ${isMobile 
+                         ? 'px-4' 
+                         : 'gap-4 md:gap-6 lg:gap-8 px-8 md:px-12 lg:px-16'
+                       }`}
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
           >
-            {/* Left Project */}
-            <ProjectCard 
-              project={leftProject} 
-              position="left"
-              onClick={prevProject}
-            />
+            {isMobile ? (
+              // Mobile: Show only center project
+              <ProjectCard 
+                project={centerProject} 
+                position="center"
+                onClick={() => {}}
+              />
+            ) : (
+              // Desktop: Show all three projects
+              <>
+                {/* Left Project */}
+                <ProjectCard 
+                  project={leftProject} 
+                  position="left"
+                  onClick={prevProject}
+                />
 
-            {/* Center Project (Active) */}
-            <ProjectCard 
-              project={centerProject} 
-              position="center"
-              onClick={() => {}} // No action needed for center card
-            />
+                {/* Center Project (Active) */}
+                <ProjectCard 
+                  project={centerProject} 
+                  position="center"
+                  onClick={() => {}}
+                />
 
-            {/* Right Project */}
-            <ProjectCard 
-              project={rightProject} 
-              position="right"
-              onClick={nextProject}
-            />
+                {/* Right Project */}
+                <ProjectCard 
+                  project={rightProject} 
+                  position="right"
+                  onClick={nextProject}
+                />
+              </>
+            )}
           </div>
-
-          {/* Right Navigation Button */}
-          <button
-            onClick={nextProject}
-            className="absolute right-0 z-30 p-3 rounded-full
-                     bg-[#1DB954]/90 hover:bg-[#1DB954] 
-                     text-white shadow-lg hover:shadow-xl
-                     transform hover:scale-110 transition-all duration-300
-                     translate-x-6 lg:translate-x-12"
-          >
-            <ChevronRight className="w-6 h-6" />
-          </button>
         </div>
 
         {/* Dot Indicators */}
-        <div className={`flex justify-center mt-8 gap-3 transition-all duration-700 delay-600
+        <div className={`flex justify-center mt-6 md:mt-8 gap-2 md:gap-3 transition-all duration-700 delay-600
                         ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
           {projects.map((_, index) => (
             <button
               key={index}
               onClick={() => goToProject(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 
+              className={`w-2.5 h-2.5 md:w-3 md:h-3 rounded-full transition-all duration-300 
                          ${index === currentIndex 
                            ? 'bg-[#1DB954] scale-125 shadow-lg shadow-[#1DB954]/50' 
                            : 'bg-[#1DB954]/30 hover:bg-[#1DB954]/60 hover:scale-110'
@@ -325,14 +353,29 @@ export const Projects = () => {
           ))}
         </div>
 
-        {/* Helper Text */}
-        <div className={`text-center mt-6 transition-all duration-700 delay-800
-                        ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-          <p className={`text-gray-500
-                        ${isMobile ? 'text-sm' : 'text-base'}`}>
-            {isMobile ? 'Swipe to navigate • Tap side cards to focus' : 'Navigate with buttons or dots • Click side cards to focus'}
-          </p>
-        </div>
+        {/* Mobile Navigation Buttons */}
+        {isMobile && (
+          <div className="flex justify-center mt-6 gap-4">
+            <button
+              onClick={prevProject}
+              className="p-3 rounded-full bg-[#1DB954]/10 border-2 border-[#1DB954]/30
+                       text-[#1DB954] hover:bg-[#1DB954]/20 hover:border-[#1DB954]/50
+                       shadow-lg hover:shadow-xl backdrop-blur-sm
+                       transform hover:scale-110 transition-all duration-300"
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </button>
+            <button
+              onClick={nextProject}
+              className="p-3 rounded-full bg-[#1DB954]/10 border-2 border-[#1DB954]/30
+                       text-[#1DB954] hover:bg-[#1DB954]/20 hover:border-[#1DB954]/50
+                       shadow-lg hover:shadow-xl backdrop-blur-sm
+                       transform hover:scale-110 transition-all duration-300"
+            >
+              <ChevronRight className="w-6 h-6" />
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
