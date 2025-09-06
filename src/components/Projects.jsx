@@ -131,8 +131,8 @@ export const Projects = () => {
                           : 'border-[#1DB954]/20 hover:border-[#1DB954]/40'
                         }
                         ${isMobile 
-                          ? 'min-h-[500px] max-h-[600px]' 
-                          : (isCenter ? 'h-[520px] md:h-[560px]' : 'h-[480px] md:h-[520px]')
+                          ? 'min-h-[520px] max-h-[620px]' 
+                          : (isCenter ? 'h-[540px] md:h-[580px]' : 'h-[500px] md:h-[540px]')
                         }`}>
           
           {/* Project Image - Fixed height */}
@@ -159,7 +159,7 @@ export const Projects = () => {
             <div className="flex-shrink-0 mb-4">
               <h3 className={`font-bold text-[#1DB954] relative group transition-all duration-300 leading-tight
                              ${isCenter ? 'text-lg md:text-xl' : 'text-base md:text-lg'}`}>
-                <span className="block line-clamp-2">
+                <span className="block line-clamp-3">
                   {project.title}
                 </span>
               </h3>
@@ -174,7 +174,7 @@ export const Projects = () => {
                                : 'opacity-0 max-h-0'
                              }`}>
                 <p className={`text-gray-400 leading-relaxed
-                              ${isMobile ? 'text-sm line-clamp-4' : 'text-sm line-clamp-3'}`}>
+                              ${isMobile ? 'text-sm line-clamp-6' : 'text-sm line-clamp-5'}`}>
                   {project.description}
                 </p>
               </div>
@@ -183,7 +183,7 @@ export const Projects = () => {
             {/* Tags Section - Flexible with proper wrapping */}
             <div className="flex-1 min-h-0 mb-5">
               <div className="flex flex-wrap gap-2 md:gap-2.5 items-start">
-                {project.tags.slice(0, (isCenter || isMobile) ? project.tags.length : 4).map((tag, tagIndex) => (
+                {project.tags.map((tag, tagIndex) => (
                   <span
                     key={tagIndex}
                     className={`inline-block px-3 md:px-3.5 py-1.5 text-xs font-medium rounded-full transition-all duration-300 whitespace-nowrap
@@ -195,12 +195,6 @@ export const Projects = () => {
                     {tag}
                   </span>
                 ))}
-                {!isMobile && !isCenter && project.tags.length > 4 && (
-                  <span className="inline-block px-3 md:px-3.5 py-1.5 text-xs font-medium rounded-full whitespace-nowrap
-                                 bg-gray-800/60 text-gray-400 border border-gray-700/50">
-                    +{project.tags.length - 4}
-                  </span>
-                )}
               </div>
             </div>
 
