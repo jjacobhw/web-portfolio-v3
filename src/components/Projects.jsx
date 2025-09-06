@@ -154,7 +154,7 @@ export const Projects = () => {
           <div className={`flex flex-col flex-1 p-5 md:p-6 lg:p-7`}>
             {/* Title Section - Fixed space */}
             <div className="flex-shrink-0 mb-4">
-              <h3 className={`font-bold text-[#1DB954] relative group transition-all duration-300 leading-tight
+              <h3 className={`font-bold text-white relative group transition-all duration-300 leading-tight
                              ${isCenter ? 'text-lg md:text-xl' : 'text-base md:text-lg'}`}>
                 <span className="block line-clamp-2">
                   {project.title}
@@ -344,10 +344,10 @@ export const Projects = () => {
             <button
               key={index}
               onClick={() => goToProject(index)}
-              className={`w-2.5 h-2.5 md:w-3 md:h-3 rounded-full transition-all duration-300 
+              className={`w-2 h-2 md:w-2.5 md:h-2.5 rounded-full transition-all duration-300 
                          ${index === currentIndex 
                            ? 'bg-[#1DB954] scale-125 shadow-lg shadow-[#1DB954]/50' 
-                           : 'bg-[#1DB954]/30 hover:bg-[#1DB954]/60 hover:scale-110'
+                           : 'bg-white/40 hover:bg-white/60 hover:scale-110'
                          }`}
             />
           ))}
