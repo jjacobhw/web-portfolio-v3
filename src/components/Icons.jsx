@@ -20,7 +20,6 @@ export const deviconMapping = {
   "PyTorch": "pytorch",
   "NumPy": "numpy",
   "Pandas": "pandas",
-  "Scikit-learn": "scikitlearn",
   "ChromaDB": null, // No Devicon available - will use PencilRuler
   "Hugging Face": null, // No Devicon available - will use PencilRuler
   "LangChain": null, // No Devicon available - will use PencilRuler
