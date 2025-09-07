@@ -217,7 +217,7 @@ export const Projects = () => {
                     onClick={(e) => e.stopPropagation()}
                   >
                     <Github className="w-3 h-3 md:w-4 md:h-4 mr-1.5 flex-shrink-0 text-[#1DB954]" />
-                    <span className="truncate">Source</span>
+                    <span className="truncate">Source Code</span>
                   </a>
                 )}
                 {project.demo && (

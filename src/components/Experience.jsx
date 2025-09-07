@@ -30,14 +30,14 @@ export const Experience = () => {
       title: "Robotic Processing Automation Intern",
       company: "Healthcare Practice IT",
       location: "Orange County, CA",
-      period: "June 2024 - September 2024",
+      period: "June 2024 - September 2024", 
       description: "Developed features for Google Search using cutting-edge machine learning algorithms. Collaborated with cross-functional teams to improve user experience.",
       achievements: [
         "Implemented ML model with 95% accuracy",
         "Contributed to 3 major product releases",
         "Presented findings to senior leadership"
       ],
-      technologies: ["Python", "TensorFlow", "Go", "Kubernetes"]
+      technologies: ["Python", "UiPath", "Visual Basic", "RPA", "Bash"]
     },
   ];
 

@@ -57,7 +57,7 @@ export const Home = () => {
                 transform hover:scale-105 whitespace-nowrap`}
     >
       <Icon className={`${isMobileLayout ? 'w-4 h-4 sm:w-5 sm:h-5' : 'w-5 h-5'} 
-                        group-hover:animate-bounce transition-transform duration-300 text-[#1DB954]`} />
+                        animate-bounce transition-transform duration-300 text-[#1DB954]`} />
       {children}
     </a>
   );
@@ -165,7 +165,7 @@ export const Home = () => {
     <div className={`${isMobileLayout ? '' : 'flex-shrink-0'} 
                     transition-all duration-700 ${isMobileLayout ? 'delay-300' : 'delay-900'}
                     ${isVisible ? 'opacity-100 translate-y-0 translate-x-0' : `opacity-0 ${isMobileLayout ? 'translate-y-8' : 'translate-x-8'}`}`}>
-      <div className="relative group">
+      <div className="relative">
         <img
           src="/media/profile-photo.jpg"
           alt="Jacob Wei"
@@ -174,14 +174,8 @@ export const Home = () => {
               ? 'w-52 h-64 sm:w-60 sm:h-72 md:w-72 md:h-80 mx-auto'
               : 'w-56 h-64 lg:w-64 lg:h-80 xl:w-72 xl:h-80 2xl:w-80 2xl:h-96' 
           } rounded-xl object-cover object-top  
-          shadow-[0_0_15px_rgba(29,185,84,0.4)] 
-          hover:shadow-[0_0_30px_rgba(29,185,84,0.8),0_0_45px_rgba(29,185,84,0.4)]
-          transform transition-all duration-500 
-          group-hover:scale-105`}
+          shadow-[0_0_15px_rgba(29,185,84,0.4)]`}
         />
-        <div className="absolute inset-0 rounded-xl bg-gradient-to-t 
-                      from-black/10 to-transparent opacity-0 
-                      group-hover:opacity-100 transition-opacity duration-300"></div>
       </div>
     </div>
   );
