@@ -17,7 +17,7 @@ const projects = [
     description: "A modern, responsive portfolio website built with React and styled with Tailwind CSS, showcasing projects and skills with smooth animations.",
     image: "", // Add your actual image path
     tags: ["React", "Tailwind CSS", "JavaScript", "Vercel", "Vite"],
-    github: "https://github.com/yourusername/portfolio-website", // Add your actual GitHub URL
+    github: "https://github.com/jjacobhw/web-portfolio-v3", // Add your actual GitHub URL
     demo: "", // Optional: add live site URL
   },
   {
@@ -247,10 +247,11 @@ export const Projects = () => {
     <div className="w-full h-full flex items-start justify-center pt-16 md:pt-20 lg:pt-24 pb-12 md:pb-16 bg-black overflow-hidden">
       <div className={`max-w-7xl mx-auto px-4 md:px-6 lg:px-8 w-full flex flex-col`}>
         {/* Header */}
-        <div className={`text-center mb-8 md:mb-12 transition-all duration-700 delay-300
+        <div className={`mb-8 md:mb-12 transition-all duration-700 delay-300
                         ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
           <h2 className={`font-bold text-white mb-4
-                         ${isMobile ? 'text-2xl sm:text-3xl' : 'text-3xl md:text-4xl xl:text-5xl'}`}>
+                        ${isMobile ? 'text-2xl sm:text-3xl' : 'text-3xl md:text-4xl xl:text-5xl'}
+                        text-left`}>  {/* Added text-left class */}
             Projects
           </h2>
         </div>
