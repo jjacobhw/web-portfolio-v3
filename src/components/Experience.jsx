@@ -66,26 +66,24 @@ export const Experience = () => {
                 <div className="bg-black border border-[#1DB954] rounded-xl p-6 transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:shadow-[#1DB954]/30 relative transform-gpu">
                   <div className="absolute -left-2 top-6 w-4 h-4 bg-[#1DB954] rounded-full border-4 border-black"></div>
                   
-                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-3">
-                    <h4 className="text-xl font-bold text-[#1DB954] mb-1">{edu.degree}</h4>
-                    <span className="text-sm text-gray-400 flex items-center gap-1">
-                      <Calendar className="w-4 h-4" />
-                      {edu.period}
-                    </span>
-                  </div>
+                  <h4 className="text-xl font-bold text-[#1DB954] mb-1">{edu.degree}</h4>
                   
                   <p className="text-lg font-semibold text-white mb-2">{edu.school}</p>
                   
-                  <div className="flex items-center gap-4 text-gray-400 mb-4">
-                    <span className="flex items-center gap-1">
+                  <div className="mb-4">
+                    <div className="flex items-center gap-1 text-gray-400 mb-1">
                       <MapPin className="w-4 h-4" />
-                      {edu.location}
-                    </span>
+                      <span>{edu.location}</span>
+                    </div>
+                    <div className="flex items-center gap-1 text-gray-400">
+                      <Calendar className="w-4 h-4" />
+                      <span>{edu.period}</span>
+                    </div>
                     {edu.gpa && (
-                      <span className="flex items-center gap-1">
+                      <div className="flex items-center gap-1 text-gray-400 mt-1">
                         <Award className="w-4 h-4" />
-                        GPA: {edu.gpa}
-                      </span>
+                        <span>GPA: {edu.gpa}</span>
+                      </div>
                     )}
                   </div>
                   
@@ -118,20 +116,20 @@ export const Experience = () => {
                 <div className="bg-black border border-[#1DB954] rounded-xl p-6 transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:shadow-[#1DB954]/30 relative transform-gpu">
                   <div className="absolute -left-2 top-6 w-4 h-4 bg-[#1DB954] rounded-full border-4 border-black"></div>
                   
-                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-3">
-                    <h4 className="text-xl font-bold text-[#1DB954] mb-1">{work.title}</h4>
-                    <span className="text-sm text-gray-400 flex items-center gap-1">
-                      <Calendar className="w-4 h-4" />
-                      {work.period}
-                    </span>
-                  </div>
+                  <h4 className="text-xl font-bold text-[#1DB954] mb-1">{work.title}</h4>
                   
                   <p className="text-lg font-semibold text-white mb-2">{work.company}</p>
                   
-                  <p className="text-gray-400 flex items-center gap-1 mb-4">
-                    <MapPin className="w-4 h-4" />
-                    {work.location}
-                  </p>
+                  <div className="mb-4">
+                    <div className="flex items-center gap-1 text-gray-400 mb-1">
+                      <MapPin className="w-4 h-4" />
+                      <span>{work.location}</span>
+                    </div>
+                    <div className="flex items-center gap-1 text-gray-400">
+                      <Calendar className="w-4 h-4" />
+                      <span>{work.period}</span>
+                    </div>
+                  </div>
                   
                   <p className="text-gray-300 mb-4 leading-relaxed">{work.description}</p>
                   
