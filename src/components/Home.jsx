@@ -35,7 +35,7 @@ export const Home = () => {
           setIsTypingComplete(true);
           clearInterval(typingInterval);
         }
-      }, 150);
+      }, 75);
 
       return () => clearInterval(typingInterval);
     }, 300);
@@ -89,7 +89,7 @@ export const Home = () => {
           : 'text-lg lg:text-xl xl:text-2xl 2xl:text-3xl mb-8'
       } transition-all duration-700 delay-300
       ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-        AI/ML Engineer and Full Stack Developer
+        AI/ML Engineer & Full Stack Developer
       </h2>
       
       <h3 className={`text-white/90 whitespace-nowrap ${

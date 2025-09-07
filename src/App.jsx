@@ -1,11 +1,10 @@
-// App.jsx
 import { Navbar } from './utilities/Navbar'
 import { MobileNav } from './utilities/MobileNav'
 import { Home } from './components/Home'
 import { Skills } from './components/Skills'
 import { Experience } from './components/Experience'
 import { Projects } from './components/Projects'
-import { Footer } from './components/Footer' // Add this import
+import { Footer } from './components/Footer'
 import { useState, useRef, useEffect, useCallback } from 'react';
 import './index.css'
 
@@ -25,7 +24,6 @@ function App() {
   const isScrollingRef = useRef(false);
   const observerRef = useRef(null);
   
-  // Check if device is mobile on initial render and resize
   useEffect(() => {
     const checkIfMobile = () => {
       setIsMobile(window.innerWidth < 768);
@@ -37,7 +35,6 @@ function App() {
     return () => window.removeEventListener('resize', checkIfMobile);
   }, []);
   
-  // Setup Intersection Observer for section detection
   useEffect(() => {
     const options = {
       root: null,
@@ -48,7 +45,6 @@ function App() {
     const handleIntersect = (entries) => {
       if (menuOpen || isScrollingRef.current) return;
       
-      // Find the section with the highest intersection ratio
       let maxRatio = 0.1;
       let maxSectionIndex = activeSection;
       
@@ -63,7 +59,6 @@ function App() {
         }
       });
       
-      // Only update if we have a clear winner and it's different from current
       if (maxSectionIndex !== activeSection && maxRatio > 0.3) {
         setActiveSection(maxSectionIndex);
       }
@@ -71,7 +66,6 @@ function App() {
     
     observerRef.current = new IntersectionObserver(handleIntersect, options);
     
-    // Observe all sections
     sectionRefs.forEach(ref => {
       if (ref.current) {
         observerRef.current.observe(ref.current);
@@ -85,7 +79,6 @@ function App() {
     };
   }, [menuOpen, activeSection]);
 
-  // Smooth scroll function
   const smoothScrollToSection = (sectionIndex) => {
     const targetElement = sectionRefs[sectionIndex]?.current;
     if (!targetElement) return;
@@ -96,7 +89,6 @@ function App() {
     const duration = 1200;
     let start = null;
 
-    // Custom easing function for smoother animation
     const easeInOutCubic = (t) => {
       return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
     };
@@ -106,16 +98,12 @@ function App() {
       const timeElapsed = currentTime - start;
       const progress = Math.min(timeElapsed / duration, 1);
       const easedProgress = easeInOutCubic(progress);
-      
       window.scrollTo(0, startPosition + distance * easedProgress);
       
       if (progress < 1) {
         requestAnimationFrame(animation);
       } else {
-        // Animation complete
         isScrollingRef.current = false;
-        
-        // Re-enable observer after a short delay
         setTimeout(() => {
           if (observerRef.current) {
             sectionRefs.forEach(ref => {
