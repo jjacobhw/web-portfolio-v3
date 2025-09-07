@@ -3,42 +3,34 @@ import { GraduationCap, Briefcase, Calendar, MapPin, Award } from 'lucide-react'
 export const Experience = () => {
   const education = [
     {
-      degree: "Master of Computer Science",
-      school: "Stanford University",
-      location: "Stanford, CA",
-      period: "2020 - 2022",
-      gpa: "3.9/4.0",
-      highlights: ["Machine Learning Specialization", "Research in AI Ethics", "Dean's List"]
-    },
-    {
-      degree: "Bachelor of Science in Software Engineering",
-      school: "UC Berkeley",
-      location: "Berkeley, CA",
-      period: "2016 - 2020",
-      gpa: "3.7/4.0",
-      highlights: ["Summa Cum Laude", "President of Coding Club", "Hackathon Winner"]
+      degree: "Bachelor of Science, Computer Science",
+      school: "University of California, Santa Cruz",
+      location: "Santa Cruz, CA",
+      period: "2023 - 2027",
+      gpa: "3.85/4.00",
+      highlights: []
     }
   ];
 
   const workExperience = [
     {
-      title: "Senior Software Engineer",
-      company: "TechCorp Inc.",
-      location: "San Francisco, CA",
-      period: "2022 - Present",
+      title: "Machine Learning Engineer",
+      company: "Inference.ai",
+      location: "Palo Alto, CA",
+      period: "June 2025 - September 2025",
       description: "Led development of scalable web applications serving 1M+ users. Architected microservices infrastructure and mentored junior developers.",
       achievements: [
         "Improved application performance by 40%",
         "Led team of 5 engineers",
         "Reduced deployment time by 60%"
       ],
-      technologies: ["React", "Node.js", "AWS", "MongoDB"]
+      technologies: ["Supervised Fine-Tuning", "RAG Architecture", "Vector Databases", "MCPs", "LLMs"]
     },
     {
-      title: "Software Engineer Intern",
-      company: "Google",
-      location: "Mountain View, CA",
-      period: "Summer 2021",
+      title: "Robotic Processing Automation Intern",
+      company: "Healthcare Practice IT",
+      location: "Orange County, CA",
+      period: "June 2024 - September 2024",
       description: "Developed features for Google Search using cutting-edge machine learning algorithms. Collaborated with cross-functional teams to improve user experience.",
       achievements: [
         "Implemented ML model with 95% accuracy",
@@ -47,25 +39,12 @@ export const Experience = () => {
       ],
       technologies: ["Python", "TensorFlow", "Go", "Kubernetes"]
     },
-    {
-      title: "Junior Developer",
-      company: "StartupXYZ",
-      location: "Palo Alto, CA",
-      period: "2020 - 2022",
-      description: "Built responsive web applications and mobile apps for early-stage startup. Wore multiple hats in fast-paced environment.",
-      achievements: [
-        "Delivered 15+ client projects",
-        "Reduced bug reports by 30%",
-        "Implemented CI/CD pipeline"
-      ],
-      technologies: ["JavaScript", "React Native", "PostgreSQL", "Docker"]
-    }
   ];
 
   return (
     <section id="experience" className="min-h-screen bg-black text-white py-20">
       <div className="max-w-5xl mx-auto px-4">
-        <h2 className="text-5xl font-bold text-center mb-16 text-[#1DB954]">
+        <h2 className="text-5xl font-bold text-center mb-16 text-white">
           Experience
         </h2>
 
@@ -73,9 +52,7 @@ export const Experience = () => {
           {/* Education Section */}
           <div className="space-y-8">
             <div className="flex items-center gap-3 mb-8">
-              <div className="p-3 bg-[#1DB954] rounded-lg">
-                <GraduationCap className="w-6 h-6 text-black" />
-              </div>
+              <GraduationCap className="w-8 h-8 text-[#1DB954]" />
               <h3 className="text-3xl font-bold">Education</h3>
             </div>
 
@@ -83,10 +60,10 @@ export const Experience = () => {
               <div key={index} className="relative">
                 {/* Timeline connector */}
                 {index < education.length - 1 && (
-                  <div className="absolute left-6 top-16 w-px h-24 bg-[#1DB954]"></div>
+                  <div className="absolute left-4 top-16 w-px h-24 bg-[#1DB954]"></div>
                 )}
                 
-                <div className="bg-gray-900 border border-gray-700 rounded-xl p-6 hover:border-[#1DB954] transition-all duration-300 hover:shadow-lg hover:shadow-[#1DB954]/20 relative">
+                <div className="bg-black border border-gray-800 rounded-xl p-6 hover:border-[#1DB954] transition-all duration-300 hover:shadow-lg hover:shadow-[#1DB954]/20 relative">
                   <div className="absolute -left-2 top-6 w-4 h-4 bg-[#1DB954] rounded-full border-4 border-black"></div>
                   
                   <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-3">
@@ -127,20 +104,18 @@ export const Experience = () => {
           {/* Work Experience Section */}
           <div className="space-y-8">
             <div className="flex items-center gap-3 mb-8">
-              <div className="p-3 bg-[#1DB954] rounded-lg">
-                <Briefcase className="w-6 h-6 text-black" />
-              </div>
-              <h3 className="text-3xl font-bold">Work Experience</h3>
+              <Briefcase className="w-8 h-8 text-[#1DB954]" />
+              <h3 className="text-3xl font-bold">Professional</h3>
             </div>
 
             {workExperience.map((work, index) => (
               <div key={index} className="relative">
                 {/* Timeline connector */}
                 {index < workExperience.length - 1 && (
-                  <div className="absolute left-6 top-20 w-px h-32 bg-[#1DB954]"></div>
+                  <div className="absolute left-4 top-20 w-px h-32 bg-[#1DB954]"></div>
                 )}
                 
-                <div className="bg-gray-900 border border-gray-700 rounded-xl p-6 hover:border-[#1DB954] transition-all duration-300 hover:shadow-lg hover:shadow-[#1DB954]/20 relative">
+                <div className="bg-black border border-gray-800 rounded-xl p-6 hover:border-[#1DB954] transition-all duration-300 hover:shadow-lg hover:shadow-[#1DB954]/20 relative">
                   <div className="absolute -left-2 top-6 w-4 h-4 bg-[#1DB954] rounded-full border-4 border-black"></div>
                   
                   <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-3">
@@ -161,7 +136,7 @@ export const Experience = () => {
                   <p className="text-gray-300 mb-4 leading-relaxed">{work.description}</p>
                   
                   <div className="mb-4">
-                    <h5 className="text-sm font-semibold text-gray-200 mb-2">Key Achievements:</h5>
+                    <h5 className="text-sm font-semibold text-[#1DB954] mb-2">Key Achievements:</h5>
                     <ul className="space-y-1">
                       {work.achievements.map((achievement, idx) => (
                         <li key={idx} className="text-gray-300 text-sm flex items-start gap-2">
@@ -174,7 +149,7 @@ export const Experience = () => {
                   
                   <div className="flex flex-wrap gap-2">
                     {work.technologies.map((tech, idx) => (
-                      <span key={idx} className="bg-gray-800 text-[#1DB954] px-3 py-1 rounded-full text-sm border border-[#1DB954]/30">
+                      <span key={idx} className="bg-gray-900 text-[#1DB954] px-3 py-1 rounded-full text-sm border border-[#1DB954]/30">
                         {tech}
                       </span>
                     ))}
