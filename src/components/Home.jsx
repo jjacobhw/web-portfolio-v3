@@ -43,7 +43,6 @@ export const Home = () => {
     return () => clearTimeout(startDelay);
   }, []);
 
-  // Reusable Button Component
   const ActionButton = ({ href, icon: Icon, children, isMobileLayout = false }) => (
     <a
       href={href}
@@ -62,10 +61,8 @@ export const Home = () => {
     </a>
   );
 
-  // Reusable text content component with improved spacing
   const TextContent = ({ isMobileLayout = false }) => (
     <div className={isMobileLayout ? 'w-full max-w-lg' : 'w-full min-w-0 flex-1'}>
-      {/* Fixed height container for the heading */}
       <div className={`relative ${isMobileLayout ? 'h-16 sm:h-20 mb-6' : 'h-20 xl:h-24 mb-8'}`}>
         <h1 className={`font-bold absolute w-full whitespace-nowrap ${
           isMobileLayout 
@@ -86,7 +83,6 @@ export const Home = () => {
         </h1>
       </div>
       
-      {/* Job title */}
       <h2 className={`text-[#1DB954] font-medium whitespace-nowrap ${
         isMobileLayout 
           ? 'text-xl sm:text-2xl mb-7'
@@ -96,7 +92,6 @@ export const Home = () => {
         AI/ML Engineer and Full Stack Developer
       </h2>
       
-      {/* Location */}
       <h3 className={`text-white/90 whitespace-nowrap ${
         isMobileLayout 
           ? 'text-lg sm:text-xl flex items-center justify-center gap-1.5 mb-7'
@@ -107,7 +102,6 @@ export const Home = () => {
         Irvine, California
       </h3>
 
-      {/* Description - Constrained width for better readability */}
       <h4 className={`text-white/90 leading-relaxed ${
         isMobileLayout 
           ? 'text-base sm:text-lg mb-7'
@@ -119,7 +113,6 @@ export const Home = () => {
         practical systems that address real-world challenges.
       </h4>
       
-      {/* Outro */}
       <h5 className={`text-white/90 ${
         isMobileLayout 
           ? 'text-base sm:text-lg mb-7'
@@ -129,7 +122,6 @@ export const Home = () => {
         Feel free to contact me for any inquiries!
       </h5>
       
-      {/* Buttons - Now using the reusable component */}
       <div className={`flex ${isMobileLayout ? 'flex-wrap justify-center gap-4 sm:gap-5' : 'flex-wrap gap-3 lg:gap-4 xl:gap-5'}
                       transition-all duration-700 delay-700
                       ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
@@ -160,7 +152,6 @@ export const Home = () => {
     </div>
   );
 
-  // Reusable profile picture component - Modified for vertical expansion
   const ProfilePicture = ({ isMobileLayout = false }) => (
     <div className={`${isMobileLayout ? '' : 'flex-shrink-0'} 
                     transition-all duration-700 ${isMobileLayout ? 'delay-300' : 'delay-900'}
@@ -182,17 +173,13 @@ export const Home = () => {
 
   return (
     <div className="w-full min-h-screen flex items-center justify-center bg-black text-white py-8 pt-24">
-      {/* Changed container to match Navbar: max-w-5xl and px-4 */}
       <div className="max-w-5xl mx-auto px-4">
-        {/* Desktop Layout - side by side with better spacing and flex properties */}
         <div className={`${isMobile ? 'hidden' : 'flex'} items-center justify-between gap-8 lg:gap-10 xl:gap-12 min-w-0`}>
           <div className="flex-1 min-w-0">
             <TextContent />
           </div>
           <ProfilePicture />
         </div>
-        
-        {/* Mobile Layout - stacked vertically with better spacing */}
         <div className={`${isMobile ? 'flex' : 'hidden'} flex-col items-center text-center gap-10 py-8`}>
           <ProfilePicture isMobileLayout={true} />
           <TextContent isMobileLayout={true} />

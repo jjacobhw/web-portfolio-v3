@@ -42,20 +42,18 @@ export const Experience = () => {
   ];
 
   return (
-    <section id="experience" className="min-h-screen bg-black text-white py-20">
+    <section id="experience" className="min-h-screen bg-black text-white py-30">
       <div className="max-w-5xl mx-auto px-4">
         <h2 className="text-5xl font-bold mb-16 text-white text-left">
           Experience
         </h2>
-
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Education Section */}
           <div className="space-y-8">
             <div className="flex items-center gap-3 mb-8">
               <GraduationCap className="w-8 h-8 text-[#1DB954]" />
-              <h3 className="text-3xl font-bold text-white">Education</h3>
+              <h3 className="text-2xl font-semibold text-white">Education</h3>
             </div>
-
             {education.map((edu, index) => (
               <div key={index} className="relative">
                 {/* Timeline connector */}
@@ -65,11 +63,8 @@ export const Experience = () => {
                 
                 <div className="bg-black border border-[#1DB954] rounded-xl p-6 transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:shadow-[#1DB954]/30 relative transform-gpu">
                   <div className="absolute -left-2 top-6 w-4 h-4 bg-[#1DB954] rounded-full border-4 border-black"></div>
-                  
                   <h4 className="text-xl font-bold text-[#1DB954] mb-1">{edu.degree}</h4>
-                  
                   <p className="text-lg font-semibold text-white mb-2">{edu.school}</p>
-                  
                   <div className="flex flex-wrap items-center gap-4 text-white mb-4">
                     <div className="flex items-center gap-1">
                       <MapPin className="w-4 h-4 text-[#1DB954]" />
@@ -99,28 +94,22 @@ export const Experience = () => {
               </div>
             ))}
           </div>
-
-          {/* Work Experience Section */}
           <div className="space-y-8">
             <div className="flex items-center gap-3 mb-8">
               <Briefcase className="w-8 h-8 text-[#1DB954]" />
-              <h3 className="text-3xl font-bold text-white">Professional</h3>
+              <h3 className="text-2xl font-semibold text-white">Professional</h3>
             </div>
 
             {workExperience.map((work, index) => (
               <div key={index} className="relative">
-                {/* Timeline connector */}
                 {index < workExperience.length - 1 && (
                   <div className="absolute left-4 top-20 w-px h-32 bg-[#1DB954]"></div>
                 )}
                 
                 <div className="bg-black border border-[#1DB954] rounded-xl p-6 transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:shadow-[#1DB954]/30 relative transform-gpu">
                   <div className="absolute -left-2 top-6 w-4 h-4 bg-[#1DB954] rounded-full border-4 border-black"></div>
-                  
                   <h4 className="text-xl font-bold text-[#1DB954] mb-1">{work.title}</h4>
-                  
                   <p className="text-lg font-semibold text-white mb-2">{work.company}</p>
-                  
                   <div className="mb-4">
                     <div className="flex items-center gap-1 text-white mb-1">
                       <MapPin className="w-4 h-4 text-[#1DB954]" />
