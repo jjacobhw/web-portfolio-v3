@@ -114,10 +114,10 @@ export const Projects = () => {
                    ${isMobile 
                      ? (isCenter ? 'w-full max-w-sm opacity-100 scale-100 z-20' : 'hidden')
                      : (isCenter 
-                       ? 'w-72 md:w-80 lg:w-96 opacity-100 scale-100 z-30 mx-[-20px]' 
+                       ? 'w-64 md:w-72 lg:w-80 opacity-100 scale-100 z-30 mx-[-20px]' 
                        : (isLeft 
-                         ? 'w-56 md:w-64 lg:w-80 opacity-35 scale-80 z-20 mr-[-60px]' 
-                         : 'w-56 md:w-64 lg:w-80 opacity-35 scale-80 z-20 ml-[-60px]'
+                         ? 'w-52 md:w-60 lg:w-72 opacity-35 scale-80 z-20 mr-[-60px]' 
+                         : 'w-52 md:w-60 lg:w-72 opacity-35 scale-80 z-20 ml-[-60px]'
                        )
                      )
                    }
@@ -131,13 +131,13 @@ export const Projects = () => {
                           : 'border-[#1DB954] hover:border-[#1DB954]/40'
                         }
                         ${isMobile 
-                          ? 'min-h-[520px] max-h-[620px]' 
-                          : (isCenter ? 'h-[540px] md:h-[580px]' : 'h-[500px] md:h-[540px]')
+                          ? 'min-h-[480px] max-h-[580px]' 
+                          : (isCenter ? 'h-[500px] md:h-[540px]' : 'h-[480px] md:h-[520px]')
                         }`}>
           
           {/* Project Image - Fixed height */}
           <div className={`relative overflow-hidden flex-shrink-0
-                          ${isMobile ? 'h-44' : (isCenter ? 'h-44 md:h-48' : 'h-40 md:h-44')}`}>
+                          ${isMobile ? 'h-40' : (isCenter ? 'h-40 md:h-44' : 'h-36 md:h-40')}`}>
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10"></div>
             <img 
               src={project.image} 
@@ -154,9 +154,9 @@ export const Projects = () => {
           </div>
 
           {/* Project Content - Flexible height with proper spacing */}
-          <div className={`flex flex-col flex-1 p-5 md:p-6 lg:p-7`}>
+          <div className={`flex flex-col flex-1 p-4 md:p-5 lg:p-6`}>
             {/* Title Section - Fixed space */}
-            <div className="flex-shrink-0 mb-4">
+            <div className="flex-shrink-0 mb-3">
               <h3 className={`font-bold text-[#1DB954] relative group transition-all duration-300 leading-tight
                              ${isCenter ? 'text-lg md:text-xl' : 'text-base md:text-lg'}`}>
                 <span className="block line-clamp-3">
@@ -167,26 +167,26 @@ export const Projects = () => {
 
             {/* Description Section - Flexible but constrained */}
             <div className={`flex-shrink-0 transition-all duration-500 ease-out
-                           ${(isCenter || isMobile) ? 'mb-5' : 'mb-3'}`}>
+                           ${(isCenter || isMobile) ? 'mb-4' : 'mb-3'}`}>
               <div className={`overflow-hidden
                              ${(isCenter || isMobile)
                                ? 'opacity-100' 
                                : 'opacity-0 max-h-0'
                              }`}>
                 <p className={`text-gray-400 leading-relaxed
-                              ${isMobile ? 'text-sm line-clamp-6' : 'text-sm line-clamp-5'}`}>
+                              ${isMobile ? 'text-sm line-clamp-5' : 'text-sm line-clamp-4'}`}>
                   {project.description}
                 </p>
               </div>
             </div>
 
             {/* Tags Section - Flexible with proper wrapping */}
-            <div className="flex-1 min-h-0 mb-5">
-              <div className="flex flex-wrap gap-2 md:gap-2.5 items-start">
+            <div className="flex-1 min-h-0 mb-4">
+              <div className="flex flex-wrap gap-1.5 md:gap-2 items-start">
                 {project.tags.map((tag, tagIndex) => (
                   <span
                     key={tagIndex}
-                    className={`inline-block px-3 md:px-3.5 py-1.5 text-xs font-medium rounded-full transition-all duration-300 whitespace-nowrap
+                    className={`inline-block px-2.5 md:px-3 py-1 text-xs font-medium rounded-full transition-all duration-300 whitespace-nowrap
                              ${(isCenter || isMobile)
                                ? 'bg-[#1DB954]/15 text-white border border-[#1DB954]/30 hover:bg-[#1DB954]/25' 
                                : 'bg-[#1DB954]/10 text-white/80 border border-[#1DB954]/20'
@@ -204,20 +204,20 @@ export const Projects = () => {
                              ? 'opacity-100 translate-y-0' 
                              : 'opacity-0 translate-y-4 max-h-0 overflow-hidden'
                            }`}>
-              <div className="flex gap-3 md:gap-4">
+              <div className="flex gap-2 md:gap-3">
                 {project.github && (
                   <a 
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 inline-flex items-center justify-center px-4 md:px-5 py-2.5 md:py-3 text-sm md:text-base font-semibold 
+                    className="flex-1 inline-flex items-center justify-center px-3 md:px-4 py-2 md:py-2.5 text-xs md:text-sm font-semibold 
                              text-white bg-[#1DB954]/10 border-2 border-[#1DB954]/30 rounded-lg 
                              hover:bg-[#1DB954]/20 hover:border-[#1DB954]/50
                              transform hover:scale-105 transition-all duration-300 backdrop-blur-sm min-w-0"
                     onClick={(e) => e.stopPropagation()}
                   >
-                    <Github className="w-4 h-4 md:w-5 md:h-5 mr-2 flex-shrink-0 text-[#1DB954]" />
-                    <span className="truncate">Source Code</span>
+                    <Github className="w-3 h-3 md:w-4 md:h-4 mr-1.5 flex-shrink-0 text-[#1DB954]" />
+                    <span className="truncate">Source</span>
                   </a>
                 )}
                 {project.demo && (
@@ -225,13 +225,13 @@ export const Projects = () => {
                     href={project.demo}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 inline-flex items-center justify-center px-4 md:px-5 py-2.5 md:py-3 text-sm md:text-base font-semibold 
+                    className="flex-1 inline-flex items-center justify-center px-3 md:px-4 py-2 md:py-2.5 text-xs md:text-sm font-semibold 
                              text-white bg-[#1DB954]/10 border-2 border-[#1DB954]/30 rounded-lg 
                              hover:bg-[#1DB954]/20 hover:border-[#1DB954]/50
                              transform hover:scale-105 transition-all duration-300 backdrop-blur-sm min-w-0"
                     onClick={(e) => e.stopPropagation()}
                   >
-                    <ExternalLink className="w-4 h-4 md:w-5 md:h-5 mr-2 flex-shrink-0" />
+                    <ExternalLink className="w-3 h-3 md:w-4 md:h-4 mr-1.5 flex-shrink-0" />
                     <span className="truncate">Demo</span>
                   </a>
                 )}
@@ -245,13 +245,13 @@ export const Projects = () => {
 
   return (
     <div className="w-full h-full flex items-start justify-center pt-16 md:pt-20 lg:pt-24 pb-12 md:pb-16 bg-black overflow-hidden">
-      <div className={`max-w-7xl mx-auto px-4 md:px-6 lg:px-8 w-full flex flex-col`}>
+      <div className={`max-w-5xl mx-auto px-4 md:px-6 lg:px-8 w-full flex flex-col`}>
         {/* Header */}
-        <div className={`mb-8 md:mb-12 transition-all duration-700 delay-300
+        <div className={`mb-6 md:mb-8 transition-all duration-700 delay-300
                         ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-          <h2 className={`font-bold text-white mb-4
-                        ${isMobile ? 'text-2xl sm:text-3xl' : 'text-3xl md:text-4xl xl:text-5xl'}
-                        text-left`}>  {/* Added text-left class */}
+          <h2 className={`font-bold text-white mb-3
+                        ${isMobile ? 'text-2xl sm:text-3xl' : 'text-3xl md:text-4xl'}
+                        text-left`}>
             Projects
           </h2>
         </div>
@@ -263,29 +263,29 @@ export const Projects = () => {
               {/* Left Navigation Button */}
               <button
                 onClick={prevProject}
-                className="absolute left-0 z-40 p-2 md:p-3 rounded-full
+                className="absolute left-0 z-40 p-2 md:p-2.5 rounded-full
                         bg-[#1DB954]/10 border-2 border-[#1DB954]/30
                         text-[#1DB954] hover:bg-[#1DB954]/20 hover:border-[#1DB954]/50
                         shadow-lg hover:shadow-xl backdrop-blur-sm
                         transform hover:scale-110 transition-all duration-300
-                        -translate-x-2 md:-translate-x-3 lg:-translate-x-4
-                        cursor-pointer" // Added cursor-pointer
+                        -translate-x-2 md:-translate-x-2 lg:-translate-x-3
+                        cursor-pointer"
               >
-                <ChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
+                <ChevronLeft className="w-4 h-4 md:w-5 md:h-5" />
               </button>
 
               {/* Right Navigation Button */}
               <button
                 onClick={nextProject}
-                className="absolute right-0 z-40 p-2 md:p-3 rounded-full
+                className="absolute right-0 z-40 p-2 md:p-2.5 rounded-full
                         bg-[#1DB954]/10 border-2 border-[#1DB954]/30
                         text-[#1DB954] hover:bg-[#1DB954]/20 hover:border-[#1DB954]/50
                         shadow-lg hover:shadow-xl backdrop-blur-sm
                         transform hover:scale-110 transition-all duration-300
-                        translate-x-2 md:translate-x-3 lg:translate-x-4
-                        cursor-pointer" // Added cursor-pointer
+                        translate-x-2 md:translate-x-2 lg:translate-x-3
+                        cursor-pointer"
               >
-                <ChevronRight className="w-5 h-5 md:w-6 md:h-6" />
+                <ChevronRight className="w-4 h-4 md:w-5 md:h-5" />
               </button>
             </>
           )}
@@ -295,7 +295,7 @@ export const Projects = () => {
             className={`flex items-center justify-center w-full
                        ${isMobile 
                          ? 'px-4' 
-                         : 'px-8 md:px-12 lg:px-16'
+                         : 'px-6 md:px-8 lg:px-10'
                        }`}
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
@@ -337,13 +337,13 @@ export const Projects = () => {
         </div>
 
         {/* Dot Indicators */}
-        <div className={`flex justify-center mt-6 md:mt-8 gap-2 md:gap-3 transition-all duration-700 delay-600
+        <div className={`flex justify-center mt-4 md:mt-6 gap-1.5 md:gap-2 transition-all duration-700 delay-600
                         ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
           {projects.map((_, index) => (
             <button
               key={index}
               onClick={() => goToProject(index)}
-              className={`w-2 h-2 md:w-2.5 md:h-2.5 rounded-full transition-all duration-300 
+              className={`w-1.5 h-1.5 md:w-2 md:h-2 rounded-full transition-all duration-300 
                          ${index === currentIndex 
                            ? 'bg-[#1DB954] scale-125 shadow-lg shadow-[#1DB954]/50' 
                            : 'bg-white/40 hover:bg-white/60 hover:scale-110'
@@ -354,24 +354,24 @@ export const Projects = () => {
 
         {/* Mobile Navigation Buttons */}
         {isMobile && (
-          <div className="flex justify-center mt-6 gap-4">
+          <div className="flex justify-center mt-4 gap-3">
             <button
               onClick={prevProject}
-              className="p-3 rounded-full bg-[#1DB954]/10 border-2 border-[#1DB954]/30
+              className="p-2.5 rounded-full bg-[#1DB954]/10 border-2 border-[#1DB954]/30
                        text-[#1DB954] hover:bg-[#1DB954]/20 hover:border-[#1DB954]/50
                        shadow-lg hover:shadow-xl backdrop-blur-sm
                        transform hover:scale-110 transition-all duration-300"
             >
-              <ChevronLeft className="w-6 h-6" />
+              <ChevronLeft className="w-5 h-5" />
             </button>
             <button
               onClick={nextProject}
-              className="p-3 rounded-full bg-[#1DB954]/10 border-2 border-[#1DB954]/30
+              className="p-2.5 rounded-full bg-[#1DB954]/10 border-2 border-[#1DB954]/30
                        text-[#1DB954] hover:bg-[#1DB954]/20 hover:border-[#1DB954]/50
                        shadow-lg hover:shadow-xl backdrop-blur-sm
                        transform hover:scale-110 transition-all duration-300"
             >
-              <ChevronRight className="w-6 h-6" />
+              <ChevronRight className="w-5 h-5" />
             </button>
           </div>
         )}
