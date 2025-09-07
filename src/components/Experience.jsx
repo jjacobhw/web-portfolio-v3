@@ -44,7 +44,7 @@ export const Experience = () => {
   return (
     <section id="experience" className="min-h-screen bg-black text-white py-20">
       <div className="max-w-5xl mx-auto px-4">
-        <h2 className="text-5xl font-bold text-center mb-16 text-white">
+        <h2 className="text-5xl font-bold mb-16 text-white text-left">
           Experience
         </h2>
 
@@ -63,7 +63,7 @@ export const Experience = () => {
                   <div className="absolute left-4 top-16 w-px h-24 bg-[#1DB954]"></div>
                 )}
                 
-                <div className="bg-black border border-gray-800 rounded-xl p-6 hover:border-[#1DB954] transition-all duration-300 hover:shadow-lg hover:shadow-[#1DB954]/20 relative">
+                <div className="bg-black border border-[#1DB954] rounded-xl p-6 transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:shadow-[#1DB954]/30 relative transform-gpu">
                   <div className="absolute -left-2 top-6 w-4 h-4 bg-[#1DB954] rounded-full border-4 border-black"></div>
                   
                   <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-3">
@@ -115,7 +115,7 @@ export const Experience = () => {
                   <div className="absolute left-4 top-20 w-px h-32 bg-[#1DB954]"></div>
                 )}
                 
-                <div className="bg-black border border-gray-800 rounded-xl p-6 hover:border-[#1DB954] transition-all duration-300 hover:shadow-lg hover:shadow-[#1DB954]/20 relative">
+                <div className="bg-black border border-[#1DB954] rounded-xl p-6 transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:shadow-[#1DB954]/30 relative transform-gpu">
                   <div className="absolute -left-2 top-6 w-4 h-4 bg-[#1DB954] rounded-full border-4 border-black"></div>
                   
                   <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-3">
@@ -149,7 +149,7 @@ export const Experience = () => {
                   
                   <div className="flex flex-wrap gap-2">
                     {work.technologies.map((tech, idx) => (
-                      <span key={idx} className="bg-gray-900 text-[#1DB954] px-3 py-1 rounded-full text-sm border border-[#1DB954]/30">
+                      <span key={idx} className="bg-black text-[#1DB954] px-3 py-1 rounded-full text-sm border border-[#1DB954]/30">
                         {tech}
                       </span>
                     ))}

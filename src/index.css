@@ -8,39 +8,27 @@ html, body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Enable Tailwind dark mode */
-@media (prefers-color-scheme: dark) {
-  html:not(.light) {
-    color-scheme: dark;
-  }
-}
-
-/* Hide scrollbar for a cleaner look but keep functionality */
 body {
-  scrollbar-width: none;  /* Firefox */
-  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none; 
+  -ms-overflow-style: none; 
 }
 
 body::-webkit-scrollbar {
-  display: none;  /* Chrome, Safari and Opera */
+  display: none;
 }
 
-/* Smooth scrolling for the entire page */
 html {
   scroll-behavior: smooth;
 }
 
-/* Prevent body scrolling when menu is open */
 body.menu-open {
   overflow: hidden;
 }
 
-/* Better section transitions */
 section {
   transition: all 0.3s ease-in-out;
 }
 
-/* Active section indicator for navigation */
 .nav-indicator {
   position: relative;
 }
@@ -63,8 +51,6 @@ section {
   opacity: 1;
 }
 
-/* ===== SKILLS SECTION SPECIFIC STYLES ===== */
-/* Allow skills content to scroll internally */
 .skills-content {
   height: 100%;
   overflow-y: auto;
@@ -72,7 +58,6 @@ section {
   padding-bottom: 2rem;
 }
 
-/* Custom scrollbar for skills section */
 .skills-content::-webkit-scrollbar {
   width: 6px;
 }
@@ -91,13 +76,11 @@ section {
   background: rgba(29, 185, 84, 0.5);
 }
 
-/* Firefox scrollbar styling for skills */
 .skills-content {
   scrollbar-width: thin;
   scrollbar-color: rgba(29, 185, 84, 0.3) rgba(29, 185, 84, 0.1);
 }
 
-/* ===== EXISTING ANIMATIONS AND UTILITIES ===== */
 @layer utilities {
   @keyframes loading {
     0%, 100% {
@@ -157,7 +140,6 @@ section {
     animation: fade-in-up 0.5s ease-out forwards;
   }
 
-  /* Smooth theme transitions for all elements */
   * {
     transition-property: background-color, border-color, color, fill, stroke;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -165,7 +147,14 @@ section {
   }
 }
 
-/* Progress indicator for scroll navigation */
+@media (max-width: 1024px) {
+  /* Better mobile spacing for skills */
+  .skills-content {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
 .scroll-progress {
   position: fixed;
   top: 0;
@@ -183,48 +172,19 @@ section {
   transition: width 0.3s ease;
 }
 
-/* ===== MOBILE AND RESPONSIVE IMPROVEMENTS ===== */
-@media (max-width: 1024px) {
-  /* Better mobile spacing for skills */
-  .skills-content {
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-}
 
-/* ===== TOUCH AND INTERACTION IMPROVEMENTS ===== */
-/* Improve button and interactive element spacing */
+
 button, a {
   touch-action: manipulation;
 }
 
-/* Better focus states for accessibility */
 button:focus-visible,
 a:focus-visible {
   outline: 2px solid #1DB954;
   outline-offset: 2px;
 }
 
-/* ===== PERFORMANCE OPTIMIZATIONS ===== */
-/* Optimize transitions */
 section {
   backface-visibility: hidden;
   perspective: 1000px;
-}
-
-/* Reduced motion support for accessibility */
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-  
-  * {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-  
-  .animate-wave {
-    animation: none;
-  }
 }
