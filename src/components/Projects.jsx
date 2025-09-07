@@ -142,7 +142,7 @@ export const Projects = () => {
             <img 
               src={project.image} 
               alt={project.title} 
-              className="w-full h-full object-cover transition-all duration-700 hover:scale-110"
+              className="w-full h-full object-cover transition-all duration-700 hover:scale-105"
               onError={(e) => {
                 e.target.src = 'https://via.placeholder.com/400x300/1a1a1a/666666?text=Project+Image';
               }}
@@ -213,7 +213,7 @@ export const Projects = () => {
                     className="flex-1 inline-flex items-center justify-center px-3 md:px-4 py-2 md:py-2.5 text-xs md:text-sm font-semibold 
                              text-white bg-[#1DB954]/10 border-2 border-[#1DB954]/30 rounded-lg 
                              hover:bg-[#1DB954]/20 hover:border-[#1DB954]/50
-                             transform hover:scale-105 transition-all duration-300 backdrop-blur-sm min-w-0"
+                             transform hover:scale-105 transition-all duration-200 backdrop-blur-sm min-w-0"
                     onClick={(e) => e.stopPropagation()}
                   >
                     <Github className="w-3 h-3 md:w-4 md:h-4 mr-1.5 flex-shrink-0 text-[#1DB954]" />

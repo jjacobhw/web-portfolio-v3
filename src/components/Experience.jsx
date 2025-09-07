@@ -6,7 +6,7 @@ export const Experience = () => {
       degree: "Bachelor of Science, Computer Science",
       school: "University of California, Santa Cruz",
       location: "Santa Cruz, CA",
-      period: "2023 - 2027",
+      period: "September 2023 - June 2027",
       gpa: "3.85/4.00",
       highlights: []
     }
@@ -63,8 +63,9 @@ export const Experience = () => {
                 
                 <div className="bg-black border border-[#1DB954] rounded-xl p-6 transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:shadow-[#1DB954]/30 relative transform-gpu">
                   <div className="absolute -left-2 top-6 w-4 h-4 bg-[#1DB954] rounded-full border-4 border-black"></div>
-                  <h4 className="text-xl font-bold text-[#1DB954] mb-1">{edu.degree}</h4>
+                  {/* Switched the order of school and degree */}
                   <p className="text-lg font-semibold text-white mb-2">{edu.school}</p>
+                  <h4 className="text-xl font-bold text-[#1DB954] mb-1">{edu.degree}</h4>
                   <div className="flex flex-wrap items-center gap-4 text-white mb-4">
                     <div className="flex items-center gap-1">
                       <MapPin className="w-4 h-4 text-[#1DB954]" />
