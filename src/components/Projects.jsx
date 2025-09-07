@@ -334,10 +334,34 @@ export const Projects = () => {
               </>
             )}
           </div>
+
+          {/* Mobile Navigation Buttons - Positioned on sides */}
+          {isMobile && (
+            <div className="absolute inset-0 flex items-center justify-between w-full px-2 z-30">
+              <button
+                onClick={prevProject}
+                className="p-2.5 rounded-full bg-[#1DB954]/10 border-2 border-[#1DB954]/30
+                         text-[#1DB954] hover:bg-[#1DB954]/20 hover:border-[#1DB954]/50
+                         shadow-lg hover:shadow-xl backdrop-blur-sm
+                         transform hover:scale-110 transition-all duration-300"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+              <button
+                onClick={nextProject}
+                className="p-2.5 rounded-full bg-[#1DB954]/10 border-2 border-[#1DB954]/30
+                         text-[#1DB954] hover:bg-[#1DB954]/20 hover:border-[#1DB954]/50
+                         shadow-lg hover:shadow-xl backdrop-blur-sm
+                         transform hover:scale-110 transition-all duration-300"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
+            </div>
+          )}
         </div>
 
-        {/* Dot Indicators */}
-        <div className={`flex justify-center mt-4 md:mt-6 gap-1.5 md:gap-2 transition-all duration-700 delay-600
+        {/* Dot Indicators - Moved closer to project card */}
+        <div className={`flex justify-center mt-6 md:mt-6 gap-1.5 md:gap-2 transition-all duration-700 delay-600
                         ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
           {projects.map((_, index) => (
             <button
@@ -351,30 +375,6 @@ export const Projects = () => {
             />
           ))}
         </div>
-
-        {/* Mobile Navigation Buttons */}
-        {isMobile && (
-          <div className="flex justify-center mt-4 gap-3">
-            <button
-              onClick={prevProject}
-              className="p-2.5 rounded-full bg-[#1DB954]/10 border-2 border-[#1DB954]/30
-                       text-[#1DB954] hover:bg-[#1DB954]/20 hover:border-[#1DB954]/50
-                       shadow-lg hover:shadow-xl backdrop-blur-sm
-                       transform hover:scale-110 transition-all duration-300"
-            >
-              <ChevronLeft className="w-5 h-5" />
-            </button>
-            <button
-              onClick={nextProject}
-              className="p-2.5 rounded-full bg-[#1DB954]/10 border-2 border-[#1DB954]/30
-                       text-[#1DB954] hover:bg-[#1DB954]/20 hover:border-[#1DB954]/50
-                       shadow-lg hover:shadow-xl backdrop-blur-sm
-                       transform hover:scale-110 transition-all duration-300"
-            >
-              <ChevronRight className="w-5 h-5" />
-            </button>
-          </div>
-        )}
       </div>
     </div>
   );
