@@ -135,7 +135,6 @@ export const Projects = () => {
                           : (isCenter ? 'h-[560px] md:h-[600px]' : 'h-[520px] md:h-[560px]')
                         }`}>
           
-          {/* Project Image - Increased height */}
           <div className={`relative overflow-hidden flex-shrink-0
                           ${isMobile ? 'h-48' : (isCenter ? 'h-48 md:h-52' : 'h-40 md:h-44')}`}>
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10"></div>
@@ -147,15 +146,12 @@ export const Projects = () => {
                 e.target.src = 'https://via.placeholder.com/400x300/1a1a1a/666666?text=Project+Image';
               }}
             />
-            {/* Center project glow effect */}
             {isCenter && (
               <div className="absolute inset-0 bg-gradient-to-t from-[#1DB954]/15 via-transparent to-transparent"></div>
             )}
           </div>
 
-          {/* Project Content - Increased padding and spacing */}
           <div className={`flex flex-col flex-1 p-5 md:p-6 lg:p-7`}>
-            {/* Title Section - Increased font size */}
             <div className="flex-shrink-0 mb-4">
               <h3 className={`font-bold text-[#1DB954] relative group transition-all duration-300 leading-tight
                              ${isCenter ? 'text-xl md:text-2xl' : 'text-lg md:text-xl'}`}>
@@ -165,7 +161,6 @@ export const Projects = () => {
               </h3>
             </div>
 
-            {/* Description Section - Increased font size */}
             <div className={`flex-shrink-0 transition-all duration-500 ease-out mb-5
                            ${(isCenter || isMobile) ? 'opacity-100' : 'opacity-0 max-h-0 mb-0'}`}>
               <p className={`text-white leading-relaxed 
@@ -174,7 +169,6 @@ export const Projects = () => {
               </p>
             </div>
 
-            {/* Tags Section - Increased size */}
             {(isCenter || isMobile) && (
               <div className="flex-1 min-h-0 mb-5">
                 <div className="flex flex-wrap gap-2 md:gap-2.5 items-start">
@@ -194,7 +188,6 @@ export const Projects = () => {
               </div>
             )}
 
-            {/* Buttons Section - Increased size */}
             <div className={`flex-shrink-0 transition-all duration-500 ease-out
                            ${(isCenter || isMobile)
                              ? 'opacity-100 translate-y-0' 
@@ -252,11 +245,9 @@ export const Projects = () => {
           </h2>
         </div>
 
-        {/* Carousel Container */}
         <div className={`relative flex items-center justify-center ${isMobile ? 'px-0' : ''}`}>
           {!isMobile && (
             <>
-              {/* Left Navigation Button */}
               <button
                 onClick={prevProject}
                 className="absolute left-0 z-40 p-2 md:p-2.5 rounded-full
@@ -270,7 +261,6 @@ export const Projects = () => {
                 <ChevronLeft className="w-4 h-4 md:w-5 md:h-5" />
               </button>
 
-              {/* Right Navigation Button */}
               <button
                 onClick={nextProject}
                 className="absolute right-0 z-40 p-2 md:p-2.5 rounded-full
@@ -286,7 +276,6 @@ export const Projects = () => {
             </>
           )}
 
-          {/* Cards Container */}
           <div 
             className={`flex items-center justify-center w-full
                        ${isMobile 
@@ -298,30 +287,23 @@ export const Projects = () => {
             onTouchEnd={handleTouchEnd}
           >
             {isMobile ? (
-              // Mobile: Show only center project
               <ProjectCard 
                 project={centerProject} 
                 position="center"
                 onClick={() => {}}
               />
             ) : (
-              // Desktop: Show all three projects with overlapping
               <>
-                {/* Left Project */}
                 <ProjectCard 
                   project={leftProject} 
                   position="left"
                   onClick={prevProject}
                 />
-
-                {/* Center Project (Active) */}
                 <ProjectCard 
                   project={centerProject} 
                   position="center"
                   onClick={() => {}}
                 />
-
-                {/* Right Project */}
                 <ProjectCard 
                   project={rightProject} 
                   position="right"
@@ -331,7 +313,6 @@ export const Projects = () => {
             )}
           </div>
 
-          {/* Mobile Navigation Buttons - Positioned on sides */}
           {isMobile && (
             <div className="absolute inset-0 flex items-center justify-between w-full px-2 z-30">
               <button
@@ -356,7 +337,6 @@ export const Projects = () => {
           )}
         </div>
 
-        {/* Dot Indicators - Moved closer to project card */}
         <div className={`flex justify-center mt-6 md:mt-6 gap-1.5 md:gap-2 transition-all duration-700 delay-600
                         ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
           {projects.map((_, index) => (

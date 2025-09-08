@@ -63,7 +63,6 @@ export const Experience = () => {
                 
                 <div className="bg-black border border-[#1DB954]/30 rounded-xl p-6 transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:shadow-[#1DB954]/30 relative transform-gpu cursor-pointer">
                   <div className="absolute -left-2 top-6 w-4 h-4 bg-[#1DB954] rounded-full border-4 border-black"></div>
-                  {/* Switched properties: school gets the degree styling, degree gets the school styling */}
                   <h4 className="text-xl font-bold text-[#1DB954] mb-1">{edu.school}</h4>
                   <p className="text-lg font-semibold text-white mb-2">{edu.degree}</p>
                   <div className="flex flex-wrap items-center gap-4 text-white mb-4">
@@ -136,7 +135,6 @@ export const Experience = () => {
                     </ul>
                   </div>
                   
-                  {/* Updated technologies styling to match project tags */}
                   <div className="flex flex-wrap gap-1.5 md:gap-2 items-start">
                     {work.technologies.map((tech, idx) => (
                       <span key={idx} className="inline-block px-2.5 md:px-3 py-1 text-xs font-medium rounded-full transition-all duration-300 whitespace-nowrap
