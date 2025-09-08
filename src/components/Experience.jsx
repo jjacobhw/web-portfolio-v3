@@ -31,13 +31,13 @@ export const Experience = () => {
       company: "Healthcare Practice IT",
       location: "Orange County, CA",
       period: "June 2024 - September 2024", 
-      description: "Developed features for Google Search using cutting-edge machine learning algorithms. Collaborated with cross-functional teams to improve user experience.",
+      description: "Leveraged RPA to transform repetitive, manual tasks into automated workflows,boosting team productivity and enabling the company to allocate resources towards higher priority tasks.",
       achievements: [
-        "Implemented ML model with 95% accuracy",
-        "Contributed to 3 major product releases",
-        "Presented findings to senior leadership"
+        "Developed an email address validator with a 93% accurate detection rate",
+        "Worked with accountants to deploy tax calculators, eliminating dedicated days for filing taxes",
+        "RPA pipelines saved 25-30 man-hours of labor every month"
       ],
-      technologies: ["Python", "UiPath", "Visual Basic", "RPA", "Bash"]
+      technologies: ["Python", "UiPath", "Visual Basic", "RPA", "Bash", "Regex"]
     },
   ];
 
@@ -136,9 +136,11 @@ export const Experience = () => {
                     </ul>
                   </div>
                   
-                  <div className="flex flex-wrap gap-2">
+                  {/* Updated technologies styling to match project tags */}
+                  <div className="flex flex-wrap gap-1.5 md:gap-2 items-start">
                     {work.technologies.map((tech, idx) => (
-                      <span key={idx} className="bg-black text-white px-3 py-1 rounded-full text-sm border border-[#1DB954]/50">
+                      <span key={idx} className="inline-block px-2.5 md:px-3 py-1 text-xs font-medium rounded-full transition-all duration-300 whitespace-nowrap
+                                   bg-[#1DB954]/15 text-white border border-[#1DB954]/30 hover:bg-[#1DB954]/25">
                         {tech}
                       </span>
                     ))}

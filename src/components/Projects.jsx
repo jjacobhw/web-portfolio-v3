@@ -149,7 +149,7 @@ export const Projects = () => {
             />
             {/* Center project glow effect */}
             {isCenter && (
-              <div className="absolute inset-0 bg-gradient-to-t from-[#1DB954]/10 via-transparent to-transparent"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-[#1DB954]/15 via-transparent to-transparent"></div>
             )}
           </div>
 
@@ -168,29 +168,31 @@ export const Projects = () => {
             {/* Description Section - Now always visible with proper spacing */}
             <div className={`flex-shrink-0 transition-all duration-500 ease-out mb-4
                            ${(isCenter || isMobile) ? 'opacity-100' : 'opacity-0 max-h-0 mb-0'}`}>
-              <p className={`text-gray-400 leading-relaxed text-sm
+              <p className={`text-white leading-relaxed text-sm
                             ${isMobile ? '' : ''}`}>
                 {project.description}
               </p>
             </div>
 
-            {/* Tags Section - Flexible with proper wrapping */}
-            <div className="flex-1 min-h-0 mb-4">
-              <div className="flex flex-wrap gap-1.5 md:gap-2 items-start">
-                {project.tags.map((tag, tagIndex) => (
-                  <span
-                    key={tagIndex}
-                    className={`inline-block px-2.5 md:px-3 py-1 text-xs font-medium rounded-full transition-all duration-300 whitespace-nowrap
-                             ${(isCenter || isMobile)
-                               ? 'bg-[#1DB954]/15 text-white border border-[#1DB954]/30 hover:bg-[#1DB954]/25' 
-                               : 'bg-[#1DB954]/10 text-white/80 border border-[#1DB954]/20'
-                             }`}
-                  >
-                    {tag}
-                  </span>
-                ))}
+            {/* Tags Section - Only show for center project */}
+            {(isCenter || isMobile) && (
+              <div className="flex-1 min-h-0 mb-4">
+                <div className="flex flex-wrap gap-1.5 md:gap-2 items-start">
+                  {project.tags.map((tag, tagIndex) => (
+                    <span
+                      key={tagIndex}
+                      className={`inline-block px-2.5 md:px-3 py-1 text-xs font-medium rounded-full transition-all duration-300 whitespace-nowrap
+                               ${(isCenter || isMobile)
+                                 ? 'bg-[#1DB954]/15 text-white border border-[#1DB954]/30 hover:bg-[#1DB954]/25' 
+                                 : 'bg-[#1DB954]/10 text-white/80 border border-[#1DB954]/20'
+                               }`}
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
 
             {/* Buttons Section - Fixed at bottom */}
             <div className={`flex-shrink-0 transition-all duration-500 ease-out
