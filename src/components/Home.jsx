@@ -126,7 +126,7 @@ export const Home = () => {
                       transition-all duration-700 delay-700
                       ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
         <ActionButton 
-          href="media\Jacob's Resume.pdf" 
+          href="/media\Jacob's Resume.pdf" 
           icon={FileText} 
           isMobileLayout={isMobileLayout}
         >
