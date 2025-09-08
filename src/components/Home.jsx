@@ -126,7 +126,7 @@ export const Home = () => {
                       transition-all duration-700 delay-700
                       ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
         <ActionButton 
-          href="/media\Jacob's Resume.pdf" 
+          href="/media/Jacob's Resume.pdf" 
           icon={FileText} 
           isMobileLayout={isMobileLayout}
         >
@@ -158,7 +158,7 @@ export const Home = () => {
                     ${isVisible ? 'opacity-100 translate-y-0 translate-x-0' : `opacity-0 ${isMobileLayout ? 'translate-y-8' : 'translate-x-8'}`}`}>
       <div className="relative">
         <img
-          src="/media/profile-photo.jpg"
+          src="/media/profile-photo.JPG"
           alt="Jacob Wei"
           className={`${
             isMobileLayout 
