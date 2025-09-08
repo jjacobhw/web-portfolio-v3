@@ -158,7 +158,7 @@ export const Home = () => {
                     ${isVisible ? 'opacity-100 translate-y-0 translate-x-0' : `opacity-0 ${isMobileLayout ? 'translate-y-8' : 'translate-x-8'}`}`}>
       <div className="relative">
         <img
-          src="/media/profile-photo.JPG"
+          src="/media/profile-photo.jpg"
           alt="Jacob Wei"
           className={`${
             isMobileLayout 
