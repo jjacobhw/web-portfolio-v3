@@ -239,7 +239,7 @@ export const Projects = () => {
         <div className={`mb-6 md:mb-8 transition-all duration-700 delay-300
                         ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
           <h2 className={`font-bold text-white mb-3
-                        ${isMobile ? 'text-2xl sm:text-3xl' : 'text-3xl md:text-4xl'}
+                        ${isMobile ? 'text-5xl sm:text-5xl' : 'text-5xl md:text-5xl'}
                         text-left`}>
             Projects
           </h2>
