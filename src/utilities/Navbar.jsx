@@ -1,4 +1,3 @@
-// Navbar.jsx
 import { useEffect, useState } from "react";
 import { Mail, Mails, Home, Computer, CodeXml, Folders } from 'lucide-react';
 

@@ -18,7 +18,7 @@ export const Experience = () => {
       company: "Inference.ai",
       location: "Palo Alto, CA",
       period: "June 2025 - September 2025",
-      description: "Led development of scalable web applications serving 1M+ users. Architected microservices infrastructure and mentored junior developers.",
+      description: "",
       achievements: [
         "Improved application performance by 40%",
         "Led team of 5 engineers",
@@ -61,7 +61,7 @@ export const Experience = () => {
                   <div className="absolute left-4 top-16 w-px h-24 bg-[#1DB954]"></div>
                 )}
                 
-                <div className="bg-black border border-[#1DB954]/30 rounded-xl p-6 transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:shadow-[#1DB954]/30 relative transform-gpu">
+                <div className="bg-black border border-[#1DB954]/30 rounded-xl p-6 transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:shadow-[#1DB954]/30 relative transform-gpu cursor-pointer">
                   <div className="absolute -left-2 top-6 w-4 h-4 bg-[#1DB954] rounded-full border-4 border-black"></div>
                   {/* Switched properties: school gets the degree styling, degree gets the school styling */}
                   <h4 className="text-xl font-bold text-[#1DB954] mb-1">{edu.school}</h4>
@@ -107,7 +107,7 @@ export const Experience = () => {
                   <div className="absolute left-4 top-20 w-px h-32 bg-[#1DB954]"></div>
                 )}
                 
-                <div className="bg-black border border-[#1DB954]/30 rounded-xl p-6 transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:shadow-[#1DB954]/30 relative transform-gpu">
+                <div className="bg-black border border-[#1DB954]/30 rounded-xl p-6 transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:shadow-[#1DB954]/30 relative transform-gpu cursor-pointer">
                   <div className="absolute -left-2 top-6 w-4 h-4 bg-[#1DB954] rounded-full border-4 border-black"></div>
                   <h4 className="text-xl font-bold text-[#1DB954] mb-1">{work.title}</h4>
                   <p className="text-lg font-semibold text-white mb-2">{work.company}</p>

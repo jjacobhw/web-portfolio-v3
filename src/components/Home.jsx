@@ -88,7 +88,7 @@ export const Home = () => {
           ? 'text-xl sm:text-2xl mb-7'
           : 'text-lg lg:text-xl xl:text-2xl 2xl:text-3xl mb-8'
       } transition-all duration-700 delay-300
-      ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+      ${isVisible && isTypingComplete ? 'opacity-100 translate-x-0 animate-slideInLeft' : 'opacity-0 translate-x-8'}`}>
         AI/ML Engineer & Full Stack Developer
       </h2>
       
@@ -97,7 +97,7 @@ export const Home = () => {
           ? 'text-lg sm:text-xl flex items-center justify-center gap-1.5 mb-7'
           : 'text-base lg:text-lg xl:text-xl flex items-center gap-1.5 mb-8'
       } transition-all duration-700 delay-500
-      ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+      ${isVisible && isTypingComplete ? 'opacity-100 translate-x-0 animate-slideInLeft' : 'opacity-0 translate-x-8'}`}>
         <MapPin className="w-5 h-5 text-[#1DB954] flex-shrink-0" />
         Irvine, California
       </h3>
@@ -106,8 +106,8 @@ export const Home = () => {
         isMobileLayout 
           ? 'text-base sm:text-lg mb-7'
           : 'text-sm lg:text-base xl:text-lg mb-8 max-w-2xl'
-      } transition-all duration-700 delay-500
-      ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+      } transition-all duration-700 delay-700
+      ${isVisible && isTypingComplete ? 'opacity-100 translate-x-0 animate-slideInLeft' : 'opacity-0 translate-x-8'}`}>
         I'm a Computer Science undergraduate exploring RAG, NLP, LLM fine-tuning, and deep learning.
         With a foundation in software engineering and web development, I enjoy building intelligent,
         practical systems that address real-world challenges.
@@ -117,14 +117,14 @@ export const Home = () => {
         isMobileLayout 
           ? 'text-base sm:text-lg mb-7'
           : 'text-sm lg:text-base xl:text-lg mb-8 max-w-2xl'
-      } transition-all duration-700 delay-500
-      ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+      } transition-all duration-700 delay-900
+      ${isVisible && isTypingComplete ? 'opacity-100 translate-x-0 animate-slideInLeft' : 'opacity-0 translate-x-8'}`}>
         Feel free to contact me for any inquiries!
       </h5>
       
       <div className={`flex ${isMobileLayout ? 'flex-wrap justify-center gap-4 sm:gap-5' : 'flex-wrap gap-3 lg:gap-4 xl:gap-5'}
-                      transition-all duration-700 delay-700
-                      ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+                      transition-all duration-700 delay-1100
+                      ${isVisible && isTypingComplete ? 'opacity-100 translate-x-0 animate-slideInLeft' : 'opacity-0 translate-x-8'}`}>
         <ActionButton 
           href="media\Jacob's Resume.pdf" 
           icon={FileText} 
@@ -155,7 +155,7 @@ export const Home = () => {
   const ProfilePicture = ({ isMobileLayout = false }) => (
     <div className={`${isMobileLayout ? '' : 'flex-shrink-0'} 
                     transition-all duration-700 ${isMobileLayout ? 'delay-300' : 'delay-900'}
-                    ${isVisible ? 'opacity-100 translate-y-0 translate-x-0' : `opacity-0 ${isMobileLayout ? 'translate-y-8' : 'translate-x-8'}`}`}>
+                    ${isVisible && isTypingComplete ? 'opacity-100 translate-y-0 translate-x-0 animate-slideInLeft' : `opacity-0 ${isMobileLayout ? 'translate-y-8' : 'translate-x-8'}`}`}>
       <div className="relative">
         <img
           src="/media/profile-photo.jpg"
@@ -173,6 +173,23 @@ export const Home = () => {
 
   return (
     <div className="w-full min-h-screen flex items-center justify-center bg-black text-white py-8 pt-24">
+      <style>
+        {`
+          @keyframes slideInLeft {
+            from {
+              transform: translateX(-30px);
+              opacity: 0;
+            }
+            to {
+              transform: translateX(0);
+              opacity: 1;
+            }
+          }
+          .animate-slideInLeft {
+            animation: slideInLeft 0.5s ease-out forwards;
+          }
+        `}
+      </style>
       <div className="max-w-5xl mx-auto px-4">
         <div className={`${isMobile ? 'hidden' : 'flex'} items-center justify-between gap-8 lg:gap-10 xl:gap-12 min-w-0`}>
           <div className="flex-1 min-w-0">
