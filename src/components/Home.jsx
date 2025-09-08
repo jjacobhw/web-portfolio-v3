@@ -108,9 +108,9 @@ export const Home = () => {
           : 'text-sm lg:text-base xl:text-lg mb-8 max-w-2xl'
       } transition-all duration-700 delay-500
       ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-        I'm a Computer Science undergraduate exploring RAG, NLP, LLM fine-tuning, and deep learning.
-        With a foundation in software engineering and web development, I enjoy building intelligent,
-        practical systems that address real-world challenges.
+        I’m a Computer Science undergraduate specializing in machine learning, AI engineering, 
+        and full-stack development. With experience in fine-tuning LLMs, building RAG pipelines, and deploying 
+        automation solutions, I focus on creating practical, scalable solutions that deliver real-world impact.
       </h4>
       
       <h5 className={`text-white/90 ${
