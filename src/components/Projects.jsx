@@ -112,12 +112,12 @@ export const Projects = () => {
       <div
         className={`flex-shrink-0 transition-all duration-500 ease-out cursor-pointer
                    ${isMobile 
-                     ? (isCenter ? 'w-full max-w-sm opacity-100 scale-100 z-20' : 'hidden')
+                     ? (isCenter ? 'w-full max-w-md opacity-100 scale-100 z-20' : 'hidden')
                      : (isCenter 
-                       ? 'w-64 md:w-72 lg:w-80 opacity-100 scale-100 z-30 mx-[-20px]' 
+                       ? 'w-80 md:w-96 lg:w-[28rem] opacity-100 scale-100 z-30 mx-[-20px]' 
                        : (isLeft 
-                         ? 'w-52 md:w-60 lg:w-72 opacity-35 scale-80 z-20 mr-[-60px]' 
-                         : 'w-52 md:w-60 lg:w-72 opacity-35 scale-80 z-20 ml-[-60px]'
+                         ? 'w-64 md:w-72 lg:w-80 opacity-35 scale-80 z-20 mr-[-60px]' 
+                         : 'w-64 md:w-72 lg:w-80 opacity-35 scale-80 z-20 ml-[-60px]'
                        )
                      )
                    }
@@ -131,13 +131,13 @@ export const Projects = () => {
                           : 'border-[#1DB954] hover:border-[#1DB954]/40'
                         }
                         ${isMobile 
-                          ? 'min-h-[480px] max-h-[580px]' 
-                          : (isCenter ? 'h-[500px] md:h-[540px]' : 'h-[480px] md:h-[520px]')
+                          ? 'min-h-[520px] max-h-[620px]' 
+                          : (isCenter ? 'h-[560px] md:h-[600px]' : 'h-[520px] md:h-[560px]')
                         }`}>
           
-          {/* Project Image - Fixed height */}
+          {/* Project Image - Increased height */}
           <div className={`relative overflow-hidden flex-shrink-0
-                          ${isMobile ? 'h-40' : (isCenter ? 'h-40 md:h-44' : 'h-36 md:h-40')}`}>
+                          ${isMobile ? 'h-48' : (isCenter ? 'h-48 md:h-52' : 'h-40 md:h-44')}`}>
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10"></div>
             <img 
               src={project.image} 
@@ -153,35 +153,35 @@ export const Projects = () => {
             )}
           </div>
 
-          {/* Project Content - Flexible height with proper spacing */}
-          <div className={`flex flex-col flex-1 p-4 md:p-5 lg:p-6`}>
-            {/* Title Section - Fixed space */}
-            <div className="flex-shrink-0 mb-3">
+          {/* Project Content - Increased padding and spacing */}
+          <div className={`flex flex-col flex-1 p-5 md:p-6 lg:p-7`}>
+            {/* Title Section - Increased font size */}
+            <div className="flex-shrink-0 mb-4">
               <h3 className={`font-bold text-[#1DB954] relative group transition-all duration-300 leading-tight
-                             ${isCenter ? 'text-lg md:text-xl' : 'text-base md:text-lg'}`}>
+                             ${isCenter ? 'text-xl md:text-2xl' : 'text-lg md:text-xl'}`}>
                 <span className="block line-clamp-3">
                   {project.title}
                 </span>
               </h3>
             </div>
 
-            {/* Description Section - Now always visible with proper spacing */}
-            <div className={`flex-shrink-0 transition-all duration-500 ease-out mb-4
+            {/* Description Section - Increased font size */}
+            <div className={`flex-shrink-0 transition-all duration-500 ease-out mb-5
                            ${(isCenter || isMobile) ? 'opacity-100' : 'opacity-0 max-h-0 mb-0'}`}>
-              <p className={`text-white leading-relaxed text-sm
-                            ${isMobile ? '' : ''}`}>
+              <p className={`text-white leading-relaxed 
+                            ${isCenter ? 'text-base md:text-lg' : 'text-sm md:text-base'}`}>
                 {project.description}
               </p>
             </div>
 
-            {/* Tags Section - Only show for center project */}
+            {/* Tags Section - Increased size */}
             {(isCenter || isMobile) && (
-              <div className="flex-1 min-h-0 mb-4">
-                <div className="flex flex-wrap gap-1.5 md:gap-2 items-start">
+              <div className="flex-1 min-h-0 mb-5">
+                <div className="flex flex-wrap gap-2 md:gap-2.5 items-start">
                   {project.tags.map((tag, tagIndex) => (
                     <span
                       key={tagIndex}
-                      className={`inline-block px-2.5 md:px-3 py-1 text-xs font-medium rounded-full transition-all duration-300 whitespace-nowrap
+                      className={`inline-block px-3 md:px-3.5 py-1.5 text-sm font-medium rounded-full transition-all duration-300 whitespace-nowrap
                                ${(isCenter || isMobile)
                                  ? 'bg-[#1DB954]/15 text-white border border-[#1DB954]/30 hover:bg-[#1DB954]/25' 
                                  : 'bg-[#1DB954]/10 text-white/80 border border-[#1DB954]/20'
@@ -194,25 +194,25 @@ export const Projects = () => {
               </div>
             )}
 
-            {/* Buttons Section - Fixed at bottom */}
+            {/* Buttons Section - Increased size */}
             <div className={`flex-shrink-0 transition-all duration-500 ease-out
                            ${(isCenter || isMobile)
                              ? 'opacity-100 translate-y-0' 
                              : 'opacity-0 translate-y-4 max-h-0 overflow-hidden'
                            }`}>
-              <div className="flex gap-2 md:gap-3">
+              <div className="flex gap-3 md:gap-4">
                 {project.github && (
                   <a 
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 inline-flex items-center justify-center px-3 md:px-4 py-2 md:py-2.5 text-xs md:text-sm font-semibold 
+                    className="flex-1 inline-flex items-center justify-center px-4 md:px-5 py-2.5 md:py-3 text-sm md:text-base font-semibold 
                              text-white bg-[#1DB954]/10 border-2 border-[#1DB954]/30 rounded-lg 
                              hover:bg-[#1DB954]/20 hover:border-[#1DB954]/50
                              transform hover:scale-105 transition-all duration-200 backdrop-blur-sm min-w-0"
                     onClick={(e) => e.stopPropagation()}
                   >
-                    <Github className="w-3 h-3 md:w-4 md:h-4 mr-1.5 flex-shrink-0 text-[#1DB954]" />
+                    <Github className="w-4 h-4 md:w-5 md:h-5 mr-2 flex-shrink-0 text-[#1DB954]" />
                     <span className="truncate">Source Code</span>
                   </a>
                 )}
@@ -221,13 +221,13 @@ export const Projects = () => {
                     href={project.demo}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 inline-flex items-center justify-center px-3 md:px-4 py-2 md:py-2.5 text-xs md:text-sm font-semibold 
+                    className="flex-1 inline-flex items-center justify-center px-4 md:px-5 py-2.5 md:py-3 text-sm md:text-base font-semibold 
                              text-white bg-[#1DB954]/10 border-2 border-[#1DB954]/30 rounded-lg 
                              hover:bg-[#1DB954]/20 hover:border-[#1DB954]/50
                              transform hover:scale-105 transition-all duration-300 backdrop-blur-sm min-w-0"
                     onClick={(e) => e.stopPropagation()}
                   >
-                    <ExternalLink className="w-3 h-3 md:w-4 md:h-4 mr-1.5 flex-shrink-0" />
+                    <ExternalLink className="w-4 h-4 md:w-5 md:h-5 mr-2 flex-shrink-0" />
                     <span className="truncate">Demo</span>
                   </a>
                 )}

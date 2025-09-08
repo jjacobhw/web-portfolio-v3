@@ -124,7 +124,7 @@ export const Home = () => {
       
       <div className={`flex ${isMobileLayout ? 'flex-wrap justify-center gap-4 sm:gap-5' : 'flex-wrap gap-3 lg:gap-4 xl:gap-5'}
                       transition-all duration-700 delay-1100
-                      ${isVisible && isTypingComplete ? 'opacity-100 translate-x-0 animate-slideInLeft' : 'opacity-0 translate-x-8'}`}>
+                      ${isVisible && isTypingComplete ? 'opacity-100 translate-y-0 animate-slideInUp' : 'opacity-0 translate-y-8'}`}>
         <ActionButton 
           href="media\Jacob's Resume.pdf" 
           icon={FileText} 
@@ -155,7 +155,7 @@ export const Home = () => {
   const ProfilePicture = ({ isMobileLayout = false }) => (
     <div className={`${isMobileLayout ? '' : 'flex-shrink-0'} 
                     transition-all duration-700 ${isMobileLayout ? 'delay-300' : 'delay-900'}
-                    ${isVisible && isTypingComplete ? 'opacity-100 translate-y-0 translate-x-0 animate-slideInLeft' : `opacity-0 ${isMobileLayout ? 'translate-y-8' : 'translate-x-8'}`}`}>
+                    ${isVisible && isTypingComplete ? 'opacity-100 translate-y-0 translate-x-0 animate-slideInRight' : `opacity-0 ${isMobileLayout ? 'translate-y-8' : 'translate-x-8'}`}`}>
       <div className="relative">
         <img
           src="/media/profile-photo.jpg"
@@ -173,23 +173,6 @@ export const Home = () => {
 
   return (
     <div className="w-full min-h-screen flex items-center justify-center bg-black text-white py-8 pt-24">
-      <style>
-        {`
-          @keyframes slideInLeft {
-            from {
-              transform: translateX(-30px);
-              opacity: 0;
-            }
-            to {
-              transform: translateX(0);
-              opacity: 1;
-            }
-          }
-          .animate-slideInLeft {
-            animation: slideInLeft 0.5s ease-out forwards;
-          }
-        `}
-      </style>
       <div className="max-w-5xl mx-auto px-4">
         <div className={`${isMobile ? 'hidden' : 'flex'} items-center justify-between gap-8 lg:gap-10 xl:gap-12 min-w-0`}>
           <div className="flex-1 min-w-0">

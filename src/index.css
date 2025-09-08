@@ -121,6 +121,39 @@ section {
       transform: translateY(0);
     }
   }
+  
+  @keyframes slideInLeft {
+    from {
+      transform: translateX(-30px);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideInRight {
+    from {
+      transform: translateX(30px);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideInUp {
+    from {
+      transform: translateY(30px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
 
   .animate-loading-bar {
     animation: blink 0.8s step-end infinite;
@@ -138,6 +171,18 @@ section {
 
   .animate-fade-in-up {
     animation: fade-in-up 0.5s ease-out forwards;
+  }
+  
+  .animate-slideInLeft {
+    animation: slideInLeft 0.5s ease-out forwards;
+  }
+  
+  .animate-slideInRight {
+    animation: slideInRight 0.5s ease-out forwards;
+  }
+  
+  .animate-slideInUp {
+    animation: slideInUp 0.5s ease-out forwards;
   }
 
   * {
@@ -171,8 +216,6 @@ section {
   width: 0%;
   transition: width 0.3s ease;
 }
-
-
 
 button, a {
   touch-action: manipulation;
