@@ -165,19 +165,13 @@ export const Projects = () => {
               </h3>
             </div>
 
-            {/* Description Section - Flexible but constrained */}
-            <div className={`flex-shrink-0 transition-all duration-500 ease-out
-                           ${(isCenter || isMobile) ? 'mb-4' : 'mb-3'}`}>
-              <div className={`overflow-hidden
-                             ${(isCenter || isMobile)
-                               ? 'opacity-100' 
-                               : 'opacity-0 max-h-0'
-                             }`}>
-                <p className={`text-gray-400 leading-relaxed
-                              ${isMobile ? 'text-sm line-clamp-5' : 'text-sm line-clamp-4'}`}>
-                  {project.description}
-                </p>
-              </div>
+            {/* Description Section - Now always visible with proper spacing */}
+            <div className={`flex-shrink-0 transition-all duration-500 ease-out mb-4
+                           ${(isCenter || isMobile) ? 'opacity-100' : 'opacity-0 max-h-0 mb-0'}`}>
+              <p className={`text-gray-400 leading-relaxed text-sm
+                            ${isMobile ? '' : ''}`}>
+                {project.description}
+              </p>
             </div>
 
             {/* Tags Section - Flexible with proper wrapping */}

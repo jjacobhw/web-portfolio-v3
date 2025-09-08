@@ -10,8 +10,8 @@ export const Skills = () => {
 
   const skillCategories = [
     {
-      title: "Programming Languages",
-      skills: ["Python", "C++", "C", "JavaScript", "TypeScript", "HTML"],
+      title: "Programming Languages", 
+      skills: ["Python", "C++", "C", "TypeScript", "JavaScript", "HTML"],
       icon: CodeXml,
       id: "programming"
     },
@@ -65,7 +65,6 @@ export const Skills = () => {
       }, 100);
       return () => clearTimeout(timer);
     } else {
-      // If already animated, show immediately
       setIsVisible(true);
     }
   }, []);
@@ -79,10 +78,8 @@ export const Skills = () => {
 
   const toggleAllSkills = () => {
     if (allExpanded) {
-      // All are expanded, so collapse all
       setExpandedCategories({});
     } else {
-      // Some or none expanded, so expand all
       const allExpandedState = {};
       skillCategories.forEach(cat => {
         allExpandedState[cat.id] = true;
@@ -95,7 +92,7 @@ export const Skills = () => {
   const getButtonText = () => {
     if (allExpanded) return 'Collapse All';
     if (noneExpanded) return 'Expand All';
-    return 'Expand All'; // Default for mixed states - prioritize expanding
+    return 'Expand All'; 
   };
 
   const SkillCategory = ({ category, index }) => {
