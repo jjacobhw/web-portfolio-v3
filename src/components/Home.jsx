@@ -35,7 +35,7 @@ export const Home = () => {
           setIsTypingComplete(true);
           clearInterval(typingInterval);
         }
-      }, 75);
+      }, 50);
 
       return () => clearInterval(typingInterval);
     }, 300);
