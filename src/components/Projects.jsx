@@ -14,16 +14,16 @@ const projects = [
   {
     id: 2,
     title: "Portfolio Website",
-    description: "A modern, responsive portfolio website built with React and styled with Tailwind CSS, showcasing projects and skills with smooth animations.",
+    description: "A modern, responsive portfolio website built with React, JavaScript and styled with Tailwind CSS, initialized with Vite and deployed through Vercel.",
     image: "", // Add your actual image path
-    tags: ["React", "Tailwind CSS", "JavaScript", "Vercel", "Vite"],
+    tags: ["React", "JavaScript", "Tailwind CSS", "Vercel", "Vite"],
     github: "https://github.com/jjacobhw/web-portfolio-v3", // Add your actual GitHub URL
     demo: "", // Optional: add live site URL
   },
   {
     id: 3,
     title: "Customer Database",
-    description: "A comprehensive customer relationship management system with data visualization and analytics capabilities for business operations.",
+    description: "A lightweight UNIX-style database with custom hashing for effecient lookup, retrieval and deletion operations.",
     image: "", // Add your actual image path
     tags: ["C", "Hash Tables", "Linux"], // Add appropriate tags
     github: "https://github.com/yourusername/customer-database", // Add your actual GitHub URL

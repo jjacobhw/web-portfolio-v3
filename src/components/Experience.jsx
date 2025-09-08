@@ -24,7 +24,7 @@ export const Experience = () => {
         "Led team of 5 engineers",
         "Reduced deployment time by 60%"
       ],
-      technologies: ["Supervised Fine-Tuning", "RAG Architecture", "Vector Databases", "MCPs", "LLMs"]
+      technologies: ["Supervised Fine-Tuning", "RAG Architecture", "Vector Databases", "MCPs", "LLMs", "OCR",]
     },
     {
       title: "Robotic Processing Automation Intern",
@@ -37,7 +37,7 @@ export const Experience = () => {
         "Worked with accountants to deploy tax calculators, eliminating dedicated days for filing taxes",
         "RPA pipelines saved 25-30 man-hours of labor every month"
       ],
-      technologies: ["Python", "UiPath", "Visual Basic", "RPA", "Bash", "Regex"]
+      technologies: ["Python", "UiPath", "Visual Basic", "RPA", "Bash", "Regular Expressions"]
     },
   ];
 
