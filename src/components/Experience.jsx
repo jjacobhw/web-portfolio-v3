@@ -20,9 +20,9 @@ export const Experience = () => {
       period: "June 2025 - September 2025",
       description: "",
       achievements: [
-        "Improved application performance by 40%",
-        "Led team of 5 engineers",
-        "Reduced deployment time by 60%"
+        "Developed RAG pipelines for comprehensive data analysis, reducing response hallucinations",
+        "Integrated LLMs with MCP, enhancing API usage across various platforms while reducing model complexity",
+        "Fine-tuned pre-trained models to adapt to foreign behaviors, improving overall response time and accuracy"
       ],
       technologies: ["Supervised Fine-Tuning", "RAG Architecture", "Vector Databases", "MCPs", "LLMs", "OCR",]
     },
