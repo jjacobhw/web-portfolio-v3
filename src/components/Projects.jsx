@@ -5,7 +5,7 @@ const projects = [
   {
     id: 1,
     title: "Student Recruiter Chatbot",
-    description: "A RAG chatbot powered by Ollama 3.2 designed to assist with student recruitment processes, providing automated responses and information about resumes, transcripts, etc.",
+    description: "A RAG chatbot powered by Ollama 3.2 designed to assist with student recruitment, providing automated responses and information about personal documents such as Resumes, transcripts, etc.",
     image: "", // Add your actual image path
     tags: ["Python", "LangChain", "Ollama", "ChromaDB"],
     github: "https://github.com/yourusername/student-recruiter-chatbot", // Add your actual GitHub URL
@@ -23,7 +23,7 @@ const projects = [
   {
     id: 3,
     title: "Customer Database",
-    description: "A lightweight UNIX-style database with custom hashing for effecient lookup, retrieval and deletion operations.",
+    description: "A lightweight UNIX-style database with custom hashing for effecient lookup, retrieval and deletion operations. Modified for light-weight distribution.",
     image: "", // Add your actual image path
     tags: ["C", "Hash Tables", "Linux"], // Add appropriate tags
     github: "https://github.com/yourusername/customer-database", // Add your actual GitHub URL
