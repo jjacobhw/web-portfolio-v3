@@ -5,7 +5,7 @@ const projects = [
   {
     id: 1,
     title: "Student Recruiter Chatbot",
-    description: "An AI-powered chatbot designed to assist with student recruitment processes, providing automated responses and information to prospective students.",
+    description: "A RAG chatbot powered by Ollama 3.2 designed to assist with student recruitment processes, providing automated responses and information about resumes, transcripts, etc.",
     image: "", // Add your actual image path
     tags: ["Python", "LangChain", "Ollama", "ChromaDB"],
     github: "https://github.com/yourusername/student-recruiter-chatbot", // Add your actual GitHub URL
