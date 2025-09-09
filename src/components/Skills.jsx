@@ -6,7 +6,7 @@ export const Skills = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [expandedCategories, setExpandedCategories] = useState({});
-  const hasAnimated = useRef(false); // Track if animations have run
+  const hasAnimated = useRef(false);
 
   const skillCategories = [
     {
@@ -41,7 +41,6 @@ export const Skills = () => {
     }
   ];
 
-  // Derived state - calculate based on actual expanded categories
   const allExpanded = skillCategories.every(cat => expandedCategories[cat.id]);
   const noneExpanded = skillCategories.every(cat => !expandedCategories[cat.id]);
 
@@ -56,7 +55,6 @@ export const Skills = () => {
     }
   }, []);
 
-  // Simple entrance animation - only runs once when component mounts
   useEffect(() => {
     if (!hasAnimated.current) {
       const timer = setTimeout(() => {
@@ -88,7 +86,6 @@ export const Skills = () => {
     }
   };
 
-  // Get button text based on current state
   const getButtonText = () => {
     if (allExpanded) return 'Collapse All';
     if (noneExpanded) return 'Expand All';
@@ -164,16 +161,13 @@ export const Skills = () => {
       <DevIconStyles />
       
       <div className={`max-w-5xl mx-auto px-4 w-full flex flex-col`}>
-        {/* Header with title on left and button on right */}
         <div className={`flex items-center justify-between mb-8 transition-all duration-700 delay-300
                         ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-          {/* Skills Title - Left Side */}
           <h2 className={`font-bold text-white
                          ${isMobile ? 'text-3xl sm:text-4xl' : 'text-4xl xl:text-5xl'}`}>
             Skills
           </h2>
           
-          {/* Expand/Collapse Button - Right Side */}
           <button
             onClick={toggleAllSkills}
             className="group bg-[#1DB954]/10 hover:bg-[#1DB954]/20 
@@ -192,7 +186,6 @@ export const Skills = () => {
           </button>
         </div>
 
-        {/* Skills grid - Fixed overflow issues */}
         <div className="flex-1 min-h-0">
           <div className="grid gap-6 grid-cols-1 pb-4 max-h-full">
             {skillCategories.map((category, index) => (
