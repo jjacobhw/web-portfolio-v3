@@ -24,7 +24,7 @@ export const Experience = () => {
         "Integrated LLMs with MCP, enhancing API usage across various platforms while reducing model complexity",
         "Fine-tuned pre-trained models to adapt to foreign behaviors, improving overall response time and accuracy"
       ],
-      technologies: ["Supervised Fine-Tuning", "RAG Architecture", "Vector Databases", "MCPs", "LLMs", "OCR",]
+      technologies: ["Python", "Supervised Fine-Tuning", "RAG Architecture", "Vector Databases", "MCPs", "LLMs", "OCR",]
     },
     {
       title: "Robotic Processing Automation Intern",
