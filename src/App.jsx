@@ -79,6 +79,7 @@ function App() {
     };
   }, [menuOpen, activeSection]);
 
+  // Fast smooth scroll with shorter duration and optimized easing
   const smoothScrollToSection = (sectionIndex) => {
     const targetElement = sectionRefs[sectionIndex]?.current;
     if (!targetElement) return;
@@ -86,24 +87,27 @@ function App() {
     const startPosition = window.pageYOffset;
     const targetPosition = targetElement.offsetTop;
     const distance = targetPosition - startPosition;
-    const duration = 1200;
+    // Reduced duration from 1200ms to 600ms for faster navigation
+    const duration = 600;
     let start = null;
 
-    const easeInOutCubic = (t) => {
-      return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+    // More responsive easing function
+    const easeOutQuart = (t) => {
+      return 1 - (--t) * t * t * t;
     };
 
     const animation = (currentTime) => {
       if (start === null) start = currentTime;
       const timeElapsed = currentTime - start;
       const progress = Math.min(timeElapsed / duration, 1);
-      const easedProgress = easeInOutCubic(progress);
+      const easedProgress = easeOutQuart(progress);
       window.scrollTo(0, startPosition + distance * easedProgress);
       
       if (progress < 1) {
         requestAnimationFrame(animation);
       } else {
         isScrollingRef.current = false;
+        // Reduced timeout for faster re-enabling of observer
         setTimeout(() => {
           if (observerRef.current) {
             sectionRefs.forEach(ref => {
@@ -112,16 +116,40 @@ function App() {
               }
             });
           }
-        }, 200);
+        }, 100); // Reduced from 200ms to 100ms
       }
     };
 
     requestAnimationFrame(animation);
   };
 
-  // Navigation function - MODIFIED to always scroll to section top
-  const navigateToSection = useCallback((sectionIndex) => {
-    // Remove the condition that prevents scrolling to the same section
+  // Alternative instant scroll function for even faster navigation
+  const instantScrollToSection = (sectionIndex) => {
+    const targetElement = sectionRefs[sectionIndex]?.current;
+    if (!targetElement) return;
+
+    // Use native scrollIntoView with smooth behavior (hardware accelerated)
+    targetElement.scrollIntoView({ 
+      behavior: 'smooth', 
+      block: 'start',
+      inline: 'nearest'
+    });
+
+    // Quick reset for observer
+    setTimeout(() => {
+      isScrollingRef.current = false;
+      if (observerRef.current) {
+        sectionRefs.forEach(ref => {
+          if (ref.current) {
+            observerRef.current.observe(ref.current);
+          }
+        });
+      }
+    }, 50);
+  };
+
+  // Navigation function with option for instant or smooth scroll
+  const navigateToSection = useCallback((sectionIndex, instant = false) => {
     if (isScrollingRef.current) return;
     
     isScrollingRef.current = true;
@@ -136,15 +164,47 @@ function App() {
       observerRef.current.disconnect();
     }
     
-    // Use custom smooth scroll
-    smoothScrollToSection(sectionIndex);
-  }, []); // Remove activeSection from dependencies since we always want to scroll
+    // Choose scroll method based on preference
+    if (instant) {
+      instantScrollToSection(sectionIndex);
+    } else {
+      smoothScrollToSection(sectionIndex);
+    }
+  }, []);
 
-  // Handle navbar navigation
+  // Handle navbar navigation - using native scrollIntoView for fastest performance
   const handleNavClick = useCallback((sectionIndex) => {
-    navigateToSection(sectionIndex);
-    setMenuOpen(false); // Close mobile menu if open
+    // Using instant scroll option with native scrollIntoView (hardware-accelerated)
+    navigateToSection(sectionIndex, true);
+    setMenuOpen(false);
   }, [navigateToSection]);
+
+  // Add keyboard navigation for better UX
+  useEffect(() => {
+    const handleKeyPress = (e) => {
+      if (menuOpen) return;
+      
+      switch(e.key) {
+        case '1':
+          handleNavClick(0);
+          break;
+        case '2':
+          handleNavClick(1);
+          break;
+        case '3':
+          handleNavClick(2);
+          break;
+        case '4':
+          handleNavClick(3);
+          break;
+        default:
+          break;
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyPress);
+    return () => window.removeEventListener('keydown', handleKeyPress);
+  }, [handleNavClick, menuOpen]);
 
   return (
     <div className="min-h-screen bg-black text-gray-100">
@@ -162,10 +222,11 @@ function App() {
         setActiveSection={handleNavClick}
       />
       
-      {/* Scroll container without snap behavior */}
+      {/* Scroll container optimized for performance */}
       <div 
         ref={containerRef}
         className="overflow-y-auto"
+        style={{ scrollBehavior: 'auto' }} // Disable CSS scroll-behavior to use JS control
       >
         <section 
           ref={sectionRefs[0]}
@@ -196,7 +257,6 @@ function App() {
           <Projects />
         </section>
         
-        {/* Footer placed after all sections */}
         <Footer />
       </div>
     </div>
