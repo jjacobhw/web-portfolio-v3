@@ -31,7 +31,7 @@ export const Experience = () => {
       company: "Healthcare Practice IT",
       location: "Orange County, CA",
       period: "June 2024 - September 2024", 
-      description: "Leveraged RPA to transform repetitive, manual tasks into automated workflows,boosting team productivity and enabling the company to allocate resources towards higher priority tasks.",
+      description: "Leveraged RPA to transform repetitive, manual tasks into automated workflows, boosting team productivity and enabling the company to allocate resources towards higher priority tasks.",
       achievements: [
         "Developed an email address validator with a 93% accurate detection rate",
         "Worked with accountants to deploy tax calculators, eliminating dedicated days for filing taxes",
