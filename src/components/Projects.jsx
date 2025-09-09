@@ -6,28 +6,28 @@ const projects = [
     id: 1,
     title: "Student Recruiter Chatbot",
     description: "A RAG chatbot powered by Ollama 3.2 designed to assist with student recruitment, providing automated responses and information about personal documents such as Resumes, transcripts, etc.",
-    image: "", // Add your actual image path
+    image: "", 
     tags: ["Python", "LangChain", "Ollama", "ChromaDB"],
-    github: "https://github.com/yourusername/student-recruiter-chatbot", // Add your actual GitHub URL
-    demo: "", // Optional: add demo URL if available
+    github: "https://github.com/jjacobhw/Student-Recruiter-Agent", 
+    demo: "", 
   },
   {
     id: 2,
     title: "Portfolio Website",
     description: "A modern, responsive portfolio website built with React, JavaScript, and styled with Tailwind CSS, initialized with Vite and deployed through Vercel.",
-    image: "", // Add your actual image path
+    image: "", 
     tags: ["React", "JavaScript", "Tailwind CSS", "Vercel", "Vite"],
-    github: "https://github.com/jjacobhw/web-portfolio-v3", // Add your actual GitHub URL
-    demo: "", // Optional: add live site URL
+    github: "https://github.com/jjacobhw/web-portfolio-v3", 
+    demo: "", 
   },
   {
     id: 3,
     title: "Customer Database",
     description: "A lightweight UNIX-style database with custom hashing for effecient lookup, retrieval and deletion operations. Modified for light-weight distribution.",
-    image: "", // Add your actual image path
-    tags: ["C", "Hash Tables", "Linux"], // Add appropriate tags
-    github: "https://github.com/yourusername/customer-database", // Add your actual GitHub URL
-    demo: "", // Optional: add demo URL if available
+    image: "", 
+    tags: ["C", "Hash Tables", "Linux", "Bash"],
+    github: "https://github.com/jjacobhw/Customer-Database",
+    demo: "", 
   }
 ];
 
