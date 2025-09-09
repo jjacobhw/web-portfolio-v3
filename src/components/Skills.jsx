@@ -206,7 +206,7 @@ export const Skills = () => {
 
           <div className={`text-center mt-8 transition-all duration-700 delay-1200
                           ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-            <p className={`dark:text-gray-400 text-gray-600
+            <p className={`dark:text-gray-400 text-white
                           ${isMobile ? 'text-sm' : 'text-base'}`}>
             </p>
           </div>
