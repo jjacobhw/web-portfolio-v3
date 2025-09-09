@@ -14,7 +14,7 @@ const projects = [
   {
     id: 2,
     title: "Portfolio Website",
-    description: "A modern, responsive portfolio website built with React, JavaScript and styled with Tailwind CSS, initialized with Vite and deployed through Vercel.",
+    description: "A modern, responsive portfolio website built with React, JavaScript, and styled with Tailwind CSS, initialized with Vite and deployed through Vercel.",
     image: "", // Add your actual image path
     tags: ["React", "JavaScript", "Tailwind CSS", "Vercel", "Vite"],
     github: "https://github.com/jjacobhw/web-portfolio-v3", // Add your actual GitHub URL
