@@ -1,7 +1,8 @@
 # Jacob Wei - Portfolio Website
 
-A responsive portfolio website built to practice web dev skills and display my work as an AI/ML Engineer
-and Full Stack Developer. Created with React, JavaScript, and Tailwind CSS for a sleek, yet effective tech stack.
+A responsive portfolio website created to practice my web development skills and display my work as an AI/ML
+Engineer and Full Stack Developer. Built with React, JavaScript, and Tailwind CSS for a sleek and simple, yet
+effective tech stack.
 
 ## 🚀 Live Demo
 
