@@ -31,6 +31,7 @@ export const deviconMapping = {
   "Ubuntu": "ubuntu",
   "Bash": "bash",
   "Git": "git",
+  "Vim": "vim"
 };
 
 // Check if a technology has a valid Devicon
