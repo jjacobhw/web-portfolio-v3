@@ -23,7 +23,7 @@ const projects = [
   {
     id: 3,
     title: "Customer Database",
-    description: "A lightweight UNIX-style database with custom hashing for effecient lookup, retrieval and deletion operations. Modified for light-weight distribution.",
+    description: "A UNIX-style database with custom hashing for effecient lookup, retrieval and deletion operations. Modified for lightweight distribution across Linux platforms.",
     image: "", 
     tags: ["C", "Hash Tables", "Linux", "Bash"],
     github: "https://github.com/jjacobhw/Customer-Database",
@@ -62,7 +62,6 @@ export const Projects = () => {
     }
   }, []);
 
-  // Infinite scroll functions
   const nextProject = () => {
     setCurrentIndex((prev) => (prev + 1) % projects.length);
   };
@@ -75,7 +74,6 @@ export const Projects = () => {
     setCurrentIndex(index);
   };
 
-  // Get project with circular indexing
   const getProject = (offset) => {
     const index = (currentIndex + offset + projects.length) % projects.length;
     return { ...projects[index], displayIndex: index };
