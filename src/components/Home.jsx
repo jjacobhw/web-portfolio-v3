@@ -91,18 +91,8 @@ export const Home = () => {
       ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
         AI/ML Engineer & Full Stack Developer
       </h2>
-      
-      <h3 className={`text-white/90 whitespace-nowrap ${
-        isMobileLayout 
-          ? 'text-lg sm:text-xl flex items-center justify-center gap-1.5 mb-7'
-          : 'text-base lg:text-lg xl:text-xl flex items-center gap-1.5 mb-8'
-      } transition-all duration-700 delay-500
-      ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-        <MapPin className="w-5 h-5 text-[#1DB954] flex-shrink-0" />
-        Irvine, California
-      </h3>
 
-      <h4 className={`text-white/90 leading-relaxed ${
+      <h3 className={`text-white/90 leading-relaxed ${
         isMobileLayout 
           ? 'text-base sm:text-lg mb-7'
           : 'text-sm lg:text-base xl:text-lg mb-8 max-w-2xl'
@@ -111,16 +101,7 @@ export const Home = () => {
         I’m a Computer Science undergraduate specializing in machine learning, AI engineering, 
         and full-stack development. With experience in fine-tuning LLMs, building RAG pipelines, and deploying 
         automation solutions, I focus on creating practical, scalable solutions that deliver real-world impact.
-      </h4>
-      
-      <h5 className={`text-white/90 ${
-        isMobileLayout 
-          ? 'text-base sm:text-lg mb-7'
-          : 'text-sm lg:text-base xl:text-lg mb-8 max-w-2xl'
-      } transition-all duration-700 delay-500
-      ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-        Feel free to contact me for any inquiries!
-      </h5>
+      </h3>
       
       <div className={`flex ${isMobileLayout ? 'flex-wrap justify-center gap-4 sm:gap-5' : 'flex-wrap gap-3 lg:gap-4 xl:gap-5'}
                       transition-all duration-700 delay-700
