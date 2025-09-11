@@ -1,6 +1,5 @@
 import { PencilRuler } from 'lucide-react';
 
-// Devicon mapping for skills
 export const deviconMapping = {
   // Programming Languages
   "Python": "python",
@@ -34,13 +33,11 @@ export const deviconMapping = {
   "Vim": "vim"
 };
 
-// Check if a technology has a valid Devicon
 export const hasValidDevicon = (tech) => {
   const deviconClass = deviconMapping[tech];
   return deviconClass !== null && deviconClass !== undefined;
 };
 
-// Get skill icon configuration
 export const getSkillIcon = (tech) => {
   const deviconClass = deviconMapping[tech];
   
@@ -51,7 +48,6 @@ export const getSkillIcon = (tech) => {
   }
 };
 
-// Skill icon component
 export const SkillIcon = ({ tech, className = "w-10 h-10 md:w-12 md:h-12" }) => {
   const skillIcon = getSkillIcon(tech);
   
@@ -67,7 +63,6 @@ export const SkillIcon = ({ tech, className = "w-10 h-10 md:w-12 md:h-12" }) => 
   }
 };
 
-// DevIcon styles component
 export const DevIconStyles = () => (
   <>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css" />

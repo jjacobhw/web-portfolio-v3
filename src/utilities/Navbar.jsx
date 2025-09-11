@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Mail, Mails, BookCopy, Computer, CodeXml, Folders } from 'lucide-react';
+import { Mail, Mails, CircleUserRound, Computer, CodeXml, Folders } from 'lucide-react';
 
 export const Navbar = ({ menuOpen, setMenuOpen, activeSection, setActiveSection }) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -14,7 +14,7 @@ export const Navbar = ({ menuOpen, setMenuOpen, activeSection, setActiveSection 
   }, [menuOpen]);
 
   const navItems = [
-    { id: 0, label: 'About', icon: BookCopy, target: 'home' },
+    { id: 0, label: 'About', icon: CircleUserRound, target: 'home' },
     { id: 1, label: 'Skills', icon: CodeXml, target: 'skills' },
     { id: 2, label: 'Experience', icon: Computer, target: 'experience' },
     { id: 3, label: 'Projects', icon: Folders, target: 'projects' },

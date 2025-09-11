@@ -1,4 +1,4 @@
-import { FileText, Github, Linkedin, MapPin } from 'lucide-react';
+import { FileText, Github, Linkedin, } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 export const Home = () => {

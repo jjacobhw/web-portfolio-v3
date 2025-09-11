@@ -1,12 +1,12 @@
 // MobileNav.jsx
-import { Menu, X, Mail, Mails, BookCopy, CodeXml, Computer, Folders} from "lucide-react";
+import { Menu, X, Mail, Mails, CircleUserRound, CodeXml, Computer, Folders} from "lucide-react";
 import { useState } from "react";
 
 export const MobileNav = ({ menuOpen, setMenuOpen, activeSection, setActiveSection }) => {
   const [isHovered, setIsHovered] = useState(false);
   
   const links = [
-    { id: 0, label: "About", icon: BookCopy, target: "home" },
+    { id: 0, label: "About", icon: CircleUserRound, target: "home" },
     { id: 1, label: "Skills", icon: CodeXml, target: "skills" },
     { id: 2, label: "Experience", icon: Computer, target: "experience" },
     { id: 3, label: "Projects", icon: Folders, target: "projects" },
