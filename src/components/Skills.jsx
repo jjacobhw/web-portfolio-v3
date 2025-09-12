@@ -6,18 +6,18 @@ export const Skills = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [expandedCategories, setExpandedCategories] = useState({});
-  const hasAnimated = useRef(false); // Track if animations have run
+  const hasAnimated = useRef(false);
 
   const skillCategories = [
     {
       title: "Programming Languages", 
-      skills: ["Python", "C++", "C", "TypeScript", "JavaScript", "HTML"],
+      skills: ["Python", "C++", "C", "TypeScript", "JavaScript", "SQL", "HTML", "CSS"],
       icon: CodeXml,
       id: "programming"
     },
     {
       title: "Web Development", 
-      skills: ["React", "Next.js", "Node.js", "Tailwind CSS"],
+      skills: ["React", "Next.js", "Node.js", "Tailwind CSS", "FastAPI"],
       icon: Globe,
       id: "web"
     },
@@ -35,7 +35,7 @@ export const Skills = () => {
     },
     {
       title: "Cloud & DevOps",
-      skills: ["Coming Soon..."],
+      skills: ["Docker"],
       icon: Cloudy,
       id: "cloud"
     }

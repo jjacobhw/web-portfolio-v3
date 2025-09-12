@@ -7,13 +7,16 @@ export const deviconMapping = {
   "C": "c",
   "JavaScript": "javascript",
   "TypeScript": "typescript",
+  "SQL": "azuresqldatabase",
   "HTML": "html5",
+  "CSS": "css3",
   
   // Web Development
   "React": "react",
   "Next.js": "nextjs",
   "Node.js": "nodejs",
   "Tailwind CSS": "tailwindcss",
+  "FastAPI": "fastapi",
   
   // AI & Machine Learning
   "PyTorch": "pytorch",
@@ -30,7 +33,10 @@ export const deviconMapping = {
   "Ubuntu": "ubuntu",
   "Bash": "bash",
   "Git": "git",
-  "Vim": "vim"
+  "Vim": "vim",
+
+  // Cloud & DevOps
+  "Docker": "docker"
 };
 
 export const hasValidDevicon = (tech) => {
