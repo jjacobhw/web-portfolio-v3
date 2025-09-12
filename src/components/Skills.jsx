@@ -11,7 +11,7 @@ export const Skills = () => {
   const skillCategories = [
     {
       title: "Programming Languages", 
-      skills: ["Python", "C++", "C", "TypeScript", "JavaScript", "HTML"],
+      skills: ["Python", "C++", "C", "TypeScript", "JavaScript", "SQL"],
       icon: CodeXml,
       id: "programming"
     },
@@ -29,13 +29,13 @@ export const Skills = () => {
     },
     {
       title: "Platforms & Tools",
-      skills: ["Windows", "Linux", "Ubuntu", "Bash", "GitHub", "Git"],
+      skills: ["Windows", "Linux", "MacOS", "Ubuntu", "Bash", "Zsh", "GitHub", "Git"],
       icon: Terminal,
       id: "platforms"
     },
     {
       title: "Cloud & DevOps",
-      skills: ["Docker"],
+      skills: ["Docker", "Supabase"],
       icon: Cloudy,
       id: "cloud"
     }
