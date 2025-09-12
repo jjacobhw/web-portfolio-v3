@@ -29,7 +29,7 @@ export const Skills = () => {
     },
     {
       title: "Platforms & Tools",
-      skills: ["Windows", "Linux", "MacOS", "Ubuntu", "Bash", "Zsh", "GitHub", "Git"],
+      skills: ["Windows", "Linux", "MacOS", "Ubuntu", "Bash", "Git"],
       icon: Terminal,
       id: "platforms"
     },
@@ -88,7 +88,6 @@ export const Skills = () => {
     }
   };
 
-  // Get button text based on current state
   const getButtonText = () => {
     if (allExpanded) return 'Collapse All';
     if (noneExpanded) return 'Expand All';

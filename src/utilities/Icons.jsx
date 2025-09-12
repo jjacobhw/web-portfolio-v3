@@ -52,14 +52,10 @@ export const SkillIcon = ({ tech, className = "w-10 h-10 md:w-12 md:h-12" }) => 
         return "devicon-linux-plain";
       case "MacOS":
         return "devicon-apple-original";
-      case "GitHub":
-        return "devicon-github-original";
       case "Ubuntu":
         return "devicon-ubuntu-plain";
       case "Bash":
         return "devicon-bash-plain";
-      case "Zsh":
-        return "devicon-zsh-plain";
       case "Git":
         return "devicon-git-plain";
 
@@ -71,14 +67,12 @@ export const SkillIcon = ({ tech, className = "w-10 h-10 md:w-12 md:h-12" }) => 
       case "Supabase":
         return "devicon-supabase-plain";
       
-      // Default fallback
       default:
         return "devicon-devicon-plain";
     }
   };
 
   const deviconClass = getDeviconClass(tech);
-  
   return (
     <i className={`${deviconClass} text-4xl md:text-5xl skill-icon`} />
   );
@@ -86,7 +80,7 @@ export const SkillIcon = ({ tech, className = "w-10 h-10 md:w-12 md:h-12" }) => 
 
 export const DevIconStyles = () => (
   <>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.17.0/devicon.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/devicon.min.css" />
     <style jsx>{`
       .skill-icon {
         color: #1DB954 !important;
