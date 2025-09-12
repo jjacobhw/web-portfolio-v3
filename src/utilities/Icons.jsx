@@ -33,10 +33,10 @@ export const deviconMapping = {
   "Ubuntu": "ubuntu",
   "Bash": "bash",
   "Git": "git",
-  "Vim": "vim",
 
   // Cloud & DevOps
-  "Docker": "docker"
+  "Docker": "docker", 
+  "Kubernetes": "kubernetes"
 };
 
 export const hasValidDevicon = (tech) => {

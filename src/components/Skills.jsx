@@ -29,13 +29,13 @@ export const Skills = () => {
     },
     {
       title: "Platforms & Tools",
-      skills: ["Windows", "Linux", "Ubuntu", "Bash", "GitHub", "Git", "Vim"],
+      skills: ["Windows", "Linux", "Ubuntu", "Bash", "GitHub", "Git"],
       icon: Terminal,
       id: "platforms"
     },
     {
       title: "Cloud & DevOps",
-      skills: ["Docker"],
+      skills: ["Docker", "Kubernetes"],
       icon: Cloudy,
       id: "cloud"
     }
