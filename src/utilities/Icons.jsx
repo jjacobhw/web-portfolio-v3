@@ -22,9 +22,8 @@ export const deviconMapping = {
   "PyTorch": "pytorch",
   "NumPy": "numpy",
   "Pandas": "pandas",
-  "ChromaDB": null, // No Devicon available - will use PencilRuler
-  "Hugging Face": null, // No Devicon available - will use PencilRuler
-  "LangChain": null, // No Devicon available - will use PencilRuler
+  "Streamlit": "streamlit",
+  "Scikit-learn": "scikitlearn",
   
   // Platforms & Tools
   "Windows": "windows8",
@@ -36,38 +35,22 @@ export const deviconMapping = {
 
   // Cloud & DevOps
   "Docker": "docker", 
-  "Firebase": "firebase",
+  "Firebase": "firebase", 
   "Supabase": "supabase"
-};
-
-export const hasValidDevicon = (tech) => {
-  const deviconClass = deviconMapping[tech];
-  return deviconClass !== null && deviconClass !== undefined;
 };
 
 export const getSkillIcon = (tech) => {
   const deviconClass = deviconMapping[tech];
-  
-  if (deviconClass) {
-    return { type: 'devicon', class: deviconClass };
-  } else {
-    return { type: 'lucide', component: PencilRuler };
-  }
+  return { type: 'devicon', class: deviconClass };
 };
 
 export const SkillIcon = ({ tech, className = "w-10 h-10 md:w-12 md:h-12" }) => {
   const skillIcon = getSkillIcon(tech);
-  
-  if (skillIcon.type === 'devicon') {
     return (
       <i 
         className={`devicon-${skillIcon.class}-plain text-4xl md:text-5xl skill-icon`}
       />
     );
-  } else {
-    const LucideIcon = skillIcon.component;
-    return <LucideIcon className={`${className} text-[#1DB954]`} />;
-  }
 };
 
 export const DevIconStyles = () => (
