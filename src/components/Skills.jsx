@@ -11,7 +11,7 @@ export const Skills = () => {
   const skillCategories = [
     {
       title: "Programming Languages", 
-      skills: ["Python", "C++", "C", "TypeScript", "JavaScript", "SQL", "HTML", "CSS"],
+      skills: ["Python", "C++", "C", "TypeScript", "JavaScript", "HTML"],
       icon: CodeXml,
       id: "programming"
     },
