@@ -36,7 +36,8 @@ export const deviconMapping = {
 
   // Cloud & DevOps
   "Docker": "docker", 
-  "Kubernetes": "kubernetes"
+  "Firebase": "firebase",
+  "Supabase": "supabase"
 };
 
 export const hasValidDevicon = (tech) => {

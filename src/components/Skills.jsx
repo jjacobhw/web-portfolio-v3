@@ -35,7 +35,7 @@ export const Skills = () => {
     },
     {
       title: "Cloud & DevOps",
-      skills: ["Docker", "Kubernetes"],
+      skills: ["Docker"],
       icon: Cloudy,
       id: "cloud"
     }
