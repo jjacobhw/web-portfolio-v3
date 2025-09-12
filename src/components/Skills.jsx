@@ -17,7 +17,7 @@ export const Skills = () => {
     },
     {
       title: "Web Development", 
-      skills: ["React", "Next.js", "Node.js", "Tailwind CSS", "FastAPI"],
+      skills: ["React", "Next.js", "Node.js", "Tailwind CSS", "FastAPI", "Figma"],
       icon: Globe,
       id: "web"
     },

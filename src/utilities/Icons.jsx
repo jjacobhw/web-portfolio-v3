@@ -30,6 +30,8 @@ export const SkillIcon = ({ tech, className = "w-10 h-10 md:w-12 md:h-12" }) => 
         return "devicon-tailwindcss-plain";
       case "FastAPI":
         return "devicon-fastapi-plain";
+      case "Figma":
+        return "devicon-figma-plain";
       
       // AI & Machine Learning
       case "PyTorch":
