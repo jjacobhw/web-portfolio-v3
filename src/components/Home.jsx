@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 export const Home = () => {
   const [displayedText, setDisplayedText] = useState('');
   const [isTypingComplete, setIsTypingComplete] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const fullText = "Hi, I'm Jacob Wei";
   const emoji = " 👋";
@@ -21,7 +20,6 @@ export const Home = () => {
   }, []);
 
   useEffect(() => {
-    setIsVisible(true);
     const startDelay = setTimeout(() => {
       setDisplayedText('');
       setIsTypingComplete(false);
@@ -38,7 +36,7 @@ export const Home = () => {
       }, 50);
 
       return () => clearInterval(typingInterval);
-    }, 300);
+    }, 150);
 
     return () => clearTimeout(startDelay);
   }, []);
@@ -87,8 +85,7 @@ export const Home = () => {
         isMobileLayout 
           ? 'text-xl sm:text-2xl mb-7'
           : 'text-lg lg:text-xl xl:text-2xl 2xl:text-3xl mb-8'
-      } transition-all duration-700 delay-300
-      ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+      }`}>
         AI/ML Engineer & Full Stack Developer
       </h2>
 
@@ -96,16 +93,13 @@ export const Home = () => {
         isMobileLayout 
           ? 'text-base sm:text-lg mb-7'
           : 'text-sm lg:text-base xl:text-lg mb-8 max-w-2xl'
-      } transition-all duration-700 delay-500
-      ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-        I’m a Computer Science undergraduate specializing in machine learning, AI engineering, 
+      }`}>
+        I'm a Computer Science undergraduate specializing in machine learning, AI engineering, 
         and full-stack development. With experience in fine-tuning LLMs, building RAG pipelines, and deploying 
         automation solutions, I focus on creating practical, scalable solutions that deliver real-world impact.
       </h3>
       
-      <div className={`flex ${isMobileLayout ? 'flex-wrap justify-center gap-4 sm:gap-5' : 'flex-wrap gap-3 lg:gap-4 xl:gap-5'}
-                      transition-all duration-700 delay-700
-                      ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+      <div className={`flex ${isMobileLayout ? 'flex-wrap justify-center gap-4 sm:gap-5' : 'flex-wrap gap-3 lg:gap-4 xl:gap-5'}`}>
         <ActionButton 
           href="/media/Jacob's Resume.pdf" 
           icon={FileText} 
@@ -134,9 +128,7 @@ export const Home = () => {
   );
 
   const ProfilePicture = ({ isMobileLayout = false }) => (
-    <div className={`${isMobileLayout ? '' : 'flex-shrink-0'} 
-                    transition-all duration-700 ${isMobileLayout ? 'delay-300' : 'delay-900'}
-                    ${isVisible ? 'opacity-100 translate-y-0 translate-x-0' : `opacity-0 ${isMobileLayout ? 'translate-y-8' : 'translate-x-8'}`}`}>
+    <div className={`${isMobileLayout ? '' : 'flex-shrink-0'}`}>
       <div className="relative">
         <img
           src="/media/profile-photo.jpg"
