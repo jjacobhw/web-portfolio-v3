@@ -1,10 +1,12 @@
 import { FileText, Github, Linkedin, } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 export const Home = () => {
   const [displayedText, setDisplayedText] = useState('');
   const [isTypingComplete, setIsTypingComplete] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const hasAnimated = useRef(false);
   const fullText = "Hi, I'm Jacob Wei";
   const emoji = " 👋";
   
@@ -39,6 +41,19 @@ export const Home = () => {
     }, 150);
 
     return () => clearTimeout(startDelay);
+  }, []);
+
+  // Animation effect for the text bodies
+  useEffect(() => {
+    if (!hasAnimated.current) {
+      const timer = setTimeout(() => {
+        setIsVisible(true);
+        hasAnimated.current = true;
+      }, 1400);
+      return () => clearTimeout(timer);
+    } else {
+      setIsVisible(true);
+    }
   }, []);
 
   const ActionButton = ({ href, icon: Icon, children, isMobileLayout = false }) => (
@@ -85,23 +100,29 @@ export const Home = () => {
         isMobileLayout 
           ? 'text-xl sm:text-2xl mb-7'
           : 'text-lg lg:text-xl xl:text-2xl 2xl:text-3xl mb-8'
+      } transition-opacity duration-700 ease-out ${
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
       }`}>
         AI/ML Engineer & Full Stack Developer
       </h2>
 
-      <h3 className={`text-white/90 leading-relaxed ${
+      <h3 className={`text-white leading-relaxed ${
         isMobileLayout 
           ? 'text-base sm:text-lg mb-7'
           : 'text-sm lg:text-base xl:text-lg mb-8 max-w-2xl'
+      } transition-opacity duration-700 ease-out delay-100 ${
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
       }`}>
         I'm a Computer Science undergraduate specializing in machine learning, AI engineering, 
         and full-stack development. With experience in fine-tuning LLMs, building RAG pipelines, and deploying 
         automation solutions, I focus on creating practical, scalable solutions that deliver real-world impact.
       </h3>
       
-      <div className={`flex ${isMobileLayout ? 'flex-wrap justify-center gap-4 sm:gap-5' : 'flex-wrap gap-3 lg:gap-4 xl:gap-5'}`}>
+      <div className={`flex ${isMobileLayout ? 'flex-wrap justify-center gap-4 sm:gap-5' : 'flex-wrap gap-3 lg:gap-4 xl:gap-5'} transition-opacity duration-700 ease-out delay-200 ${
+        isVisible ? 'opacity-100' : 'opacity-0'
+      }`}>
         <ActionButton 
-          href="/media/Jacob's Resume.pdf" 
+          href="/Jacob's Resume.pdf" 
           icon={FileText} 
           isMobileLayout={isMobileLayout}
         >
@@ -128,10 +149,12 @@ export const Home = () => {
   );
 
   const ProfilePicture = ({ isMobileLayout = false }) => (
-    <div className={`${isMobileLayout ? '' : 'flex-shrink-0'}`}>
+    <div className={`${isMobileLayout ? '' : 'flex-shrink-0'} transition-opacity duration-700 ease-out delay-300 ${
+      isVisible ? 'opacity-100' : 'opacity-0'
+    }`}>
       <div className="relative">
         <img
-          src="/media/profile-photo.jpg"
+          src="/profile-photo.jpg"
           alt="Jacob Wei"
           className={`${
             isMobileLayout 
