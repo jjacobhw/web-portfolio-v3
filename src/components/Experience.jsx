@@ -6,7 +6,7 @@ export const Experience = () => {
       degree: "Bachelor of Science, Computer Science",
       school: "University of California, Santa Cruz",
       location: "Santa Cruz, CA",
-      period: "2023 - 2027",
+      period: "September 2023 - June 2027",
       gpa: "3.85/4.00",
       highlights: []
     }
