@@ -152,7 +152,7 @@ export const Projects = () => {
           <div className={`flex flex-col flex-1 p-5 md:p-6 lg:p-7`}>
             <div className="flex-shrink-0 mb-4">
               <h3 className={`font-bold text-[#1DB954] relative group transition-all duration-300 leading-tight
-                             ${isCenter ? 'text-xl md:text-2xl' : 'text-lg md:text-xl'}`}>
+                             ${isCenter ? 'text-xl md:text-3xl' : 'text-lg md:text-xl'}`}>
                 <span className="block line-clamp-3">
                   {project.title}
                 </span>
@@ -162,7 +162,7 @@ export const Projects = () => {
             <div className={`flex-shrink-0 transition-all duration-500 ease-out mb-5
                            ${(isCenter || isMobile) ? 'opacity-100' : 'opacity-0 max-h-0 mb-0'}`}>
               <p className={`text-white leading-relaxed 
-                            ${isCenter ? 'text-base md:text-lg' : 'text-sm md:text-base'}`}>
+                            ${isCenter ? 'text-base md:text-md' : 'text-sm md:text-base'}`}>
                 {project.description}
               </p>
             </div>
@@ -173,7 +173,7 @@ export const Projects = () => {
                   {project.tags.map((tag, tagIndex) => (
                     <span
                       key={tagIndex}
-                      className={`inline-block px-3 md:px-3.5 py-1.5 text-sm font-medium rounded-full transition-all duration-300 whitespace-nowrap
+                      className={`inline-block px-3 md:px-3.5 py-1.5 text-xs font-medium rounded-full transition-all duration-300 whitespace-nowrap
                                ${(isCenter || isMobile)
                                  ? 'bg-[#1DB954]/15 text-white border border-[#1DB954]/30 hover:bg-[#1DB954]/25' 
                                  : 'bg-[#1DB954]/10 text-white/80 border border-[#1DB954]/20'
