@@ -28,6 +28,15 @@ const projects = [
     tags: ["C", "Hash Tables", "Linux", "Bash"],
     github: "https://github.com/jjacobhw/Customer-Database",
     demo: "", 
+  },
+  {
+    id: 4,
+    title: "Decaffinated",
+    description: "Coming soon :)",
+    image: "", 
+    tags: [],
+    github: "",
+    demo: "", 
   }
 ];
 
