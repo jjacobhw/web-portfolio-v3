@@ -18,7 +18,7 @@ export const Experience = () => {
       company: "Inference.ai",
       location: "Palo Alto, CA",
       period: "June 2025 - September 2025",
-      description: "",
+      description: "Designed and engineered machine learning systems for LLMs to clean and process data, enhance API integration and act as voice-based agents.",
       achievements: [
         "Developed RAG pipelines for comprehensive data analysis, reducing response hallucinations",
         "Integrated LLMs with MCP, enhancing API usage across various platforms while reducing model complexity",
