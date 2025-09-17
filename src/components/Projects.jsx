@@ -37,6 +37,15 @@ const projects = [
     tags: [],
     github: "",
     demo: "", 
+  },
+  {
+    id: 5,
+    title: "Palate",
+    description: "Coming soon :)",
+    image: "", 
+    tags: [],
+    github: "",
+    demo: "", 
   }
 ];
 
