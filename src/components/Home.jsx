@@ -96,7 +96,7 @@ export const Home = () => {
       }`}>
         I'm a Computer Science undergraduate specializing in machine learning, AI engineering, 
         and full-stack development. With experience in fine-tuning LLMs, building RAG pipelines, and deploying 
-        automation solutions, I focus on creating practical, scalable solutions that deliver real-world impact.
+        automation solutions, I strive to create practical and scalable solutions that deliver real-world impact.
       </h3>
       
       <div className={`flex ${isMobileLayout ? 'flex-wrap justify-center gap-4 sm:gap-5' : 'flex-wrap gap-3 lg:gap-4 xl:gap-5'}`}>
