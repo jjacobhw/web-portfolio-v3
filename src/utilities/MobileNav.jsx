@@ -76,7 +76,7 @@ export const MobileNav = ({ menuOpen, setMenuOpen, activeSection, setActiveSecti
               className={`w-5 h-5 absolute transition-all duration-300 group-hover:scale-110 ${
                 isHovered ? 'opacity-0 scale-75 rotate-12' : 'opacity-100 scale-100 rotate-0'
               }`}
-              style={{ color: '#1DB954' }}
+              style={{ color: '#1DB954' }}  
             />
             <Mails 
               className={`w-5 h-5 absolute transition-all duration-300 group-hover:scale-110 ${

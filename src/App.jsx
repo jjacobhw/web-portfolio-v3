@@ -44,7 +44,6 @@ function App() {
     };
     
     const handleIntersect = (entries) => {
-      // Don't update active section if we're manually navigating
       if (menuOpen || isScrollingRef.current || isManualNavigationRef.current) return;
       
       let mostVisibleSection = null;
@@ -54,7 +53,6 @@ function App() {
         const sectionIndex = ['home', 'skills', 'experience', 'projects'].indexOf(entry.target.id);
         if (sectionIndex === -1) return;
         
-        // Calculate how much of the section is visible
         const intersectionRatio = entry.intersectionRatio;
         
         if (intersectionRatio > maxVisibility) {
@@ -63,7 +61,6 @@ function App() {
         }
       });
       
-      // Update active section if we found a section with significant visibility
       if (mostVisibleSection !== null && maxVisibility > 0.3 && mostVisibleSection !== activeSection) {
         setActiveSection(mostVisibleSection);
       }
@@ -84,7 +81,6 @@ function App() {
     };
   }, [menuOpen, activeSection]);
 
-  // Fast smooth scroll with shorter duration and optimized easing
   const smoothScrollToSection = (sectionIndex) => {
     const targetElement = sectionRefs[sectionIndex]?.current;
     if (!targetElement) return;
@@ -126,19 +122,16 @@ function App() {
     requestAnimationFrame(animation);
   };
 
-  // Alternative instant scroll function for even faster navigation
   const instantScrollToSection = (sectionIndex) => {
     const targetElement = sectionRefs[sectionIndex]?.current;
     if (!targetElement) return;
 
-    // Use native scrollIntoView with smooth behavior (hardware accelerated)
     targetElement.scrollIntoView({ 
       behavior: 'smooth', 
       block: 'start',
       inline: 'nearest'
     });
 
-    // Quick reset for observer
     setTimeout(() => {
       isScrollingRef.current = false;
       isManualNavigationRef.current = false;
@@ -152,7 +145,6 @@ function App() {
     }, 50);
   };
 
-  // Navigation function with option for instant or smooth scroll
   const navigateToSection = useCallback((sectionIndex, instant = false) => {
     if (isScrollingRef.current) return;
     
@@ -164,19 +156,16 @@ function App() {
       clearTimeout(scrollTimeoutRef.current);
     }
     
-    // Temporarily disconnect observer to prevent interference
     if (observerRef.current) {
       observerRef.current.disconnect();
     }
     
-    // Choose scroll method based on preference
     if (instant) {
       instantScrollToSection(sectionIndex);
     } else {
       smoothScrollToSection(sectionIndex);
     }
     
-    // Reset flags after scroll completion
     scrollTimeoutRef.current = setTimeout(() => {
       isScrollingRef.current = false;
       isManualNavigationRef.current = false;
@@ -190,26 +179,21 @@ function App() {
     }, 600);
   }, []);
 
-  // Handle navbar navigation
   const handleNavClick = useCallback((sectionIndex) => {
     navigateToSection(sectionIndex, true);
     setMenuOpen(false);
   }, [navigateToSection]);
 
-  // Add scroll event listener for manual scrolling
   useEffect(() => {
     let scrollTimeout;
     
     const handleScroll = () => {
-      // Clear any existing timeout
       if (scrollTimeout) {
         clearTimeout(scrollTimeout);
       }
       
-      // Set a new timeout to detect when scrolling stops
       scrollTimeout = setTimeout(() => {
         if (!isScrollingRef.current && !isManualNavigationRef.current) {
-          // When scrolling stops, manually check which section is in view
           const scrollPosition = window.scrollY + window.innerHeight / 3;
           
           let closestSection = 0;
@@ -244,7 +228,6 @@ function App() {
     };
   }, [activeSection]);
 
-  // Add keyboard navigation for better UX
   useEffect(() => {
     const handleKeyPress = (e) => {
       if (menuOpen) return;
@@ -286,8 +269,6 @@ function App() {
         activeSection={activeSection} 
         setActiveSection={handleNavClick}
       />
-      
-      {/* Scroll container optimized for performance */}
       <div 
         ref={containerRef}
         className="overflow-y-auto"
