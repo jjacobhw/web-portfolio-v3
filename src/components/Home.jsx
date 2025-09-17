@@ -59,87 +59,87 @@ export const Home = () => {
     </a>
   );
 
-  const TextContent = ({ isMobileLayout = false }) => (
-    <div className={isMobileLayout ? 'w-full max-w-lg' : 'w-full min-w-0 flex-1'}>
-      <div className={`relative ${isMobileLayout ? 'h-16 sm:h-20 mb-6' : 'h-20 xl:h-24 mb-8'}`}>
-        <h1 className={`font-bold absolute w-full whitespace-nowrap ${
-          isMobileLayout 
-            ? 'text-4xl sm:text-5xl md:text-6xl'
-            : 'text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl'
-        }`}>
-          <span className="text-white">
-            {displayedText.slice(0, 8)} {/* "Hi, I'm " */}
-          </span>
-          {displayedText.length > 8 && (
-            <span className="text-[#1DB954]">
-              {displayedText.slice(8)} {/* "Jacob Wei" */}
-            </span>
-          )}
-          {isTypingComplete && (
-            <span className="animate-wave text-white">{emoji}</span>
-          )}
-        </h1>
-      </div>
-      
-      <h2 className={`text-[#1DB954] font-medium whitespace-nowrap ${
-        isMobileLayout 
-          ? 'text-xl sm:text-2xl mb-7'
-          : 'text-lg lg:text-xl xl:text-2xl 2xl:text-3xl mb-8'
-      }`}>
-        AI/ML Engineer & Full Stack Developer
-      </h2>
-
-      <h3 className={`text-white/90 leading-relaxed ${
-        isMobileLayout 
-          ? 'text-base sm:text-lg mb-7'
-          : 'text-sm lg:text-base xl:text-lg mb-8 max-w-2xl'
-      }`}>
-        I'm a Computer Science undergraduate specializing in machine learning, AI engineering, 
-        and full-stack development. With experience in fine-tuning LLMs, building RAG pipelines, and deploying 
-        automation solutions, I strive to create practical and scalable solutions that deliver real-world impact.
-      </h3>
-      
-      <div className={`flex ${isMobileLayout ? 'flex-wrap justify-center gap-4 sm:gap-5' : 'flex-wrap gap-3 lg:gap-4 xl:gap-5'}`}>
-        <ActionButton 
-          href="/media/Jacob's Resume.pdf" 
-          icon={FileText} 
-          isMobileLayout={isMobileLayout}
-        >
-          Resume
-        </ActionButton>
-        
-        <ActionButton 
-          href="https://github.com/jjacobhw" 
-          icon={Github} 
-          isMobileLayout={isMobileLayout}
-        >
-          GitHub
-        </ActionButton>
-        
-        <ActionButton 
-          href="https://www.linkedin.com/in/jacob-wei/" 
-          icon={Linkedin} 
-          isMobileLayout={isMobileLayout}
-        >
-          LinkedIn
-        </ActionButton>
-      </div>
-    </div>
-  );
-
-  const ProfilePicture = ({ isMobileLayout = false }) => (
-    <div className={`${isMobileLayout ? '' : 'flex-shrink-0'}`}>
-      <div className="relative">
-        <img
-          src="/media/profile-photo.jpg"
-          alt="Jacob Wei"
-          className={`${
+  const Content = ({ isMobileLayout = false }) => (
+    <div className={`flex ${isMobileLayout ? 'flex-col items-center' : 'flex-row items-center gap-8'}`}>
+      <div className={isMobileLayout ? 'w-full max-w-lg' : 'w-full min-w-0 flex-1'}>
+        <div className={`relative ${isMobileLayout ? 'h-16 sm:h-20 mb-6' : 'h-20 xl:h-24 mb-8'}`}>
+          <h1 className={`font-bold absolute w-full whitespace-nowrap ${
             isMobileLayout 
-              ? 'w-52 h-64 sm:w-60 sm:h-72 md:w-72 md:h-80 mx-auto'
-              : 'w-56 h-64 lg:w-64 lg:h-80 xl:w-72 xl:h-80 2xl:w-80 2xl:h-96' 
-          } rounded-xl object-cover object-top  
-          shadow-[0_0_15px_rgba(29,185,84,0.4)]`}
-        />
+              ? 'text-4xl sm:text-5xl md:text-6xl'
+              : 'text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl'
+          }`}>
+            <span className="text-white">
+              {displayedText.slice(0, 8)} {/* "Hi, I'm " */}
+            </span>
+            {displayedText.length > 8 && (
+              <span className="text-[#1DB954]">
+                {displayedText.slice(8)} {/* "Jacob Wei" */}
+              </span>
+            )}
+            {isTypingComplete && (
+              <span className="animate-wave text-white">{emoji}</span>
+            )}
+          </h1>
+        </div>
+        
+        <h2 className={`text-[#1DB954] font-medium whitespace-nowrap ${
+          isMobileLayout 
+            ? 'text-xl sm:text-2xl mb-7'
+            : 'text-lg lg:text-xl xl:text-2xl 2xl:text-3xl mb-8'
+        }`}>
+          AI/ML Engineer & Full Stack Developer
+        </h2>
+
+        <h3 className={`text-white/90 leading-relaxed ${
+          isMobileLayout 
+            ? 'text-base sm:text-lg mb-7'
+            : 'text-sm lg:text-base xl:text-lg mb-8 max-w-2xl'
+        }`}>
+          I'm a Computer Science undergraduate specializing in machine learning, AI engineering, 
+          and full-stack development. With experience in fine-tuning LLMs, building RAG pipelines, and deploying 
+          automation solutions, I strive to create practical and scalable solutions that deliver real-world impact.
+        </h3>
+        
+        <div className={`flex ${isMobileLayout ? 'flex-wrap justify-center gap-4 sm:gap-5' : 'flex-wrap gap-3 lg:gap-4 xl:gap-5'}`}>
+          <ActionButton 
+            href="/media/Jacob's Resume.pdf" 
+            icon={FileText} 
+            isMobileLayout={isMobileLayout}
+          >
+            Resume
+          </ActionButton>
+          
+          <ActionButton 
+            href="https://github.com/jjacobhw" 
+            icon={Github} 
+            isMobileLayout={isMobileLayout}
+          >
+            GitHub
+          </ActionButton>
+          
+          <ActionButton 
+            href="https://www.linkedin.com/in/jacob-wei/" 
+            icon={Linkedin} 
+            isMobileLayout={isMobileLayout}
+          >
+            LinkedIn
+          </ActionButton>
+        </div>
+      </div>
+
+      <div className={`${isMobileLayout ? '' : 'flex-shrink-0'}`}>
+        <div className="relative">
+          <img
+            src="/media/profile-photo.jpg"
+            alt="Jacob Wei"
+            className={`${
+              isMobileLayout 
+                ? 'w-52 h-64 sm:w-60 sm:h-72 md:w-72 md:h-80 mx-auto'
+                : 'w-56 h-64 lg:w-64 lg:h-80 xl:w-72 xl:h-80 2xl:w-80 2xl:h-96' 
+            } rounded-xl object-cover object-top  
+            shadow-[0_0_15px_rgba(29,185,84,0.4)]`}
+          />
+        </div>
       </div>
     </div>
   );
@@ -149,13 +149,11 @@ export const Home = () => {
       <div className="max-w-5xl mx-auto px-4">
         <div className={`${isMobile ? 'hidden' : 'flex'} items-center justify-between gap-8 lg:gap-10 xl:gap-12 min-w-0`}>
           <div className="flex-1 min-w-0">
-            <TextContent />
+            <Content />
           </div>
-          <ProfilePicture />
         </div>
         <div className={`${isMobile ? 'flex' : 'hidden'} flex-col items-center text-center gap-10 py-8`}>
-          <ProfilePicture isMobileLayout={true} />
-          <TextContent isMobileLayout={true} />
+          <Content isMobileLayout={true} />
         </div>
       </div>
     </div>
