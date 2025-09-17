@@ -22,6 +22,7 @@ function App() {
   
   const scrollTimeoutRef = useRef(null);
   const isScrollingRef = useRef(false);
+  const isManualNavigationRef = useRef(false);
   const observerRef = useRef(null);
   
   useEffect(() => {
@@ -38,29 +39,33 @@ function App() {
   useEffect(() => {
     const options = {
       root: null,
-      rootMargin: '-30% 0px -30% 0px',
+      rootMargin: '0px',
       threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]
     };
     
     const handleIntersect = (entries) => {
-      if (menuOpen || isScrollingRef.current) return;
+      // Don't update active section if we're manually navigating
+      if (menuOpen || isScrollingRef.current || isManualNavigationRef.current) return;
       
-      let maxRatio = 0.1;
-      let maxSectionIndex = activeSection;
+      let mostVisibleSection = null;
+      let maxVisibility = 0;
       
       entries.forEach(entry => {
-        if (entry.intersectionRatio > maxRatio) {
-          maxRatio = entry.intersectionRatio;
-          const id = entry.target.id;
-          const sectionIndex = ['home', 'skills', 'experience', 'projects'].indexOf(id);
-          if (sectionIndex !== -1) {
-            maxSectionIndex = sectionIndex;
-          }
+        const sectionIndex = ['home', 'skills', 'experience', 'projects'].indexOf(entry.target.id);
+        if (sectionIndex === -1) return;
+        
+        // Calculate how much of the section is visible
+        const intersectionRatio = entry.intersectionRatio;
+        
+        if (intersectionRatio > maxVisibility) {
+          maxVisibility = intersectionRatio;
+          mostVisibleSection = sectionIndex;
         }
       });
       
-      if (maxSectionIndex !== activeSection && maxRatio > 0.3) {
-        setActiveSection(maxSectionIndex);
+      // Update active section if we found a section with significant visibility
+      if (mostVisibleSection !== null && maxVisibility > 0.3 && mostVisibleSection !== activeSection) {
+        setActiveSection(mostVisibleSection);
       }
     };
     
@@ -87,11 +92,9 @@ function App() {
     const startPosition = window.pageYOffset;
     const targetPosition = targetElement.offsetTop;
     const distance = targetPosition - startPosition;
-    // Reduced duration from 1200ms to 600ms for faster navigation
     const duration = 600;
     let start = null;
 
-    // More responsive easing function
     const easeOutQuart = (t) => {
       return 1 - (--t) * t * t * t;
     };
@@ -107,7 +110,7 @@ function App() {
         requestAnimationFrame(animation);
       } else {
         isScrollingRef.current = false;
-        // Reduced timeout for faster re-enabling of observer
+        isManualNavigationRef.current = false;
         setTimeout(() => {
           if (observerRef.current) {
             sectionRefs.forEach(ref => {
@@ -116,7 +119,7 @@ function App() {
               }
             });
           }
-        }, 100); // Reduced from 200ms to 100ms
+        }, 100);
       }
     };
 
@@ -138,6 +141,7 @@ function App() {
     // Quick reset for observer
     setTimeout(() => {
       isScrollingRef.current = false;
+      isManualNavigationRef.current = false;
       if (observerRef.current) {
         sectionRefs.forEach(ref => {
           if (ref.current) {
@@ -153,6 +157,7 @@ function App() {
     if (isScrollingRef.current) return;
     
     isScrollingRef.current = true;
+    isManualNavigationRef.current = true;
     setActiveSection(sectionIndex);
     
     if (scrollTimeoutRef.current) {
@@ -170,14 +175,74 @@ function App() {
     } else {
       smoothScrollToSection(sectionIndex);
     }
+    
+    // Reset flags after scroll completion
+    scrollTimeoutRef.current = setTimeout(() => {
+      isScrollingRef.current = false;
+      isManualNavigationRef.current = false;
+      if (observerRef.current) {
+        sectionRefs.forEach(ref => {
+          if (ref.current) {
+            observerRef.current.observe(ref.current);
+          }
+        });
+      }
+    }, 600);
   }, []);
 
-  // Handle navbar navigation - using native scrollIntoView for fastest performance
+  // Handle navbar navigation
   const handleNavClick = useCallback((sectionIndex) => {
-    // Using instant scroll option with native scrollIntoView (hardware-accelerated)
     navigateToSection(sectionIndex, true);
     setMenuOpen(false);
   }, [navigateToSection]);
+
+  // Add scroll event listener for manual scrolling
+  useEffect(() => {
+    let scrollTimeout;
+    
+    const handleScroll = () => {
+      // Clear any existing timeout
+      if (scrollTimeout) {
+        clearTimeout(scrollTimeout);
+      }
+      
+      // Set a new timeout to detect when scrolling stops
+      scrollTimeout = setTimeout(() => {
+        if (!isScrollingRef.current && !isManualNavigationRef.current) {
+          // When scrolling stops, manually check which section is in view
+          const scrollPosition = window.scrollY + window.innerHeight / 3;
+          
+          let closestSection = 0;
+          let minDistance = Infinity;
+          
+          sectionRefs.forEach((ref, index) => {
+            if (ref.current) {
+              const sectionTop = ref.current.offsetTop;
+              const sectionBottom = sectionTop + ref.current.offsetHeight;
+              const distance = Math.abs(scrollPosition - (sectionTop + sectionBottom) / 2);
+              
+              if (distance < minDistance) {
+                minDistance = distance;
+                closestSection = index;
+              }
+            }
+          });
+          
+          if (closestSection !== activeSection) {
+            setActiveSection(closestSection);
+          }
+        }
+      }, 100);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (scrollTimeout) {
+        clearTimeout(scrollTimeout);
+      }
+    };
+  }, [activeSection]);
 
   // Add keyboard navigation for better UX
   useEffect(() => {
@@ -226,7 +291,7 @@ function App() {
       <div 
         ref={containerRef}
         className="overflow-y-auto"
-        style={{ scrollBehavior: 'auto' }} // Disable CSS scroll-behavior to use JS control
+        style={{ scrollBehavior: 'auto' }}
       >
         <section 
           ref={sectionRefs[0]}
