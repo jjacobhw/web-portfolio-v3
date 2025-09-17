@@ -29,7 +29,7 @@ export const Skills = () => {
     },
     {
       title: "Platforms & Tools",
-      skills: ["Windows", "Linux", "MacOS", "Ubuntu", "Bash", "Git"],
+      skills: ["Windows", "Linux", "Unix", "Ubuntu", "Bash", "Zsh", "VS Code", "Vim", "GitHub", "Git"],
       icon: Terminal,
       id: "platforms"
     },

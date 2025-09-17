@@ -58,6 +58,16 @@ export const SkillIcon = ({ tech, className = "w-10 h-10 md:w-12 md:h-12" }) => 
         return "devicon-bash-plain";
       case "Git":
         return "devicon-git-plain";
+      case "VS Code":
+        return "devicon-vscode-plain";
+      case "Unix":
+        return "devicon-unix-original";
+      case "Vim":
+        return "devicon-vim-plain";
+      case "GitHub":
+        return "devicon-github-original";
+      case "Zsh":
+        return "devicon-zsh-plain";
 
       // Cloud & DevOps
       case "Docker":
@@ -80,7 +90,7 @@ export const SkillIcon = ({ tech, className = "w-10 h-10 md:w-12 md:h-12" }) => 
 
 export const DevIconStyles = () => (
   <>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/devicon.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.17.0/devicon.min.css" />
     <style jsx>{`
       .skill-icon {
         color: #1DB954 !important;
