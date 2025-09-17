@@ -33,10 +33,10 @@ export const Home = () => {
           setIsTypingComplete(true);
           clearInterval(typingInterval);
         }
-      }, 50);
+      }, 40);
 
       return () => clearInterval(typingInterval);
-    }, 150);
+    }, 100);
 
     return () => clearTimeout(startDelay);
   }, []);
