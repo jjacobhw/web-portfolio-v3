@@ -32,7 +32,7 @@ const projects = [
   {
     id: 4,
     title: "Palate",
-    description: "Expand you flavor profile - coming soon :)",
+    description: "In development",
     image: "", 
     tags: ["Python", "Docker", "Ollama 3.1 8B", "Fast API", "Notion API", "Anthropic API",],
     github: "",
