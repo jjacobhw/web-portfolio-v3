@@ -36,6 +36,8 @@ export const SkillIcon = ({ tech, className = "w-10 h-10 md:w-12 md:h-12" }) => 
       // AI & Machine Learning
       case "PyTorch":
         return "devicon-pytorch-original";
+      case "TensorFlow":
+        return "devicon-tensorflow-original"
       case "NumPy":
         return "devicon-numpy-plain";
       case "Pandas":

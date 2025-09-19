@@ -23,7 +23,7 @@ export const Skills = () => {
     },
     {
       title: "AI & Machine Learning",
-      skills: ["PyTorch", "NumPy", "Pandas", "Streamlit", "Scikit-learn"],
+      skills: ["PyTorch", "TensorFlow", "NumPy", "Pandas", "Streamlit", "Scikit-learn"],
       icon: BrainCircuit,
       id: "ai"
     },

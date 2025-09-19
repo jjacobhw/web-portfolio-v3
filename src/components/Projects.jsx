@@ -32,15 +32,15 @@ const projects = [
   {
     id: 4,
     title: "Palate",
-    description: "In development",
+    description: "Currently in development...",
     image: "", 
-    tags: ["Python", "Docker", "Ollama 3.1 8B", "Fast API", "Notion API", "Anthropic API",],
+    tags: ["MCP", "Python", "Docker", "Claude", "FastAPI", "Notion API", "Supabase"],
     github: "",
     demo: "", 
   },
   {
     id: 5,
-    title: "Decaffinated",
+    title: "Decaffeinated",
     description: "Coming soon :)",
     image: "", 
     tags: [],
@@ -127,17 +127,17 @@ export const Projects = () => {
     return (
       <div
         className={`flex-shrink-0 transition-all duration-500 ease-out cursor-pointer
-                   ${isMobile 
-                     ? (isCenter ? 'w-full max-w-md opacity-100 scale-100 z-20' : 'hidden')
-                     : (isCenter 
-                       ? 'w-80 md:w-96 lg:w-[28rem] opacity-100 scale-100 z-30 mx-[-20px]' 
-                       : (isLeft 
-                         ? 'w-64 md:w-72 lg:w-80 opacity-35 scale-80 z-20 mr-[-60px]' 
-                         : 'w-64 md:w-72 lg:w-80 opacity-35 scale-80 z-20 ml-[-60px]'
-                       )
-                     )
-                   }
-                   transform ${isCenter ? 'hover:scale-[1.005]' : 'hover:scale-[1.005]'}`}
+                  ${isMobile 
+                    ? (isCenter ? 'w-full max-w-md opacity-100 scale-100 z-20' : 'hidden')
+                    : (isCenter 
+                      ? 'w-96 md:w-[32rem] lg:w-[32rem] opacity-100 scale-100 z-30 mx-[-30px]' // Increased width
+                      : (isLeft 
+                        ? 'w-64 md:w-72 lg:w-80 opacity-35 scale-80 z-20 mr-[-80px]' // Adjusted margin
+                        : 'w-64 md:w-72 lg:w-80 opacity-35 scale-80 z-20 ml-[-80px]' // Adjusted margin
+                      )
+                    )
+                  }
+                  transform ${isCenter ? 'hover:scale-[1.005]' : 'hover:scale-[1.005]'}`}
         onClick={onClick}
       >
         {/* Project Card */}
@@ -148,7 +148,7 @@ export const Projects = () => {
                         }
                         ${isMobile 
                           ? 'min-h-[520px] max-h-[620px]' 
-                          : (isCenter ? 'h-[560px] md:h-[600px]' : 'h-[520px] md:h-[560px]')
+                          : (isCenter ? 'h-[600px] md:h-[640px]' : 'h-[520px] md:h-[560px]') // Increased height for center card
                         }`}>
           
           <div className={`relative overflow-hidden flex-shrink-0
