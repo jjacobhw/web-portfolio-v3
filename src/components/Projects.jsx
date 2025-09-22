@@ -4,7 +4,7 @@ import { Github, ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react';
 const projects = [
   {
     id: 1,
-    title: "Student Recruiter Chatbot",
+    title: "Student Recruiter",
     description: "A RAG chatbot powered by Ollama 3.2 designed to assist with student recruitment, providing automated responses and information about personal documents such as Resumes, transcripts, etc.",
     image: "", 
     tags: ["Python", "LangChain", "Ollama", "ChromaDB"],
