@@ -31,22 +31,23 @@ const projects = [
   },
   {
     id: 4,
+    title: "Decaf",
+    description: "Coming soon :)",
+    image: "", 
+    tags: ["Python", "React", "Next.js", "TypeScript", "Tailwind CSS", "Docker", "FastAPI", "Supabase", "LangChain", "Ollama 3.2 8B"],
+    github: "https://github.com/jjacobhw/Decaf",
+    demo: "", 
+  },
+  {
+    id: 5,
     title: "Palate",
-    description: "Currently in development...",
+    description: "In development...",
     image: "", 
     tags: ["MCP", "Python", "Docker", "Claude", "FastAPI", "Notion API", "Supabase"],
     github: "",
     demo: "", 
   },
-  {
-    id: 5,
-    title: "Decaffeinated",
-    description: "Coming soon :)",
-    image: "", 
-    tags: [],
-    github: "",
-    demo: "", 
-  }
+
 ];
 
 export const Projects = () => {
