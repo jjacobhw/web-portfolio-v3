@@ -34,7 +34,7 @@ const projects = [
     title: "Decaf",
     description: "Coming soon :)",
     image: "", 
-    tags: ["Python", "React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Docker", "FastAPI", "Sup abase", "LangChain", "Ollama 3.2 8B"],
+    tags: ["Python", "React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Docker", "FastAPI", "Supabase", "LangChain", "Ollama 3.2 8B"],
     github: "https://github.com/jjacobhw/Decaf",
     demo: "", 
   },
